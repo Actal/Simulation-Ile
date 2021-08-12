@@ -1,13 +1,13 @@
 package fr.formation.model;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,13 +21,14 @@ public class Metier {
 	@Column(name = "MET_INTITULE")
 	private String intitule;
 
-	@OneToOne(mappedBy = "metier")
-	private Poste poste;
+	@OneToMany(mappedBy = "metier")
+	private List<Poste> postes;
 	
 	Metier() {
 	}
-	public Metier(String poste, BigDecimal salaire) {
-		this.intitule = poste;
+	
+	public Metier(String intitule) {
+		this.intitule = intitule;
 	}
 
 	public int getId() {
@@ -46,11 +47,12 @@ public class Metier {
 		this.intitule = poste;
 	}
 	
-	public Poste getPoste() {
-		return poste;
+	public List<Poste> getPostes() {
+		return postes;
 	}
-	public void setPoste(Poste poste) {
-		this.poste = poste;
+	
+	public void setPostes(List<Poste> postes) {
+		this.postes = postes;
 	}
 
 }
