@@ -16,27 +16,29 @@ import javax.persistence.Table;
 @Table(name = "workplace")
 @PrimaryKeyJoinColumn(name="WOR_ID", referencedColumnName="BAT_ID")
 public class Workplace extends Batiment {
-
-	@ManyToMany
-	@JoinTable(
-			name = "wor_met", // nom table de correspondance
-			joinColumns = @JoinColumn(name="ID_WORKPLACE", referencedColumnName = "BAT_ID"),
-			inverseJoinColumns = @JoinColumn(name = "ID_METIER", referencedColumnName = "MET_ID")
-	)
-	private List<Metier> metiers;
-	
 	@Column(name = "WOR_HEURE_OUVERTURE")
 	private LocalTime heureOuverture;
 	
 	@Column(name = "WOR_HEURE_FERMETURE")
 	private LocalTime heureFermeture;
+	
+	@Column(name = "WOR_EST_OUVERT")
+	private boolean isOuvert;
 
-	public List<Metier> getMetiers() {
-		return metiers;
+	@ManyToMany
+	@JoinTable(
+			name = "wor_pos", // nom table de correspondance
+			joinColumns = @JoinColumn(name="ID_WORKPLACE", referencedColumnName = "WOR_ID"),
+			inverseJoinColumns = @JoinColumn(name = "ID_POSTE", referencedColumnName = "POS_ID")
+	)
+	private List<Poste> postes;
+	
+	public void ouvrir() {
+		isOuvert = true;
 	}
-
-	public void setMetiers(List<Metier> metiers) {
-		this.metiers = metiers;
+	
+	public void fermer() {
+		isOuvert = false;
 	}
 
 	public LocalTime getHeureOuverture() {
@@ -55,16 +57,30 @@ public class Workplace extends Batiment {
 		this.heureFermeture = heureFermeture;
 	}
 
-	public Workplace(Adresse adresse, BigDecimal superficie, Biome biome, List<Metier> metiers,
-			LocalTime heureOuverture, LocalTime heureFermeture) {
+	public boolean isOuvert() {
+		return isOuvert;
+	}
+
+	public void setOuvert(boolean isOuvert) {
+		this.isOuvert = isOuvert;
+	}
+
+	public List<Poste> getPostes() {
+		return postes;
+	}
+
+	public void setPostes(List<Poste> postes) {
+		this.postes = postes;
+	}
+
+	public Workplace(Adresse adresse, BigDecimal superficie, Biome biome, LocalTime heureOuverture,
+			LocalTime heureFermeture) {
 		super(adresse, superficie, biome);
-		this.metiers = metiers;
 		this.heureOuverture = heureOuverture;
 		this.heureFermeture = heureFermeture;
 	}
 
 	public Workplace() {
 	}
-	
 	
 }
