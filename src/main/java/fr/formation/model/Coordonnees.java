@@ -1,9 +1,31 @@
 package fr.formation.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="coordonees")
 public class Coordonnees {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "COO_ID")
+	private int id;
+	@Column(name = "COO_X")
 	private int x;
+	@Column(name = "COO_Y")
 	private int y;
+	
+	@OneToOne(mappedBy = "coordonees")
+	private Batiment batiment;
+	
+	@OneToOne(mappedBy = "coordonees")
+	private Biome biome;
 	
 	public Coordonnees() {
 	}

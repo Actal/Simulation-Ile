@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,10 @@ public class Biome {
 	
 	@Column(name = "BIO_COORDONNEES")
 	private Coordonnees localisation;
+	
+	@OneToOne
+	@JoinColumn(name = "BIO_COORDONEES_ID")
+	private Coordonnees coordonees;
 
 	public Biome() {
 	}

@@ -31,6 +31,10 @@ public class Batiment {
 	@ManyToOne
 	@JoinColumn(name = "BAT_BIOME_ID", nullable = false)
 	private Biome biome;
+	
+	@OneToOne
+	@JoinColumn(name = "BAT_COORDONEES_ID")
+	private Coordonnees coordonees;
 
 	public Adresse getAdresse() {
 		return adresse;
