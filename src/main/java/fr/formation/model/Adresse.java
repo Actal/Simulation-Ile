@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,6 +25,10 @@ public class Adresse {
 	
 	@OneToOne(mappedBy = "adresse")
 	private Batiment batiment;
+	
+	@OneToOne
+	@JoinColumn(name = "ADR_COORDONNEES_ID")
+	private Coordonnees coordonnees;
 	
 	public Adresse() {
 	}
@@ -64,7 +69,21 @@ public class Adresse {
 	public void setBatiment(Batiment batiment) {
 		this.batiment = batiment;
 	}
-	
-	
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
+	}
+
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
+	}
 
 }
