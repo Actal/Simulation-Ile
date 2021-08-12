@@ -64,7 +64,7 @@ public class Personne {
 	}
 	
 	public void rentrer() {
-		this.setCoordonnees(this.getHabitation().getAdresse().g);
+		this.setCoordonnees(this.getHabitation().getAdresse().getCoordonnees());
 	}
 
 	public int getId() {
