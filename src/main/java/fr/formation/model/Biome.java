@@ -1,6 +1,7 @@
 package fr.formation.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ public class Biome {
 	private Coordonnees coordonnees;
 	
 	@OneToMany(mappedBy = "biome")
-	private Batiment batiment;
+	private List<Batiment> batiments;
 
 	public Biome() {
 	}
@@ -81,12 +82,12 @@ public class Biome {
 		this.coordonnees = coordonnees;
 	}
 
-	public Batiment getBatiment() {
-		return batiment;
+	public List<Batiment> getBatiment() {
+		return batiments;
 	}
 
-	public void setBatiment(Batiment batiment) {
-		this.batiment = batiment;
+	public void setBatiment(List<Batiment> batiments) {
+		this.batiments = batiments;
 	}
 	
 }
