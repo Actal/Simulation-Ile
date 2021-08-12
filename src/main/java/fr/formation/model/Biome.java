@@ -72,4 +72,21 @@ public class Biome {
 	public void setLocalisation(Coordonnees localisation) {
 		this.coordonnees = localisation;
 	}
+
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
+	}
+
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
+	}
+
+	public Batiment getBatiment() {
+		return batiment;
+	}
+
+	public void setBatiment(Batiment batiment) {
+		this.batiment = batiment;
+	}
+	
 }
