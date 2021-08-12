@@ -3,16 +3,23 @@
 	xmlns="http://java.sun.com/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-	<persistence-unit name="EShopUnit" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="Simulation-Ile" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>fr.formation.model.Adresse</class>
+		<class>fr.formation.model.Batiment</class>
+		<class>fr.formation.model.Biome</class>
+		<class>fr.formation.model.Coordonnees</class>
+		<class>fr.formation.model.Habitation</class>
+		<class>fr.formation.model.Metier</class>
+		<class>fr.formation.model.Personne</class>
+		<class>fr.formation.model.Workplace</class>
 		<!-- Eventuellement d'autres classes d'Entité -->
 		
 		<properties>
 			<!-- Listes des propriétés liées à l'implémentation (Hibernate, OpenJPA, ...) -->
 			
 			<!-- DataSource (URL, Driver, Username, Password) -->
-			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/eshop" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/Simulation-Ile" />
 			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.user" value="postgres" />
 			<property name="hibernate.connection.password" value="28041993" />
