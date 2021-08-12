@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="coordonees")
+@Table (name="coordonnees")
 public class Coordonnees {
 
 	@Id
@@ -21,10 +21,10 @@ public class Coordonnees {
 	@Column(name = "COO_Y")
 	private int y;
 	
-	@OneToOne(mappedBy = "coordonees")
+	@OneToOne(mappedBy = "coordonnees")
 	private Batiment batiment;
 	
-	@OneToOne(mappedBy = "coordonees")
+	@OneToOne(mappedBy = "coordonnees")
 	private Biome biome;
 	
 	public Coordonnees() {
