@@ -12,6 +12,7 @@
 		<class>fr.formation.model.Habitation</class>
 		<class>fr.formation.model.Metier</class>
 		<class>fr.formation.model.Personne</class>
+		<class>fr.formation.model.Poste</class>
 		<class>fr.formation.model.Workplace</class>
 		<!-- Eventuellement d'autres classes d'Entité -->
 		
