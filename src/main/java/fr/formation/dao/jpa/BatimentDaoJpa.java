@@ -3,7 +3,6 @@ package fr.formation.dao.jpa;
 import java.util.List;
 
 import fr.formation.dao.IBatimentDao;
-import fr.formation.model.Adresse;
 import fr.formation.model.Batiment;
 
 public class BatimentDaoJpa extends AbstractDaoJpa <Batiment> implements IBatimentDao{

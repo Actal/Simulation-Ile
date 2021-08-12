@@ -2,10 +2,10 @@ package fr.formation.dao.jpa;
 
 import java.util.List;
 
-import fr.formation.dao.ICoordoneesDao;
+import fr.formation.dao.ICoordonneesDao;
 import fr.formation.model.Coordonnees;
 
-public class CoordonneesDaoJpa extends AbstractDaoJpa <Coordonnees> implements ICoordoneesDao{
+public class CoordonneesDaoJpa extends AbstractDaoJpa <Coordonnees> implements ICoordonneesDao{
 
 	@Override
 	public List<Coordonnees> findAll() {
