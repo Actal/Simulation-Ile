@@ -29,7 +29,7 @@ public class Batiment {
 	private BigDecimal superficie;
 	
 	@ManyToOne
-	@JoinColumn(name = "BAT_BIOME", nullable = false)
+	@JoinColumn(name = "BAT_BIOME_ID", nullable = false)
 	private Biome biome;
 
 	public Adresse getAdresse() {
