@@ -19,19 +19,18 @@ public class Adresse {
 	@Column(name = "ADR_RUE", length = 150,  nullable = false)
 	private String rue;
 	
-	@Column(name = "ADR_CP", length = 5, nullable = false)
-	private String cp;
+	@Column(name = "ADR_NUMERO", nullable = false)
+	private int numero;
 	
-	@Column(name = "ADR_VILLE", length = 50, nullable = false)
-	private String ville;
+	@OneToOne(mappedBy = "adresse")
+	private Batiment batiment;
 	
 	public Adresse() {
 	}
 
-	public Adresse(String rue, String cp, String ville) {
+	public Adresse(String rue, int numero) {
 		this.rue = rue;
-		this.cp = cp;
-		this.ville = ville;
+		this.numero = numero;
 	}
 
 	public int getId() {
@@ -50,20 +49,22 @@ public class Adresse {
 		this.rue = rue;
 	}
 
-	public String getCp() {
-		return cp;
+	public int getNum() {
+		return numero;
 	}
 
-	public void setCp(String cp) {
-		this.cp = cp;
+	public void setNum(int numero) {
+		this.numero = numero;
 	}
 
-	public String getVille() {
-		return ville;
+	public Batiment getBatiment() {
+		return batiment;
 	}
 
-	public void setVille(String ville) {
-		this.ville = ville;
+	public void setBatiment(Batiment batiment) {
+		this.batiment = batiment;
 	}
+	
+	
 
 }
