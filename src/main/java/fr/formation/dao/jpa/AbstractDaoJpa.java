@@ -7,16 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public abstract class AbstractDaoJpa<T> {
-	// Avec static, on rend cet attribut commun a toutes les instances (premisse
-	// Singleton)
-//	public static int counter = 1;
-//	
-//	public AbstractDaoJpa() {
-//		counter++;
-//	}
 
 	// Creation de l'EntityManagerFactory
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("EShopUnit");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("Simulation-Ile");
 
 	// Creation de l'EntityManager
 	protected EntityManager em = emf.createEntityManager();
