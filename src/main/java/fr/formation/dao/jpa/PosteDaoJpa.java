@@ -2,10 +2,10 @@ package fr.formation.dao.jpa;
 
 import java.util.List;
 
-import fr.formation.dao.IPosteDAO;
+import fr.formation.dao.IPosteDao;
 import fr.formation.model.Poste;
 
-public class PosteDaoJpa extends AbstractDaoJpa <Poste> implements IPosteDAO{
+public class PosteDaoJpa extends AbstractDaoJpa <Poste> implements IPosteDao{
 
 	@Override
 	public List<Poste> findAll() {
