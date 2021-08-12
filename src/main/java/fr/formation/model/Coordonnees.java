@@ -16,16 +16,12 @@ public class Coordonnees {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "COO_ID")
 	private int id;
+	
 	@Column(name = "COO_X")
 	private int x;
+	
 	@Column(name = "COO_Y")
 	private int y;
-	
-	@OneToOne(mappedBy = "coordonnees")
-	private Batiment batiment;
-	
-	@OneToOne(mappedBy = "coordonnees")
-	private Biome biome;
 	
 	public Coordonnees() {
 	}
