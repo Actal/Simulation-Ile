@@ -25,10 +25,6 @@ public class Adresse {
 	@Column(name = "ADR_VILLE", length = 50, nullable = false)
 	private String ville;
 	
-	// Relation secondaire
-	@OneToOne(mappedBy = "adresse")
-	private Client client;
-	
 	public Adresse() {
 	}
 
@@ -68,14 +64,6 @@ public class Adresse {
 
 	public void setVille(String ville) {
 		this.ville = ville;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 }
