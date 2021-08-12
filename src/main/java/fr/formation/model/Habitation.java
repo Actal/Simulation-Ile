@@ -6,10 +6,12 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "habitation")
+@PrimaryKeyJoinColumn(name="HAB_ID", referencedColumnName="BAT_ID")
 public class Habitation extends Batiment {
 
 	@Column(name = "HAB_NB_PLACE", nullable = false)

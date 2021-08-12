@@ -9,10 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "workplace")
+@PrimaryKeyJoinColumn(name="WOR_ID", referencedColumnName="BAT_ID")
 public class Workplace extends Batiment {
 
 	@ManyToMany
