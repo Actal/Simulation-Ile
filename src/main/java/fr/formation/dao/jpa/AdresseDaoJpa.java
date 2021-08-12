@@ -9,7 +9,7 @@ public class AdresseDaoJpa extends AbstractDaoJpa <Adresse> implements IAdresseD
 
 	@Override
 	public List<Adresse> findAll() {
-		return em.createQuery("SELECT f FROM Fournisseur f", Adresse.class)
+		return em.createQuery("SELECT a FROM Adresse a", Adresse.class)
 				.getResultList();
 	}
 
