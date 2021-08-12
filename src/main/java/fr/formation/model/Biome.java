@@ -24,21 +24,17 @@ public class Biome {
 	
 	@Column(name = "BIO_SUPERFICIE")
 	private BigDecimal superficie;
-	
-	@Column(name = "BIO_COORDONNEES")
-	private Coordonnees localisation;
-	
+
 	@OneToOne
 	@JoinColumn(name = "BIO_COORDONEES_ID")
-	private Coordonnees coordonees;
+	private Coordonnees coordonnees;
 
 	public Biome() {
 	}
 
-	public Biome(String type, BigDecimal superficie, Coordonnees localisation) {
+	public Biome(String type, BigDecimal superficie) {
 		this.type = type;
 		this.superficie = superficie;
-		this.localisation = localisation;
 	}
 
 	public int getId() {
@@ -66,10 +62,10 @@ public class Biome {
 	}
 
 	public Coordonnees getLocalisation() {
-		return localisation;
+		return coordonnees;
 	}
 
 	public void setLocalisation(Coordonnees localisation) {
-		this.localisation = localisation;
+		this.coordonnees = localisation;
 	}
 }
