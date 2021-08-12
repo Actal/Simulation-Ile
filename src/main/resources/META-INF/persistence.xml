@@ -6,6 +6,13 @@
 	<persistence-unit name="EShopUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>fr.formation.model.Adresse</class>
+		<class>fr.formation.model.Batiment</class>
+		<class>fr.formation.model.Biome</class>
+		<class>fr.formation.model.Coordonnees</class>
+		<class>fr.formation.model.Habitation</class>
+		<class>fr.formation.model.Metier</class>
+		<class>fr.formation.model.Personne</class>
+		<class>fr.formation.model.Workplace</class>
 		<!-- Eventuellement d'autres classes d'Entité -->
 		
 		<properties>
