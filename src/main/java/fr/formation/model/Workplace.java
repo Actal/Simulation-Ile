@@ -8,7 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -25,12 +25,7 @@ public class Workplace extends Batiment {
 	@Column(name = "WOR_EST_OUVERT")
 	private boolean isOuvert;
 
-	@ManyToMany
-	@JoinTable(
-			name = "wor_pos", // nom table de correspondance
-			joinColumns = @JoinColumn(name="ID_WORKPLACE", referencedColumnName = "WOR_ID"),
-			inverseJoinColumns = @JoinColumn(name = "ID_POSTE", referencedColumnName = "POS_ID")
-	)
+	@OneToMany(mappedBy = "workplace")
 	private List<Poste> postes;
 	
 	public void ouvrir() {
