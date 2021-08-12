@@ -32,8 +32,7 @@ public class Poste {
 	@JoinColumn(name = "POS_WORKPLACE_ID", nullable = false)
 	private Workplace workplace;
 	
-	@OneToOne
-	@JoinColumn(name = "POS_PERSONNE_ID")
+	@OneToOne(mappedBy = "poste")
 	private Personne personne;
 
 	public Poste(){
