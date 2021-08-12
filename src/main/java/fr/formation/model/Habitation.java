@@ -23,6 +23,14 @@ public class Habitation extends Batiment {
 	@OneToMany(mappedBy = "habitation")
 	private List<Personne> habitants;
 
+	public void ajouterHabitant(Personne nvHabitant) {
+		int nbHab = habitants.size();
+		if(nbHab < nbPlace)
+			habitants.add(nvHabitant);
+		else
+			System.out.println("Habitation pleine ! Pas d'ajout d'habitant");
+	}
+	
 	public int getNbPlace() {
 		return nbPlace;
 	}
@@ -47,16 +55,13 @@ public class Habitation extends Batiment {
 		this.habitants = habitants;
 	}
 
-	public Habitation(Adresse adresse, BigDecimal superficie, Biome biome, int nbPlace, BigDecimal loyer,
-			List<Personne> habitants) {
+	public Habitation() {
+	}
+
+	public Habitation(Adresse adresse, BigDecimal superficie, Biome biome, int nbPlace, BigDecimal loyer) {
 		super(adresse, superficie, biome);
 		this.nbPlace = nbPlace;
 		this.loyer = loyer;
-		this.habitants = habitants;
 	}
 
-	public Habitation() {
-	}
-	
-	
 }
