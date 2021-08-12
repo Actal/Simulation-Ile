@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,26 +20,30 @@ public class Personne {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PER_ID")
 	private int id;
-	
+
 	@Column(name = "PER_NOM", nullable = false)
 	private String nom;
-	
+
 	@Column(name = "PER_PRENOM", nullable = false)
 	private String prenom;
-	
+
 	@Column(name = "PER_DATE_NAISSANCE", nullable = false)
 	private LocalDate dateNaissance;
-	
-	@Column(name = "PER_ARGENT")
+
+	@Column(name = "PER_ARGENT", nullable = false)
 	private BigDecimal argent;
+
+	@OneToOne
+	@JoinColumn(name = "PER_POSTE_ID")
+	private Poste poste;
+
+	@OneToOne
+	@JoinColumn(name = "PER_COORDONNEES_ID")
+	private Coordonnees coordonnees;
 	
 	@ManyToOne
 	@JoinColumn(name = "PER_HABITATION_ID")
 	private Habitation habitation;
-	
-	@ManyToOne
-	@JoinColumn(name = "PER_METIER_ID")
-	private Metier metier;
 
 	public Personne() {
 	}
@@ -48,6 +53,18 @@ public class Personne {
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.argent = argent;
+	}
+
+	public void payerLoyer() {
+		this.setArgent(this.getArgent().subtract(this.getHabitation().getLoyer()));
+	}
+	
+	public void allerTravailler() {
+		this.setCoordonnees(this.getPoste().getWorkplace().getAdresse().getCoordonnees());
+	}
+	
+	public void rentrer() {
+		this.setCoordonnees(this.getHabitation().getAdresse().g);
 	}
 
 	public int getId() {
@@ -90,6 +107,14 @@ public class Personne {
 		this.argent = argent;
 	}
 
+	public Poste getPoste() {
+		return poste;
+	}
+
+	public void setPoste(Poste poste) {
+		this.poste = poste;
+	}
+
 	public Habitation getHabitation() {
 		return habitation;
 	}
@@ -98,11 +123,12 @@ public class Personne {
 		this.habitation = habitation;
 	}
 
-	public Metier getMetier() {
-		return metier;
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
 	}
 
-	public void setMetier(Metier metier) {
-		this.metier = metier;
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
 	}
+	
 }
