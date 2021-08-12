@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,6 +29,9 @@ public class Biome {
 	@OneToOne
 	@JoinColumn(name = "BIO_COORDONEES_ID")
 	private Coordonnees coordonnees;
+	
+	@OneToMany(mappedBy = "biome")
+	private Batiment batiment;
 
 	public Biome() {
 	}
