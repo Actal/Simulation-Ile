@@ -17,3 +17,4 @@
 
 # maven
 src/main/resources/*
+target/*
