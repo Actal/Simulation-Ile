@@ -33,8 +33,8 @@ public class Batiment {
 	private Biome biome;
 	
 	@OneToOne
-	@JoinColumn(name = "BAT_COORDONEES_ID")
-	private Coordonnees coordonees;
+	@JoinColumn(name = "BAT_COORDONNEES_ID")
+	private Coordonnees coordonnees;
 
 	public Adresse getAdresse() {
 		return adresse;
@@ -66,6 +66,14 @@ public class Batiment {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
+	}
+
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
 	}
 
 	public Batiment(Adresse adresse, BigDecimal superficie, Biome biome) {
