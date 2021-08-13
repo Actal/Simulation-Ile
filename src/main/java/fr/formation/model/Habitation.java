@@ -44,6 +44,7 @@ public class Habitation extends Batiment {
 
 	public void supprimerHabitant(Citoyen habitant) {
 		habitants.remove(habitant);
+		habitant.setHabitation(null);
 	}
 
 	public BigDecimal getLoyer() {
