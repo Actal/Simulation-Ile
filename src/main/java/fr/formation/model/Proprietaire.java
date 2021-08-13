@@ -22,13 +22,22 @@ public class Proprietaire extends Citoyen {
 	}
 
 	public void payerEmployes() {
-
+		for (Batiment b : batiments) {
+			if (b instanceof Workplace) {
+				for (Poste p : ((Workplace) b).getPostes()) {
+					if(p.getCitoyen() != null) {
+						payer(p.getSalaire());
+						p.getCitoyen().gagnerArgent(p.getSalaire());
+					}
+				}
+			}
+		}
 	}
 
 	public void percevoirLoyer() {
 		for (Batiment b : batiments) {
 			if (b instanceof Habitation) {
-				this.getArgent().add(((Habitation) b).recolterLoyer());
+				this.gagnerArgent(((Habitation) b).recolterLoyer());
 			}
 		}
 	}
