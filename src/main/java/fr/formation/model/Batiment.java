@@ -24,17 +24,33 @@ public abstract class Batiment {
 	@Column(name = "BAT_ID")
 	private int id;
 	
+	@Column(name = "BAT_SUPERFICIE", nullable = false)
+	private BigDecimal superficie;
+	
+	@Column(name = "BAT_NOM", nullable = false)
+	private String nom;
+	
+	@Column(name = "BAT_PRIX")
+	private BigDecimal prix;
+	
+	@Column(name = "BAT_COUT_ENTRETIEN")
+	private BigDecimal coutEntretien;
+	
+	@Column(name = "BAT_NB_PLACES")
+	private int nbPlace;
+	
 	@OneToOne
 	@JoinColumn(name = "BAT_ADRESSE_ID", nullable = false)
 	private Adresse adresse;
 	
-	@Column(name = "BAT_SUPERFICIE", nullable = false)
-	private BigDecimal superficie;
-	
 	@ManyToOne
 	@JoinColumn(name = "BAT_BIOME_ID", nullable = false)
 	private Biome biome;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "BAT_PROPRIETAIRE", nullable = false)
+	private Proprietaire proprietaire;
+	
 	public Adresse getAdresse() {
 		return adresse;
 	}
@@ -67,10 +83,52 @@ public abstract class Batiment {
 		this.id = id;
 	}
 
-	public Batiment(Adresse adresse, BigDecimal superficie, Biome biome) {
-		this.adresse = adresse;
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public BigDecimal getPrix() {
+		return prix;
+	}
+
+	public void setPrix(BigDecimal prix) {
+		this.prix = prix;
+	}
+
+	public BigDecimal getCoutEntretien() {
+		return coutEntretien;
+	}
+
+	public void setCoutEntretien(BigDecimal coutEntretien) {
+		this.coutEntretien = coutEntretien;
+	}
+
+	public int getNbPlace() {
+		return nbPlace;
+	}
+
+	public void setNbPlace(int nbPlace) {
+		this.nbPlace = nbPlace;
+	}
+
+	public Proprietaire getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Proprietaire proprietaire) {
+		this.proprietaire = proprietaire;
+	}
+
+	public Batiment(String nom, BigDecimal superficie, BigDecimal prix, BigDecimal coutEntretien, int nbPlace) {
+		this.nom = nom;
 		this.superficie = superficie;
-		this.biome = biome;
+		this.prix = prix;
+		this.coutEntretien = coutEntretien;
+		this.nbPlace = nbPlace;
 	}
 
 	public Batiment() {

@@ -11,30 +11,39 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "habitation")
-@PrimaryKeyJoinColumn(name="HAB_ID", referencedColumnName="BAT_ID")
+@PrimaryKeyJoinColumn(name = "HAB_ID", referencedColumnName = "BAT_ID")
 public class Habitation extends Batiment {
 	@Column(name = "HAB_LOYER", nullable = false)
 	private BigDecimal loyer;
-	
+
 	@OneToMany(mappedBy = "habitation")
 	private List<Citoyen> habitants;
 
 	public void ajouterHabitant(Citoyen nvHabitant) {
 		int nbHab = habitants.size();
-		if(nbHab < nbPlace) {
-			habitants.add(nvHabitant);
-			nvHabitant.setHabitation(this);
-		}
-		else
-			System.out.println("Habitation pleine ! Pas d'ajout d'habitant");
-	}
-	
-	public int getNbPlace() {
-		return nbPlace;
+		if (!habitants.contains(nvHabitant)) {
+			if (nbHab < this.getNbPlace()) {
+				habitants.add(nvHabitant);
+				nvHabitant.setHabitation(this);
+			} else
+				System.out.println("Habitation pleine ! Pas d'ajout d'habitant");
+		} else
+			System.out.println("L'habitation contient deja cet habitant !");
 	}
 
-	public void setNbPlace(int nbPlace) {
-		this.nbPlace = nbPlace;
+	public BigDecimal recolterLoyer() {
+		BigDecimal somme = new BigDecimal(0);
+		for (Citoyen c : habitants) {
+			boolean aPaye = c.payer(loyer);
+			if (aPaye) {
+				somme.add(loyer);
+			}
+		}
+		return somme;
+	}
+
+	public void supprimerHabitant(Citoyen habitant) {
+		habitants.remove(habitant);
 	}
 
 	public BigDecimal getLoyer() {
@@ -56,7 +65,8 @@ public class Habitation extends Batiment {
 	public Habitation() {
 	}
 
-	public Habitation(String nom, BigDecimal superficie, BigDecimal prix, BigDecimal coutEntretien, int nbPlace, BigDecimal loyer) {
+	public Habitation(String nom, BigDecimal superficie, BigDecimal prix, BigDecimal coutEntretien, int nbPlace,
+			BigDecimal loyer) {
 		super(nom, superficie, prix, coutEntretien, nbPlace);
 		this.loyer = loyer;
 	}
