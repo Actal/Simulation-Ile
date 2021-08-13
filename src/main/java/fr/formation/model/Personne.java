@@ -40,7 +40,7 @@ public class Personne {
 	private BigDecimal argent;
 
 	@ManyToOne
-	@JoinColumn(name = "CIT_SERVICE_ID")
+	@JoinColumn(name = "PER_SERVICE_ID")
 	private Service service;
 	
 	@OneToOne
