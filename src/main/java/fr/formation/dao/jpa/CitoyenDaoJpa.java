@@ -15,7 +15,7 @@ public class CitoyenDaoJpa extends AbstractDaoJpa <Citoyen> implements ICitoyenD
 
 	@Override
 	public Citoyen findById(Integer id) {
-		return em.find(Adresse.class, id);
+		return em.find(Citoyen.class, id);
 	}
 
 	@Override
