@@ -31,6 +31,23 @@ public class Habitation extends Batiment {
 			System.out.println("L'habitation contient deja cet habitant !");
 	}
 
+	public BigDecimal valeurEntretient() {
+		BigDecimal entretient = new BigDecimal(0);
+		BigDecimal entretientParHabitant = new BigDecimal(0.01); // entretient pour chaque habitant en pourcentage de l'entretient de base
+		
+		entretient.add(this.getCoutEntretienBase());
+		entretient.add(entretientParHabitant * this.getCoutEntretienBase())
+		
+		return entretient;
+	}
+
+	public BigDecimal valeurBenefice() {
+		BigDecimal benefice = new BigDecimal(0);
+		benefice.add(this.recolterLoyer());
+		benefice.subtract(this.valeurEntretient());
+		return benefice;
+	}
+
 	public BigDecimal recolterLoyer() {
 		BigDecimal somme = new BigDecimal(0);
 		for (Citoyen c : habitants) {
@@ -44,6 +61,7 @@ public class Habitation extends Batiment {
 
 	public void supprimerHabitant(Citoyen habitant) {
 		habitants.remove(habitant);
+		habitant.setHabitation(null);
 	}
 
 	public BigDecimal getLoyer() {
