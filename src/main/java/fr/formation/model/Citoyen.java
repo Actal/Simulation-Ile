@@ -18,10 +18,6 @@ public class Citoyen extends Personne {
 	@JoinColumn(name = "CIT_HABITATION_ID")
 	private Habitation habitation;
 	
-	public void payerLoyer() {
-		this.setArgent(this.getArgent().subtract(this.getHabitation().getLoyer()));
-	}
-	
 	public void allerTravailler() {
 		this.setCoordonnees(this.getPoste().getWorkplace().getAdresse().getCoordonnees());
 	}
