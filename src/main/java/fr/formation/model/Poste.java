@@ -27,7 +27,7 @@ public class Poste {
 	@ManyToOne
 	@JoinColumn(name = "POS_METIER_ID", nullable = false)
 	private Metier metier;
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "POS_WORKPLACE_ID", nullable = false)
 	private Workplace workplace;
@@ -38,6 +38,7 @@ public class Poste {
 	public Poste(){
 		
 	}
+	
 	public Poste(BigDecimal salaire) {
 		this.salaire = salaire;
 	}

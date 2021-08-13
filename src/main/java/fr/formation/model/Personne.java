@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,21 +29,24 @@ public class Personne {
 	@Column(name = "PER_DATE_NAISSANCE", nullable = false)
 	private LocalDate dateNaissance;
 
+	@Column(name = "PER_SEXE", nullable = false)
+	private Sexe sexe;
+	
 	@Column(name = "PER_ARGENT", nullable = false)
 	private BigDecimal argent;
 
 	@OneToOne
-	@JoinColumn(name = "PER_POSTE_ID")
-	private Poste poste;
-
-	@OneToOne
 	@JoinColumn(name = "PER_COORDONNEES_ID")
 	private Coordonnees coordonnees;
-	
-	@ManyToOne
-	@JoinColumn(name = "PER_HABITATION_ID")
-	private Habitation habitation;
 
+	public Boolean payer(BigDecimal somme) {
+		if( this.getArgent().compareTo(somme) >= 0) {
+			this.getArgent().subtract(somme);
+			return true;
+		}
+		return false;
+	}
+	
 	public Personne() {
 	}
 
@@ -53,18 +55,6 @@ public class Personne {
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.argent = argent;
-	}
-
-	public void payerLoyer() {
-		this.setArgent(this.getArgent().subtract(this.getHabitation().getLoyer()));
-	}
-	
-	public void allerTravailler() {
-		this.setCoordonnees(this.getPoste().getWorkplace().getAdresse().getCoordonnees());
-	}
-	
-	public void rentrer() {
-		this.setCoordonnees(this.getHabitation().getAdresse().getCoordonnees());
 	}
 
 	public int getId() {
@@ -105,22 +95,6 @@ public class Personne {
 
 	public void setArgent(BigDecimal argent) {
 		this.argent = argent;
-	}
-
-	public Poste getPoste() {
-		return poste;
-	}
-
-	public void setPoste(Poste poste) {
-		this.poste = poste;
-	}
-
-	public Habitation getHabitation() {
-		return habitation;
-	}
-
-	public void setHabitation(Habitation habitation) {
-		this.habitation = habitation;
 	}
 
 	public Coordonnees getCoordonnees() {
