@@ -33,8 +33,8 @@ public abstract class Batiment {
 	@Column(name = "BAT_PRIX")
 	private BigDecimal prix;
 	
-	@Column(name = "BAT_COUT_ENTRETIEN")
-	private BigDecimal coutEntretien;
+	@Column(name = "BAT_COUT_ENTRETIEN_BASE")
+	private BigDecimal coutEntretienBase;
 	
 	@Column(name = "BAT_NB_PLACES")
 	private int nbPlace;
@@ -50,6 +50,10 @@ public abstract class Batiment {
 	@ManyToOne
 	@JoinColumn(name = "BAT_PROPRIETAIRE", nullable = false)
 	private Proprietaire proprietaire;
+	
+	public abstract BigDecimal valeurEntretien();
+	
+	public abstract BigDecimal valeurBenefice();
 	
 	public Adresse getAdresse() {
 		return adresse;
@@ -99,12 +103,12 @@ public abstract class Batiment {
 		this.prix = prix;
 	}
 
-	public BigDecimal getCoutEntretien() {
-		return coutEntretien;
+	public BigDecimal getCoutEntretienBase() {
+		return coutEntretienBase;
 	}
 
-	public void setCoutEntretien(BigDecimal coutEntretien) {
-		this.coutEntretien = coutEntretien;
+	public void setCoutEntretienBase(BigDecimal coutEntretienBase) {
+		this.coutEntretienBase = coutEntretienBase;
 	}
 
 	public int getNbPlace() {
