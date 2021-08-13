@@ -50,7 +50,7 @@ public class Habitation extends Batiment {
 		for (Citoyen c : habitants) {
 			boolean aPaye = c.payer(loyer);
 			if (aPaye) {
-				somme.add(loyer);
+				somme = somme.add(loyer);
 			}
 		}
 		return somme;
