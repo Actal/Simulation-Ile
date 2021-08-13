@@ -2,7 +2,7 @@ package fr.formation.dao.jpa;
 
 import java.util.List;
 
-import fr.formation.dao.IProprietaireDao;
+import fr.formation.dao.IServiceDao;
 import fr.formation.model.Service;
 
 public class ServiceDaoJpa extends AbstractDaoJpa <Service> implements IServiceDao{
