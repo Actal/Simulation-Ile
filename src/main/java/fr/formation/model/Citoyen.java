@@ -30,8 +30,8 @@ public class Citoyen extends Personne {
 		super();
 	}
 	
-	public Citoyen(String nom, String prenom, LocalDate dateNaissance, BigDecimal argent) {
-		super(nom, prenom, dateNaissance, argent);
+	public Citoyen(String nom, String prenom, LocalDate dateNaissance, Sexe sexe, BigDecimal argent) {
+		super(nom, prenom, dateNaissance, sexe, argent);
 	}
 
 	public void allerTravailler() {

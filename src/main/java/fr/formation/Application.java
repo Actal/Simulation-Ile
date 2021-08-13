@@ -38,11 +38,11 @@ public class Application {
 		IPosteDao daoPoste = new PosteDaoJpa();
 		IWorkplaceDao daoWorkplace = new WorkplaceDaoJpa();
 				
-		Citoyen citoyen1 = new Citoyen("Bruno", "Aimeric", LocalDate.of(2010,Month.FEBRUARY,10), new BigDecimal(100));
-		Citoyen citoyen2 = new Citoyen("Luck", "Romain", LocalDate.of(2008,Month.FEBRUARY,15), new BigDecimal(10000));
-		Citoyen citoyen3 = new Citoyen("Schickele", "Pierre", LocalDate.of(2010,Month.FEBRUARY,10), new BigDecimal(646));
+		Citoyen citoyen1 = new Citoyen("Bruno", "Aimeric", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(100));
+		Citoyen citoyen2 = new Citoyen("Luck", "Romain", LocalDate.of(2008,Month.FEBRUARY,15), Sexe.Homme, new BigDecimal(10000));
+		Citoyen citoyen3 = new Citoyen("Schickele", "Pierre", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(646));
 		
-		Proprietaire proprio = new Proprietaire("Truc", "Machin", LocalDate.of(1985,Month.FEBRUARY,10), new BigDecimal(1000000));
+		Proprietaire proprio = new Proprietaire("Truc", "Machin", LocalDate.of(1985,Month.FEBRUARY,10), Sexe.Femme, new BigDecimal(1000000));
 		
 		Coordonnees coor1 = new Coordonnees(10,10);
 		Coordonnees coor2 = new Coordonnees(45,456);
@@ -89,6 +89,8 @@ public class Application {
 		
 		daoBiome.save(b);
 		
+		daoProprietaire.save(proprio);
+		
 		daoHabitation.save(h1);
 		daoWorkplace.save(w1);
 		
@@ -101,8 +103,6 @@ public class Application {
 		daoCitoyen.save(citoyen1);
 		daoCitoyen.save(citoyen2);
 		daoCitoyen.save(citoyen3);
-		
-		daoProprietaire.save(proprio);
 	}
 
 }

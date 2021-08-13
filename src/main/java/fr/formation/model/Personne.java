@@ -62,10 +62,12 @@ public class Personne {
 	public Personne() {
 	}
 
-	public Personne(String nom, String prenom, LocalDate dateNaissance, BigDecimal argent) {
+	public Personne(String nom, String prenom, LocalDate dateNaissance, Sexe sexe, BigDecimal argent) {
+		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
+		this.sexe = sexe;
 		this.argent = argent;
 	}
 
