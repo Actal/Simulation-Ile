@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -38,6 +39,10 @@ public class Personne {
 	@Column(name = "PER_ARGENT", nullable = false)
 	private BigDecimal argent;
 
+	@ManyToOne
+	@JoinColumn(name = "CIT_SERVICE_ID")
+	Service service;
+	
 	@OneToOne
 	@JoinColumn(name = "PER_COORDONNEES_ID")
 	private Coordonnees coordonnees;
