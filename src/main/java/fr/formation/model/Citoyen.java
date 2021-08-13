@@ -1,17 +1,21 @@
 package fr.formation.model;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "citoyen")
 public class Citoyen extends Personne {
 
 	@OneToOne
-	@JoinColumn(name = "PER_POSTE_ID")
+	@JoinColumn(name = "CIT_POSTE_ID")
 	private Poste poste;
 	
 	@ManyToOne
-	@JoinColumn(name = "PER_HABITATION_ID")
+	@JoinColumn(name = "CIT_HABITATION_ID")
 	private Habitation habitation;
 	
 	public void payerLoyer() {

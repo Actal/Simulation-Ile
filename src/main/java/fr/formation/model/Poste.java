@@ -33,7 +33,7 @@ public class Poste {
 	private Workplace workplace;
 	
 	@OneToOne(mappedBy = "poste")
-	private Personne personne;
+	private Citoyen citoyen;
 
 	public Poste(){
 		
@@ -70,13 +70,15 @@ public class Poste {
 	public void setWorkplace(Workplace workplace) {
 		this.workplace = workplace;
 	}
+
+	public Citoyen getCitoyen() {
+		return citoyen;
+	}
+
+	public void setCitoyen(Citoyen citoyen) {
+		this.citoyen = citoyen;
+	}
 	
-	public Personne getPersonne() {
-		return personne;
-	}
-	public void setPersonne(Personne personne) {
-		this.personne = personne;
-	}
 	
 	
 }
