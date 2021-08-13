@@ -1,6 +1,11 @@
 package fr.formation.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -8,6 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "citoyen")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Citoyen extends Personne {
 
 	@OneToOne
@@ -18,6 +24,14 @@ public class Citoyen extends Personne {
 	@JoinColumn(name = "CIT_HABITATION_ID")
 	private Habitation habitation;
 	
+	public Citoyen() {
+		super();
+	}
+	
+	public Citoyen(String nom, String prenom, LocalDate dateNaissance, BigDecimal argent) {
+		super(nom, prenom, dateNaissance, argent);
+	}
+
 	public void allerTravailler() {
 		this.setCoordonnees(this.getPoste().getWorkplace().getAdresse().getCoordonnees());
 	}
