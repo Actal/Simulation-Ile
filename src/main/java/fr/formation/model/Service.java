@@ -23,11 +23,12 @@ public class Service extends Workplace{
 	public Service(){
 		
 	}
-	public Service(Adresse adresse, BigDecimal superficie, Biome biome, LocalTime heureOuverture,
-			LocalTime heureFermeture, BigDecimal prixEntree) {
-		super(adresse, superficie, biome, heureOuverture, heureFermeture);
+	public Service(String nom, BigDecimal superficie, BigDecimal prix, BigDecimal coutEntretien, int nbPlace,
+			LocalTime heureOuverture, LocalTime heureFermeture, BigDecimal prixEntree) {
+		super(nom, superficie, prix, coutEntretien, nbPlace, heureOuverture, heureFermeture);
 		this.prixEntree = prixEntree;
 	}
+
 
 	public BigDecimal getPrixEntree() {
 		return prixEntree;
