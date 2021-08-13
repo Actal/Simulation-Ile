@@ -52,9 +52,9 @@ public class Proprietaire extends Citoyen {
 
 	public Proprietaire() {
 	}
-	
-	public Proprietaire(String nom, String prenom, LocalDate dateNaissance, BigDecimal argent) {
-		super(nom, prenom, dateNaissance, argent);
+
+	public Proprietaire(String nom, String prenom, LocalDate dateNaissance, Sexe sexe, BigDecimal argent) {
+		super(nom, prenom, dateNaissance, sexe, argent);
 	}
 
 	public List<Batiment> getBatiments() {
