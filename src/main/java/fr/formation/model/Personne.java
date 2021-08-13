@@ -41,7 +41,7 @@ public class Personne {
 
 	@ManyToOne
 	@JoinColumn(name = "CIT_SERVICE_ID")
-	Service service;
+	private Service service;
 	
 	@OneToOne
 	@JoinColumn(name = "PER_COORDONNEES_ID")
@@ -115,6 +115,22 @@ public class Personne {
 
 	public void setCoordonnees(Coordonnees coordonnees) {
 		this.coordonnees = coordonnees;
+	}
+
+	public Sexe getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(Sexe sexe) {
+		this.sexe = sexe;
+	}
+
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
 	}
 	
 }
