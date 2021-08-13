@@ -53,7 +53,7 @@ public class Workplace extends Batiment {
 	public BigDecimal valeurEntretien(){
 		BigDecimal nbPostes = new BigDecimal(postes.size());
 		BigDecimal coeffEntretienEmployes = new BigDecimal(0.01);
-		BigDecimal entretienTotal = this.getCoutEntretienBase().add(nbPostes.multiply(coeffEntretienEmployes));
+		BigDecimal entretienTotal = this.getCoutEntretienBase().multiply(nbPostes).multiply(coeffEntretienEmployes);
 		return entretienTotal;
 	}
 	public BigDecimal valeurBenefice(){
