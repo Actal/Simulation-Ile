@@ -55,6 +55,10 @@ public class Personne {
 		return false;
 	}
 	
+	public void gagnerArgent(BigDecimal somme) {
+		this.getArgent().add(somme);
+	}
+	
 	public Personne() {
 	}
 
