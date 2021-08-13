@@ -127,11 +127,11 @@ public abstract class Batiment {
 		this.proprietaire = proprietaire;
 	}
 
-	public Batiment(String nom, BigDecimal superficie, BigDecimal prix, BigDecimal coutEntretien, int nbPlace) {
+	public Batiment(String nom, BigDecimal superficie, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace) {
 		this.nom = nom;
 		this.superficie = superficie;
 		this.prix = prix;
-		this.coutEntretien = coutEntretien;
+		this.coutEntretienBase = coutEntretienBase;
 		this.nbPlace = nbPlace;
 	}
 
