@@ -8,11 +8,13 @@
 		<class>fr.formation.model.Adresse</class>
 		<class>fr.formation.model.Batiment</class>
 		<class>fr.formation.model.Biome</class>
+		<class>fr.formation.model.Citoyen</class>
 		<class>fr.formation.model.Coordonnees</class>
 		<class>fr.formation.model.Habitation</class>
 		<class>fr.formation.model.Metier</class>
 		<class>fr.formation.model.Personne</class>
 		<class>fr.formation.model.Poste</class>
+		<class>fr.formation.model.Service</class>
 		<class>fr.formation.model.Workplace</class>
 		<!-- Eventuellement d'autres classes d'Entité -->
 		
@@ -23,7 +25,7 @@
 			<property name="hibernate.connection.url" value="jdbc:postgresql://127.0.0.1:5432/Simulation-Ile" />
 			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.user" value="postgres" />
-			<property name="hibernate.connection.password" value="28041993" />
+			<property name="hibernate.connection.password" value="a" />
 			
 			
 			<!-- Permet d'exécuter les requêtes DDL pour la génération de la base de données -->
