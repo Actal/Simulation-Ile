@@ -34,11 +34,11 @@ public class Workplace extends Batiment {
 		isOuvert = false;
 	}
 	
-	public void ajouterPoste(){
-		
+	public void ajouterPoste(Poste poste){
+		postes.add(poste);
 	}
-	public void supprimerPoste(){
-		
+	public void supprimerPoste(Poste poste){
+		postes.remove(poste);
 	}
 	
 	public BigDecimal valeurRecette() {
@@ -46,7 +46,7 @@ public class Workplace extends Batiment {
 		BigDecimal recetteTotale = new BigDecimal(0);
 		for (Poste p: postes){
 			BigDecimal salaire = p.getSalaire();
-			recetteTotale.add(salaire.multiply(coeffRecettePoste));
+			recetteTotale = recetteTotale.add(salaire.multiply(coeffRecettePoste));
 		}
 	return recetteTotale;
 	}
