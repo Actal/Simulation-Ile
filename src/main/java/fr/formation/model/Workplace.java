@@ -33,6 +33,35 @@ public class Workplace extends Batiment {
 	public void fermer() {
 		isOuvert = false;
 	}
+	
+	public void ajouterPoste(){
+		
+	}
+	public void supprimerPoste(){
+		
+	}
+	
+	public BigDecimal valeurRecette() {
+		BigDecimal coeffRecettePoste = new BigDecimal(2);
+		BigDecimal recetteTotale = new BigDecimal(0);
+		for (Poste p: postes){
+			BigDecimal salaire = p.getSalaire();
+			recetteTotale.add(salaire.multiply(coeffRecettePoste));
+		}
+	return recetteTotale;
+	}
+	public BigDecimal valeurEntretien(){
+		BigDecimal nbPostes = new BigDecimal(postes.size());
+		BigDecimal coeffEntretienEmployes = new BigDecimal(0.01);
+		BigDecimal entretienTotal = this.getCoutEntretienBase().add(nbPostes.multiply(coeffEntretienEmployes));
+		return entretienTotal;
+	}
+	public BigDecimal valeurBenefice(){
+		BigDecimal entretien = valeurEntretien();
+		BigDecimal recette = valeurRecette();
+		BigDecimal benefice = recette.subtract(entretien);
+		return benefice;
+	}
 
 	public LocalTime getHeureOuverture() {
 		return heureOuverture;
