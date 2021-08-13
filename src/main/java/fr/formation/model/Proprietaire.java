@@ -1,5 +1,7 @@
 package fr.formation.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -48,7 +50,11 @@ public class Proprietaire extends Citoyen {
 //		}
 //	}
 
-	Proprietaire() {
+	public Proprietaire() {
+	}
+	
+	public Proprietaire(String nom, String prenom, LocalDate dateNaissance, BigDecimal argent) {
+		super(nom, prenom, dateNaissance, argent);
 	}
 
 	public List<Batiment> getBatiments() {
