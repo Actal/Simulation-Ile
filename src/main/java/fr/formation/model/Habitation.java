@@ -33,10 +33,12 @@ public class Habitation extends Batiment {
 
 	public BigDecimal valeurEntretien() {
 		BigDecimal entretient = new BigDecimal(0);
-		BigDecimal entretientParHabitant = new BigDecimal(0.01); // entretient pour chaque habitant en pourcentage de l'entretient de base
+		BigDecimal coeffEntretientParHabitant = new BigDecimal(0.01); // entretient pour chaque habitant en pourcentage de l'entretient de base
+		
+		BigDecimal nbHabitant = new BigDecimal(this.getHabitants().size());
 		
 		entretient = entretient.add(this.getCoutEntretienBase());
-		entretient = entretient.add(entretientParHabitant.multiply(this.getCoutEntretienBase()));
+		entretient = entretient.add(coeffEntretientParHabitant.multiply(this.getCoutEntretienBase().multiply(nbHabitant)));
 		
 		return entretient;
 	}
