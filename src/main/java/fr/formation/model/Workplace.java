@@ -25,43 +25,6 @@ public class Workplace extends Batiment {
 
 	@OneToMany(mappedBy = "workplace")
 	private List<Poste> postes;
-	
-	public void ouvrir() {
-		isOuvert = true;
-	}
-	
-	public void fermer() {
-		isOuvert = false;
-	}
-	
-	public void ajouterPoste(Poste poste){
-		postes.add(poste);
-	}
-	public void supprimerPoste(Poste poste){
-		postes.remove(poste);
-	}
-	
-	public BigDecimal valeurRecette() {
-		BigDecimal coeffRecettePoste = new BigDecimal(2);
-		BigDecimal recetteTotale = new BigDecimal(0);
-		for (Poste p: postes){
-			BigDecimal salaire = p.getSalaire();
-			recetteTotale = recetteTotale.add(salaire.multiply(coeffRecettePoste));
-		}
-	return recetteTotale;
-	}
-	public BigDecimal valeurEntretien(){
-		BigDecimal nbPostes = new BigDecimal(postes.size());
-		BigDecimal coeffEntretienEmployes = new BigDecimal(0.01);
-		BigDecimal entretienTotal = this.getCoutEntretienBase().multiply(nbPostes).multiply(coeffEntretienEmployes);
-		return entretienTotal;
-	}
-	public BigDecimal valeurBenefice(){
-		BigDecimal entretien = valeurEntretien();
-		BigDecimal recette = valeurRecette();
-		BigDecimal benefice = recette.subtract(entretien);
-		return benefice;
-	}
 
 	public LocalTime getHeureOuverture() {
 		return heureOuverture;
