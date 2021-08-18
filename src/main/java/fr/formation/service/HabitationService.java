@@ -12,7 +12,7 @@ import fr.formation.model.Citoyen;
 import fr.formation.model.Habitation;
 
 @Service
-public class HabitationService {
+public class HabitationService extends BatimentService{
 
 	@Autowired
 	private IHabitationDao daoHabitation;
@@ -53,7 +53,7 @@ public class HabitationService {
 	
 	public BigDecimal valeurBenefice(int idHabitation) {
 		Habitation habitation = daoHabitation.findById(idHabitation).get();
-		return habitation.recolterLoyer().subtract(habitation.valeurEntretien());
+		return this.recolterLoyer(habitation.getId()).subtract(valeurEntretien(habitation.getId()));
 	}
 
 	public BigDecimal recolterLoyer(int idHabitation) {

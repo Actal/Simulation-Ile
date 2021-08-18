@@ -51,10 +51,6 @@ public abstract class Batiment {
 	@JoinColumn(name = "BAT_PROPRIETAIRE", nullable = false)
 	private Proprietaire proprietaire;
 	
-	public abstract BigDecimal valeurEntretien();
-	
-	public abstract BigDecimal valeurBenefice();
-	
 	public Adresse getAdresse() {
 		return adresse;
 	}
