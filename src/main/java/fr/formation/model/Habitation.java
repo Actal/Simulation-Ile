@@ -19,50 +19,6 @@ public class Habitation extends Batiment {
 	@OneToMany(mappedBy = "habitation")
 	private List<Citoyen> habitants;
 
-	public void ajouterHabitant(Citoyen nvHabitant) {
-		int nbHab = habitants.size();
-		if (!habitants.contains(nvHabitant)) {
-			if (nbHab < this.getNbPlace()) {
-				habitants.add(nvHabitant);
-				nvHabitant.setHabitation(this);
-			} else
-				System.out.println("Habitation pleine ! Pas d'ajout d'habitant");
-		} else
-			System.out.println("L'habitation contient deja cet habitant !");
-	}
-
-	public BigDecimal valeurEntretien() {
-		BigDecimal entretient = new BigDecimal(0);
-		BigDecimal coeffEntretientParHabitant = new BigDecimal(0.01); // entretient pour chaque habitant en pourcentage de l'entretient de base
-		
-		BigDecimal nbHabitant = new BigDecimal(this.getHabitants().size());
-		
-		entretient = entretient.add(this.getCoutEntretienBase());
-		entretient = entretient.add(coeffEntretientParHabitant.multiply(this.getCoutEntretienBase().multiply(nbHabitant)));
-		
-		return entretient;
-	}
-
-	public BigDecimal valeurBenefice() {
-		return this.recolterLoyer().subtract(this.valeurEntretien());
-	}
-
-	public BigDecimal recolterLoyer() {
-		BigDecimal somme = new BigDecimal(0);
-		for (Citoyen c : habitants) {
-			boolean aPaye = c.payer(loyer);
-			if (aPaye) {
-				somme = somme.add(loyer);
-			}
-		}
-		return somme;
-	}
-
-	public void supprimerHabitant(Citoyen habitant) {
-		habitants.remove(habitant);
-		habitant.setHabitation(null);
-	}
-
 	public BigDecimal getLoyer() {
 		return loyer;
 	}
