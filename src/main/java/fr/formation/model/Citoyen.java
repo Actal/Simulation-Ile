@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Citoyen extends Personne {
 
 	@OneToOne
-	@JoinColumn(name = "CIT_POSTE_ID")
+	@JoinColumn(name = "CIT_POSTE_ID", unique = true)
 	private Poste poste;
 	
 	@ManyToOne

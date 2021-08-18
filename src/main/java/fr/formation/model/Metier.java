@@ -18,7 +18,7 @@ public class Metier {
 	@Column(name = "MET_ID")
 	private int id;
 
-	@Column(name = "MET_INTITULE")
+	@Column(name = "MET_INTITULE", unique = true)
 	private String intitule;
 
 	@OneToMany(mappedBy = "metier")

@@ -28,7 +28,7 @@ public class Biome {
 	private BigDecimal superficie;
 
 	@OneToOne
-	@JoinColumn(name = "BIO_COORDONEES_ID")
+	@JoinColumn(name = "BIO_COORDONEES_ID", unique = true)
 	private Coordonnees coordonnees;
 	
 	@OneToMany(mappedBy = "biome")

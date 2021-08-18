@@ -40,7 +40,7 @@ public abstract class Batiment {
 	private int nbPlace;
 	
 	@OneToOne
-	@JoinColumn(name = "BAT_ADRESSE_ID", nullable = false)
+	@JoinColumn(name = "BAT_ADRESSE_ID", nullable = false, unique = true)
 	private Adresse adresse;
 	
 	@ManyToOne
