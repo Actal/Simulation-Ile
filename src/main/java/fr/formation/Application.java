@@ -5,11 +5,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
+import org.hibernate.cfg.VerifyFetchProfileReferenceSecondPass;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.formation.config.AppConfig;
 import fr.formation.dao.IAdresseDao;
 import fr.formation.dao.IBiomeDao;
+import fr.formation.dao.ICitoyenDao;
 import fr.formation.dao.ICoordonneesDao;
 import fr.formation.dao.IHabitationDao;
 import fr.formation.dao.IMetierDao;
@@ -18,6 +20,7 @@ import fr.formation.dao.IPosteDao;
 import fr.formation.dao.IProprietaireDao;
 import fr.formation.dao.IWorkplaceDao;
 import fr.formation.model.*;
+import fr.formation.service.ProprietaireService;
 
 public class Application {
 
@@ -27,12 +30,13 @@ public class Application {
 		
 		IAdresseDao daoAdresse = myContext.getBean(IAdresseDao.class);
 		IBiomeDao daoBiome = myContext.getBean(IBiomeDao.class);
+		ICitoyenDao daoCitoyen = myContext.getBean(ICitoyenDao.class);
 		ICoordonneesDao daoCoordonnees = myContext.getBean(ICoordonneesDao.class);
 		IHabitationDao daoHabitation = myContext.getBean(IHabitationDao.class);
 		IMetierDao daoMetier = myContext.getBean(IMetierDao.class);
-		IProprietaireDao daoProprietaire = myContext.getBean(IProprietaireDao.class);
-		IPersonneDao daoCitoyen = myContext.getBean(IPersonneDao.class);
+		IPersonneDao daoPersonne = myContext.getBean(IPersonneDao.class);
 		IPosteDao daoPoste = myContext.getBean(IPosteDao.class);
+		IProprietaireDao daoProprietaire = myContext.getBean(IProprietaireDao.class);
 		IWorkplaceDao daoWorkplace = myContext.getBean(IWorkplaceDao.class);
 				
 		Citoyen citoyen1 = new Citoyen("Bruno", "Aimeric", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(100));
@@ -58,7 +62,7 @@ public class Application {
 		citoyen2.setHabitation(h1);
 		citoyen3.setHabitation(h1);
 		
-		Workplace w1 = new Workplace(new BigDecimal(45), "Maison", new BigDecimal(1000), new BigDecimal(100), 4, adr1, b, proprio, LocalTime.of(9, 0), LocalTime.of(18, 0));
+		Workplace w1 = new Workplace(new BigDecimal(45), "Maison", new BigDecimal(1000), new BigDecimal(100), 4, adr2, b, proprio, LocalTime.of(9, 0), LocalTime.of(18, 0));
 		
 		Metier m1 = new Metier("Informaticien");
 		
@@ -66,40 +70,46 @@ public class Application {
 		Poste poste2 = new Poste(new BigDecimal(150));
 		Poste poste3 = new Poste(new BigDecimal(200));
 		
-		poste1.setMetier(m1);
-		poste2.setMetier(m1);
-		poste3.setMetier(m1);
+//		poste1.setMetier(m1);
+//		poste2.setMetier(m1);
+//		poste3.setMetier(m1);
+//		
+//		citoyen1.setPoste(poste1);
+//		citoyen2.setPoste(poste2);
+//		citoyen3.setPoste(poste3);
+//		
+//		poste1.setWorkplace(w1);
+//		poste2.setWorkplace(w1);
+//		poste3.setWorkplace(w1);
+//		
+//		daoCoordonnees.save(coor1);
+//		daoCoordonnees.save(coor2);
+//		
+//		daoAdresse.save(adr1);
+//		daoAdresse.save(adr2);
+//		
+//		daoBiome.save(b);
+//		
+//		daoProprietaire.save(proprio);
+//		
+//		daoHabitation.save(h1);
+//		daoWorkplace.save(w1);
+//		
+//		daoMetier.save(m1);
+//
+//		daoPoste.save(poste1);
+//		daoPoste.save(poste2);
+//		daoPoste.save(poste3);
+//		
+//		daoCitoyen.save(citoyen1);
+//		daoCitoyen.save(citoyen2);
+//		daoCitoyen.save(citoyen3);
 		
-		citoyen1.setPoste(poste1);
-		citoyen2.setPoste(poste2);
-		citoyen3.setPoste(poste3);
-		
-		poste1.setWorkplace(w1);
-		poste2.setWorkplace(w1);
-		poste3.setWorkplace(w1);
-		
-		daoCoordonnees.save(coor1);
-		daoCoordonnees.save(coor2);
-		
-		daoAdresse.save(adr1);
-		daoAdresse.save(adr2);
-		
-		daoBiome.save(b);
-		
-		daoProprietaire.save(proprio);
-		
-		daoHabitation.save(h1);
-		daoWorkplace.save(w1);
-		
-		daoMetier.save(m1);
-
-		daoPoste.save(poste1);
-		daoPoste.save(poste2);
-		daoPoste.save(poste3);
-		
-		daoCitoyen.save(citoyen1);
-		daoCitoyen.save(citoyen2);
-		daoCitoyen.save(citoyen3);
+//		Proprietaire p = daoProprietaire.findById(1).get();
+//		System.out.println(p.getArgent());
+//		ProprietaireService propS = myContext.getBean(ProprietaireService.class);
+//		p = propS.payerEmployes(1);
+//		System.out.println(p.getArgent());
 	}
 
 }
