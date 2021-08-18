@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import fr.formation.config.AppConfig;
 import fr.formation.dao.IAdresseDao;
 import fr.formation.dao.IBiomeDao;
 import fr.formation.dao.ICoordonneesDao;
@@ -14,29 +17,23 @@ import fr.formation.dao.IPersonneDao;
 import fr.formation.dao.IPosteDao;
 import fr.formation.dao.IProprietaireDao;
 import fr.formation.dao.IWorkplaceDao;
-import fr.formation.dao.jpa.AdresseDaoJpa;
-import fr.formation.dao.jpa.BiomeDaoJpa;
-import fr.formation.dao.jpa.CoordonneesDaoJpa;
-import fr.formation.dao.jpa.HabitationDaoJpa;
-import fr.formation.dao.jpa.MetierDaoJpa;
-import fr.formation.dao.jpa.PersonneDaoJpa;
-import fr.formation.dao.jpa.PosteDaoJpa;
-import fr.formation.dao.jpa.ProprietaireDaoJpa;
-import fr.formation.dao.jpa.WorkplaceDaoJpa;
 import fr.formation.model.*;
 
 public class Application {
 
 	public static void main(String[] args) {
-		IAdresseDao daoAdresse = new AdresseDaoJpa();
-		IBiomeDao daoBiome = new BiomeDaoJpa();
-		ICoordonneesDao daoCoordonnees = new CoordonneesDaoJpa();
-		IHabitationDao daoHabitation = new HabitationDaoJpa();
-		IMetierDao daoMetier = new MetierDaoJpa();
-		IProprietaireDao daoProprietaire = new ProprietaireDaoJpa();
-		IPersonneDao daoCitoyen = new PersonneDaoJpa();
-		IPosteDao daoPoste = new PosteDaoJpa();
-		IWorkplaceDao daoWorkplace = new WorkplaceDaoJpa();
+		
+		AnnotationConfigApplicationContext myContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		IAdresseDao daoAdresse = myContext.getBean(IAdresseDao.class);
+		IBiomeDao daoBiome = myContext.getBean(IBiomeDao.class);
+		ICoordonneesDao daoCoordonnees = myContext.getBean(ICoordonneesDao.class);
+		IHabitationDao daoHabitation = myContext.getBean(IHabitationDao.class);
+		IMetierDao daoMetier = myContext.getBean(IMetierDao.class);
+		IProprietaireDao daoProprietaire = myContext.getBean(IProprietaireDao.class);
+		IPersonneDao daoCitoyen = myContext.getBean(IPersonneDao.class);
+		IPosteDao daoPoste = myContext.getBean(IPosteDao.class);
+		IWorkplaceDao daoWorkplace = myContext.getBean(IWorkplaceDao.class);
 				
 		Citoyen citoyen1 = new Citoyen("Bruno", "Aimeric", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(100));
 		Citoyen citoyen2 = new Citoyen("Luck", "Romain", LocalDate.of(2008,Month.FEBRUARY,15), Sexe.Homme, new BigDecimal(10000));
