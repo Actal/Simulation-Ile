@@ -24,7 +24,7 @@ public class Metier {
 	@OneToMany(mappedBy = "metier")
 	private List<Poste> postes;
 	
-	Metier() {
+	public Metier() {
 	}
 	
 	public Metier(String intitule) {
