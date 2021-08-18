@@ -34,14 +34,6 @@ public class Citoyen extends Personne {
 		super(nom, prenom, dateNaissance, sexe, argent);
 	}
 
-	public Boolean isTravailleur() {
-		return this.getPoste() != null;
-	}
-	
-	public Boolean isLocataire() {
-		return this.getHabitation() != null;
-	}
-	
 	public Poste getPoste() {
 		return poste;
 	}
