@@ -1,5 +1,7 @@
 package fr.formation.service;
 
+import java.math.BigDecimal;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import fr.formation.dao.ICitoyenDao;
 import fr.formation.dao.IProprietaireDao;
 import fr.formation.model.Batiment;
 import fr.formation.model.Citoyen;
+import fr.formation.model.Habitation;
 import fr.formation.model.Poste;
 import fr.formation.model.Proprietaire;
 import fr.formation.model.Workplace;
@@ -21,9 +24,12 @@ public class ProprietaireService extends CitoyenService {
 	
 	@Autowired
 	private ICitoyenDao daoCitoyen;
+		
+	@Autowired
+	private WorkplaceService workplaceService;
 	
 	@Autowired
-	private BatimentService batimentService;
+	private HabitationService habitationService;
 	
 	@Transactional
 	public void payerEmployes(int id) {
@@ -33,7 +39,6 @@ public class ProprietaireService extends CitoyenService {
 				for (Poste poste : ((Workplace) b).getPostes()) {
 					if (poste.getCitoyen() != null) {
 						payer(id, poste.getSalaire());
-						System.out.println(poste.getSalaire());
 						Citoyen c = poste.getCitoyen();
 						gagnerArgent(c.getId(), poste.getSalaire());
 						daoCitoyen.save(c);
@@ -45,12 +50,25 @@ public class ProprietaireService extends CitoyenService {
 		daoProprietaire.save(p);
 	}
 
-	@Transactional
+	
 	public void percevoirBenefice(int id) {
 		Proprietaire p = daoProprietaire.findById(id).get();
+		BigDecimal benefTot = new BigDecimal(0);
+		
 		for (Batiment b : p.getBatiments()) {
-			gagnerArgent(id, batimentService.valeurBenefice(b.getId()));
+			
+			BigDecimal benef = new BigDecimal(0);
+			
+			if( b instanceof Habitation) {
+				benef = habitationService.valeurBenefice(b.getId());
+			}
+			else if( b instanceof Workplace) {
+				benef = workplaceService.valeurBenefice(b.getId());
+			}
+			
+			benefTot = benefTot.add(benef);
+			
 		}
-		daoProprietaire.save(p);
+		gagnerArgent(id, benefTot);
 	}
 }
