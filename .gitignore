@@ -18,3 +18,7 @@
 # maven
 src/main/resources/*
 target/*
+/target/
+
+# pour ne pas devoir changer le mdp a chaque fois
+src/main/java/fr/formation/config/JpaConfig.java
