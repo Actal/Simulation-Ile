@@ -49,14 +49,14 @@ public class Personne {
 
 	public Boolean payer(BigDecimal somme) {
 		if( this.getArgent().compareTo(somme) >= 0) {
-			this.getArgent().subtract(somme);
+			this.setArgent(this.getArgent().subtract(somme));
 			return true;
 		}
 		return false;
 	}
 	
 	public void gagnerArgent(BigDecimal somme) {
-		this.getArgent().add(somme);
+		this.setArgent(this.getArgent().add(somme));
 	}
 	
 	public Personne() {
