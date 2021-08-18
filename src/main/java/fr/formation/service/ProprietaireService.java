@@ -22,6 +22,9 @@ public class ProprietaireService extends CitoyenService {
 	@Autowired
 	private ICitoyenDao daoCitoyen;
 	
+	@Autowired
+	private BatimentService batimentService;
+	
 	@Transactional
 	public void payerEmployes(int id) {
 		Proprietaire p = daoProprietaire.findById(id).get();
@@ -29,12 +32,11 @@ public class ProprietaireService extends CitoyenService {
 			if (b instanceof Workplace) {
 				for (Poste poste : ((Workplace) b).getPostes()) {
 					if (poste.getCitoyen() != null) {
-						p.payer(poste.getSalaire());
+						payer(id, poste.getSalaire());
 						System.out.println(poste.getSalaire());
 						Citoyen c = poste.getCitoyen();
-						c.gagnerArgent(poste.getSalaire());
+						gagnerArgent(c.getId(), poste.getSalaire());
 						daoCitoyen.save(c);
-						
 					}
 				}
 			}
@@ -47,7 +49,7 @@ public class ProprietaireService extends CitoyenService {
 	public void percevoirBenefice(int id) {
 		Proprietaire p = daoProprietaire.findById(id).get();
 		for (Batiment b : p.getBatiments()) {
-			p.gagnerArgent(b.valeurBenefice());
+			gagnerArgent(id, batimentService.valeurBenefice(b.getId()));
 		}
 		daoProprietaire.save(p);
 	}
