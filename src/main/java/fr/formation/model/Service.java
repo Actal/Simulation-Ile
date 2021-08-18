@@ -21,34 +21,6 @@ public class Service extends Workplace{
 	
 	@OneToMany(mappedBy ="service")
 	private List<Personne> clients;
-
-	public void ajoutClient(Personne nouveauClient) {
-		if(!clients.contains(nouveauClient)) {
-			clients.add(nouveauClient);
-			nouveauClient.setService(this);
-		}
-		nbClientMensuel++;
-	}
-	
-	public void supprimerClient(Personne client) {
-		if(client.getService() == this) {
-			clients.remove(client);
-			client.setService(null);
-		}
-	}
-	
-	public BigDecimal valeurRecette() {
-		BigDecimal nbClients = new BigDecimal(nbClientMensuel);
-		return super.valeurRecette().add(prixEntree.multiply(nbClients));
-	}
-	
-	public BigDecimal valeurEntretien(){
-		BigDecimal nbClients = new BigDecimal(nbClientMensuel);
-		BigDecimal coeffEntretienClients = new BigDecimal(0.005);
-		BigDecimal coutEntretienService = nbClients.multiply(coeffEntretienClients).multiply(getCoutEntretienBase());
-		BigDecimal entretienTotal = super.valeurEntretien().add(coutEntretienService);
-		return entretienTotal;
-	}
 	
 	public Service(){
 		
@@ -77,6 +49,14 @@ public class Service extends Workplace{
 
 	public void setClients(List<Personne> clients) {
 		this.clients = clients;
+	}
+
+	public int getNbClientMensuel() {
+		return nbClientMensuel;
+	}
+
+	public void setNbClientMensuel(int nbClientMensuel) {
+		this.nbClientMensuel = nbClientMensuel;
 	}
 	
 	

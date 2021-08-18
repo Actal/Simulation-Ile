@@ -3,6 +3,8 @@ package fr.formation.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ public class HabitationService extends BatimentService{
 	@Autowired
 	private ICitoyenDao daoCitoyen;
 	
+	@Transactional
 	public void ajouterHabitant(int idHabitation, Citoyen nvHabitant) {
 		Habitation habitation = daoHabitation.findById(idHabitation).get();
 		List<Citoyen> habitants = habitation.getHabitants();
@@ -69,6 +72,7 @@ public class HabitationService extends BatimentService{
 		return somme;
 	}
 
+	@Transactional
 	public void supprimerHabitant(Citoyen habitant, int idHabitation) {
 		Habitation habitation = daoHabitation.findById(idHabitation).get();
 		List<Citoyen> habitants = habitation.getHabitants();
