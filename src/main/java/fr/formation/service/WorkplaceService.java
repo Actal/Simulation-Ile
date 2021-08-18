@@ -13,51 +13,50 @@ import fr.formation.model.Poste;
 import fr.formation.model.Workplace;
 
 @Service
-public class WorkplaceService {
+public class WorkplaceService extends BatimentService {
 
 	@Autowired
-	private IWorkplaceDao daoWorplace;
+	private IWorkplaceDao daoWorkplace;
 	
 	@Autowired
 	private IPosteDao daoPoste;
 
 	@Transactional
 	public void ouvrir(int id) {
-		Workplace w = daoWorplace.findById(id).get();
+		Workplace w = daoWorkplace.findById(id).get();
 		w.setOuvert(true);
-		daoWorplace.save(w);
+		daoWorkplace.save(w);
 	}
 
 	@Transactional
 	public void fermer(int id) {
-		Workplace w = daoWorplace.findById(id).get();
+		Workplace w = daoWorkplace.findById(id).get();
 		w.setOuvert(false);
-		daoWorplace.save(w);
+		daoWorkplace.save(w);
 	}
 
 	@Transactional
 	public void ajouterPoste(int id, Poste poste) {
-		Workplace w = daoWorplace.findById(id).get();
+		Workplace w = daoWorkplace.findById(id).get();
 		w.getPostes().add(poste);
 		poste.setWorkplace(w);
 
 		daoPoste.save(poste);
-		daoWorplace.save(w);
+		daoWorkplace.save(w);
 	}
 
 	@Transactional
 	public void supprimerPoste(int id, Poste poste) {
-		Workplace w = daoWorplace.findById(id).get();
+		Workplace w = daoWorkplace.findById(id).get();
 		w.getPostes().remove(poste);
 		poste.setWorkplace(null);
 
 		daoPoste.save(poste);
-		daoWorplace.save(w);
+		daoWorkplace.save(w);
 	}
 
-	@Transactional
 	public BigDecimal valeurRecette(int id) {
-		Workplace w = daoWorplace.findById(id).get();
+		Workplace w = daoWorkplace.findById(id).get();
 		BigDecimal coeffRecettePoste = new BigDecimal(2);
 		BigDecimal recetteTotale = new BigDecimal(0);
 		for (Poste p : w.getPostes()) {
@@ -66,9 +65,8 @@ public class WorkplaceService {
 		return recetteTotale;
 	}
 
-	@Transactional
 	public BigDecimal valeurEntretien(int id) {
-		Workplace w = daoWorplace.findById(id).get();
+		Workplace w = daoWorkplace.findById(id).get();
 		BigDecimal nbPostes = new BigDecimal(w.getPostes().size());
 		BigDecimal coeffEntretienEmployes = new BigDecimal(0.01);
 		BigDecimal entretienTotal = w.getCoutEntretienBase().multiply(nbPostes).multiply(coeffEntretienEmployes);

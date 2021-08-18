@@ -11,7 +11,6 @@ import fr.formation.dao.IPersonneDao;
 import fr.formation.model.Personne;
 
 @Service
-@Transactional
 public class PersonneService {
 	@Autowired
 	private IPersonneDao daoPersonne;

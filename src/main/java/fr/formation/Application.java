@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.Month;
 
 import org.hibernate.cfg.VerifyFetchProfileReferenceSecondPass;
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.formation.config.AppConfig;
@@ -39,36 +40,36 @@ public class Application {
 		IProprietaireDao daoProprietaire = myContext.getBean(IProprietaireDao.class);
 		IWorkplaceDao daoWorkplace = myContext.getBean(IWorkplaceDao.class);
 				
-		Citoyen citoyen1 = new Citoyen("Bruno", "Aimeric", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(100));
-		Citoyen citoyen2 = new Citoyen("Luck", "Romain", LocalDate.of(2008,Month.FEBRUARY,15), Sexe.Homme, new BigDecimal(10000));
-		Citoyen citoyen3 = new Citoyen("Schickele", "Pierre", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(646));
-		
-		Proprietaire proprio = new Proprietaire("Truc", "Machin", LocalDate.of(1985,Month.FEBRUARY,10), Sexe.Femme, new BigDecimal(1000000));
-		
-		Coordonnees coor1 = new Coordonnees(10,10);
-		Coordonnees coor2 = new Coordonnees(45,456);
-		
-		Adresse adr1 = new Adresse("rue de la Paix", 45);
-		adr1.setCoordonnees(coor1);
-		Adresse adr2 = new Adresse("avenue des champs elysees", 46);
-		adr2.setCoordonnees(coor2);
-		
-		Biome b = new Biome("plaine", new BigDecimal(1666));
-		b.setCoordonnees(coor2); 
-		
-		Habitation h1 = new Habitation(new BigDecimal(45), "Maison", new BigDecimal(1000), new BigDecimal(100), 4, adr1, b, proprio, new BigDecimal(50));
-		
-		citoyen1.setHabitation(h1);
-		citoyen2.setHabitation(h1);
-		citoyen3.setHabitation(h1);
-		
-		Workplace w1 = new Workplace(new BigDecimal(45), "Maison", new BigDecimal(1000), new BigDecimal(100), 4, adr2, b, proprio, LocalTime.of(9, 0), LocalTime.of(18, 0));
-		
-		Metier m1 = new Metier("Informaticien");
-		
-		Poste poste1 = new Poste(new BigDecimal(100));
-		Poste poste2 = new Poste(new BigDecimal(150));
-		Poste poste3 = new Poste(new BigDecimal(200));
+//		Citoyen citoyen1 = new Citoyen("Bruno", "Aimeric", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(100));
+//		Citoyen citoyen2 = new Citoyen("Luck", "Romain", LocalDate.of(2008,Month.FEBRUARY,15), Sexe.Homme, new BigDecimal(10000));
+//		Citoyen citoyen3 = new Citoyen("Schickele", "Pierre", LocalDate.of(2010,Month.FEBRUARY,10), Sexe.Homme, new BigDecimal(646));
+//		
+//		Proprietaire proprio = new Proprietaire("Truc", "Machin", LocalDate.of(1985,Month.FEBRUARY,10), Sexe.Femme, new BigDecimal(1000000));
+//		
+//		Coordonnees coor1 = new Coordonnees(10,10);
+//		Coordonnees coor2 = new Coordonnees(45,456);
+//		
+//		Adresse adr1 = new Adresse("rue de la Paix", 45);
+//		adr1.setCoordonnees(coor1);
+//		Adresse adr2 = new Adresse("avenue des champs elysees", 46);
+//		adr2.setCoordonnees(coor2);
+//		
+//		Biome b = new Biome("plaine", new BigDecimal(1666));
+//		b.setCoordonnees(coor2); 
+//		
+//		Habitation h1 = new Habitation(new BigDecimal(45), "Maison", new BigDecimal(1000), new BigDecimal(100), 4, adr1, b, proprio, new BigDecimal(50));
+//		
+//		citoyen1.setHabitation(h1);
+//		citoyen2.setHabitation(h1);
+//		citoyen3.setHabitation(h1);
+//		
+//		Workplace w1 = new Workplace(new BigDecimal(45), "Maison", new BigDecimal(1000), new BigDecimal(100), 4, adr2, b, proprio, LocalTime.of(9, 0), LocalTime.of(18, 0));
+//		
+//		Metier m1 = new Metier("Informaticien");
+//		
+//		Poste poste1 = new Poste(new BigDecimal(100));
+//		Poste poste2 = new Poste(new BigDecimal(150));
+//		Poste poste3 = new Poste(new BigDecimal(200));
 		
 //		poste1.setMetier(m1);
 //		poste2.setMetier(m1);
@@ -110,6 +111,37 @@ public class Application {
 //		ProprietaireService propS = myContext.getBean(ProprietaireService.class);
 //		p = propS.payerEmployes(1);
 //		System.out.println(p.getArgent());
+		
+		for(Poste p : daoPoste.findAll()) {
+			System.out.println("Poste (" + p.getId() + "): " + p.getSalaire());
+		}
+		
+		for(Habitation h : daoHabitation.findAll()) {
+			System.out.println("Habitation (" + h.getId() + "): " + h.getLoyer());
+		}
+		
+		for( Workplace w : daoWorkplace.findAll()) {
+			System.out.println("Workplace w (" + w.getId() + "): " + w.getCoutEntretienBase());
+		}
+		System.out.println("\n=========================\n");
+		
+		ProprietaireService test = myContext.getBean(ProprietaireService.class);
+		
+		for(int i=0; i<3; i++) {
+		
+			for( Personne p : daoPersonne.findAll() ) {
+				System.out.println("Personne (" + p.getId() +"): " + p.getNom() + " " + p.getPrenom() + " " + p.getArgent());
+			}
+			
+			test.payerEmployes(1);
+			test.percevoirBenefice(1);
+			
+			System.out.println("=========");
+		}
+		
+		for( Personne p : daoPersonne.findAll() ) {
+			System.out.println("Personne (" + p.getId() +"): " + p.getNom() + " " + p.getPrenom() + " " + p.getArgent());
+		}
 	}
 
 }
