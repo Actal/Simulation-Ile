@@ -22,6 +22,9 @@ public class HabitationService extends BatimentService{
 	@Autowired
 	private ICitoyenDao daoCitoyen;
 	
+	@Autowired
+	private CitoyenService citoyenService;
+	
 	@Transactional
 	public void ajouterHabitant(int idHabitation, Citoyen nvHabitant) {
 		Habitation habitation = daoHabitation.findById(idHabitation).get();
@@ -64,7 +67,7 @@ public class HabitationService extends BatimentService{
 		List<Citoyen> habitants = habitation.getHabitants();
 		BigDecimal somme = new BigDecimal(0);
 		for (Citoyen c : habitants) {
-			boolean aPaye = c.payer(habitation.getLoyer());
+			boolean aPaye = citoyenService.payer(c.getId(), habitation.getLoyer());
 			if (aPaye) {
 				somme = somme.add(habitation.getLoyer());
 			}
