@@ -47,18 +47,6 @@ public class Personne {
 	@JoinColumn(name = "PER_COORDONNEES_ID")
 	private Coordonnees coordonnees;
 
-	public Boolean payer(BigDecimal somme) {
-		if( this.getArgent().compareTo(somme) >= 0) {
-			this.setArgent(this.getArgent().subtract(somme));
-			return true;
-		}
-		return false;
-	}
-	
-	public void gagnerArgent(BigDecimal somme) {
-		this.setArgent(this.getArgent().add(somme));
-	}
-	
 	public Personne() {
 	}
 

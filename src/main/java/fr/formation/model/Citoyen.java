@@ -34,14 +34,6 @@ public class Citoyen extends Personne {
 		super(nom, prenom, dateNaissance, sexe, argent);
 	}
 
-	public void allerTravailler() {
-		this.setCoordonnees(this.getPoste().getWorkplace().getAdresse().getCoordonnees());
-	}
-	
-	public void rentrer() {
-		this.setCoordonnees(this.getHabitation().getAdresse().getCoordonnees());
-	}
-
 	public Boolean isTravailleur() {
 		return this.getPoste() != null;
 	}
