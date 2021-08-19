@@ -26,7 +26,7 @@ public class HabitationService extends BatimentService{
 	private CitoyenService citoyenService;
 	
 	@Transactional
-	public void ajouterHabitant(int idHabitation, Citoyen nvHabitant) {
+	public boolean ajouterHabitant(int idHabitation, Citoyen nvHabitant) {
 		Habitation habitation = daoHabitation.findById(idHabitation).get();
 		List<Citoyen> habitants = habitation.getHabitants();
 				
@@ -37,10 +37,10 @@ public class HabitationService extends BatimentService{
 				nvHabitant.setHabitation(habitation);
 				daoCitoyen.save(nvHabitant);
 				daoHabitation.save(habitation);
-			} else
-				System.out.println("Habitation pleine ! Pas d'ajout d'habitant");
-		} else
-			System.out.println("L'habitation contient deja cet habitant !");
+				return true;
+			} // pas de place
+		} // citoyen deja locataire
+		return false;
 	}
 	
 	public BigDecimal valeurEntretien(int idHabitation) {
