@@ -48,6 +48,8 @@ public class PersonneService {
 				if (personne.getArgent().compareTo(s.getPrixEntree()) > 0){
 					personne.setCoordonnees(s.getAdresse().getCoordonnees());
 					serviceService.ajoutClient(s.getId(), personne);
+					daoPersonne.save(personne);
+					daoService.save(s);
 					break;
 				}
 			}
