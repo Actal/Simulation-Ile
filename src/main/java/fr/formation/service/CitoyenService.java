@@ -17,10 +17,10 @@ import fr.formation.model.Habitation;
 public class CitoyenService extends PersonneService {
 	@Autowired
 	private ICitoyenDao daoCitoyen;
-	
+
 	@Autowired
 	private IHabitationDao daoHabitation;
-	
+
 	@Autowired
 	private HabitationService habitationService;
 
@@ -50,15 +50,14 @@ public class CitoyenService extends PersonneService {
 		return (citoyen.getHabitation() != null);
 	}
 
-	public void checherLogement(int idCitoyen ) {
+	public void checherLogement(int idCitoyen) {
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
 		List<Habitation> habitations = daoHabitation.findAll();
-		
-		for( Habitation h : habitations) {
-			if( h.getHabitants().size() < h.getNbPlace()) {
-				if( citoyen.getArgent().compareTo(h.getLoyer()) > 0 ) {
-					citoyen.setHabitation(h);
-					habitationService.ajouterHabitant(h.getId(), citoyen);
+
+		for (Habitation h : habitations) {
+			if (citoyen.getArgent().compareTo(h.getLoyer()) > 0) {
+				if(habitationService.ajouterHabitant(h.getId(), citoyen)) {
+					break;
 				}
 			}
 		}
