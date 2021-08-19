@@ -27,7 +27,7 @@ public class Adresse {
 	private Batiment batiment;
 	
 	@OneToOne
-	@JoinColumn(name = "ADR_COORDONNEES_ID")
+	@JoinColumn(name = "ADR_COORDONNEES_ID", unique = true)
 	private Coordonnees coordonnees;
 	
 	public Adresse() {
