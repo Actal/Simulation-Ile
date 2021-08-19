@@ -10,27 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import fr.formation.config.AppConfig;
-import fr.formation.dao.IAdresseDao;
-import fr.formation.dao.IBiomeDao;
-import fr.formation.dao.ICitoyenDao;
-import fr.formation.dao.ICoordonneesDao;
-import fr.formation.dao.IHabitationDao;
-import fr.formation.dao.IMetierDao;
-import fr.formation.dao.IPersonneDao;
-import fr.formation.dao.IPosteDao;
-import fr.formation.dao.IProprietaireDao;
-import fr.formation.dao.IWorkplaceDao;
-import fr.formation.model.Adresse;
-import fr.formation.model.Biome;
-import fr.formation.model.Citoyen;
-import fr.formation.model.Coordonnees;
-import fr.formation.model.Habitation;
-import fr.formation.model.Metier;
-import fr.formation.model.Personne;
-import fr.formation.model.Poste;
-import fr.formation.model.Proprietaire;
-import fr.formation.model.Sexe;
-import fr.formation.model.Workplace;
+import fr.formation.dao.*;
+import fr.formation.model.*;
 import fr.formation.service.ProprietaireService;
 
 @Component
