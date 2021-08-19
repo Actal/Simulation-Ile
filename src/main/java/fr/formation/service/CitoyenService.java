@@ -50,7 +50,7 @@ public class CitoyenService extends PersonneService {
 		return (citoyen.getHabitation() != null);
 	}
 
-	public void checherLogement(int idCitoyen) {
+	public void chercherLogement(int idCitoyen) {
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
 		List<Habitation> habitations = daoHabitation.findAll();
 
