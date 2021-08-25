@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="formulaire.css">
+</head>
+
+<body>
+    <div id="main">
+        <nav id="navbar" class="navbar-nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Main page</a>
+                <a class="navbar-brand" href="#">Stats</a>
+                <a class="navbar-brand" href="#">Edition</a>
+            </div>
+        </nav>
+        <div id="content">
+            <div class="row">
+                <div id="sidebar" class="col-3">
+                    Sidebar
+                </div>
+                <div id="form-area" class="col-9">
+                    <h2>Formulaire propriétaire</h2>
+                    <form method="post">
+                        <div>
+                            <label for="nom">Nom :</label>
+                            <input type="text" id="nom" name="nom" />
+                        </div>
+                        <div>
+                            <label for="prenom">Prénom :</label>
+                            <input type="text" id="prenom" name="prenom" />
+                        </div>
+                        <div>
+                            <label for="date">Date de naissance :</label>
+                            <input type="date" id="date" name="date" />
+                        </div>
+                        <div>
+                            <label for="argent">Argent :</label>
+                            <input type="number" id="argent" name="argent" step="0.01"> euros
+                        </div>
+                        <div>
+                            <label for="sexe">Sexe :</label>
+                            <select id="sexe" name="sexe">
+                                <option value="homme" selected>Homme</option>
+                                <option value="femme">Femme</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="Ajouter"; return false;" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
