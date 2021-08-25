@@ -1,0 +1,21 @@
+.icon-save:before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('./asset/save-solid.svg');
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    align-self: center;
+}
+
+.icon-delete:before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('./asset/trash-alt-regular.svg');
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    align-self: center;
+}
