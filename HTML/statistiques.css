@@ -1,0 +1,34 @@
+#sidebar {
+    background-color: #333;
+    color: white;
+    position: fixed;
+    height: 100%;
+    margin-right: 20%;
+    width: 20%;
+}
+#simulation-area {
+    margin-left: 20%;
+    width: 1000px;
+    height: 1000px;
+}
+
+.line-0 .column-0{
+    background-color: lightskyblue;
+}
+.line-0 .column-1{
+    background-color: lightblue;
+}
+.line-1 .column-0{
+    background-color: lightgreen;
+}
+.line-1 .column-1{
+    background-color: lightseagreen;
+}
+#simulation-area th {
+    width: 10px;
+    height: 10px;
+}
+
+#statistiques-area {
+    margin-left: 20%;
+}

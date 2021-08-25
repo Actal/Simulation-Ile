@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="statistiques.css">
+</head>
+
+<body>
+    <div id="main">
+        <nav id="navbar" class="navbar-nav">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Main page</a>
+                <a class="navbar-brand" href="#">Stats</a>
+                <a class="navbar-brand" href="#">Edition</a>
+            </div>
+        </nav>
+        <div id="content">
+            <div class="row">
+                <div id="sidebar">
+                    Sidebar
+                </div>
+                <div id="statistiques-area">
+                    <h2>Statistiques de l'île</h2>
+                    <p>Nombre d'habitants : <span id="nb-habitants">0</span></p>
+                    <p>Quantité d'argent : <span id="argent-total">0.00</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src="statistiques.js"></script>
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+</body>
+
+</html>
