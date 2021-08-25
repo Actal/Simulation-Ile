@@ -12,19 +12,19 @@
     height: 1000px;
 }
 
-.line-0 .column-0{
-    background-color: lightskyblue;
+
+#simulation-area table {
+    border: solid;
+    border-width: 5px;
 }
-.line-0 .column-1{
-    background-color: lightblue;
+
+.line-0 {
+    background-color: lightslategray;
 }
-.line-1 .column-0{
-    background-color: lightgreen;
+.line-1 {
+    background-color: lightgray;
 }
-.line-1 .column-1{
-    background-color: lightseagreen;
-}
-#simulation-area th {
+#simulation-area td {
     width: 10px;
     height: 10px;
 }
