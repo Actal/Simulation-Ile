@@ -57,7 +57,6 @@ let biomes = [
 let caseColor = {"Default":"red", "Prairie": "lightgreen", "Desert":"lightyellow", "Montagne":"lightgray"}
 
 
-
 //Store coordinates and associated informations
 let coordonnees = [];
 for (let y=0; y<100; y++){
@@ -82,12 +81,11 @@ for (y in coordonnees){
 }
 table.innerHTML = stringTab;
 
-
 //Add icon on the map with its file name
 let area = document.querySelector("#icons");
 let addMapIcon = (object) => {
-    area.innerHTML += `<img src="asset/${object.nom}.svg" alt="${object.nom}" id="icon-${object.nom}" class="map-icon"/>`;
-    let newIcon = document.querySelector(`#icon-${object.nom}`);
+    area.innerHTML += `<img src="asset/${object.nom}.svg" alt="${object.nom}" id="icon-${object.x}-${object.y}" class="map-icon"/>`;
+    let newIcon = document.querySelector(`#icon-${object.x}-${object.y}`);
     newIcon.width = object.superficie*10;
     newIcon.height = object.superficie*10;
     newIcon.style.bottom = `${1000 - object.y*10 - object.superficie*10}px`;
@@ -113,35 +111,12 @@ let addCase = (objects) => {
 addCase(biomes);
 addCase(batiments);
 
-
-
-
-//Initialize biomes
-/*
-for (bi of biomes){
-    for (let w=0; w<bi.width; w++){
-        for (let h=0; h<bi.width; h++){
-            document.querySelector(`#coordonnee-${bi.x+w}-${bi.y+h}`).style.backgroundColor = caseColor[bi.nom];
-            coordonnees[bi.x+w][bi.y+h] = bi;
-        }
-    }
-    
-}
-
-//Initialize buildings and add to coordinates when loading page
-for (b of batiments){
-    document.querySelector(`#coordonnee-${b.x}-${b.y}`).style.backgroundColor = "red";
-    coordonnees[b.x][b.y] = b;
-}
-*/
-
 //Display informations in sidebar on mouseover
-let tbody = document.querySelector("#simulation-area tbody");
-tbody.addEventListener('mouseover', (event) => {
+let eventDisplay = (event) => {
     let sideBar = document.querySelector("#sidebar");
     let coord = event.target.id;
     coord = coord.split("-");
-    //Id of td elements are of the form "coordonnees-x-y" so we can split coordinates into an array
+    //Id of td elements are of the form "name-x-y" so we can split coordinates into an array
     let data = coordonnees[parseInt(coord[1])][parseInt(coord[2])];
     let elems = "";
     elems += `<p>x: ${coord[1]}</p>`;
@@ -151,6 +126,12 @@ tbody.addEventListener('mouseover', (event) => {
         elems += (`<p>${attribute}: ${data[attribute]}</p>`);
     }*/
     sideBar.innerHTML = elems;
-});
+}
 
-//Display information in sidebar for buildings
+//Display for biomes
+let tbody = document.querySelector("#simulation-area tbody");
+tbody.addEventListener('mouseover', eventDisplay);
+
+//Display for buildings
+let icons = document.querySelector("#icons");
+icons.addEventListener('mouseover', eventDisplay);

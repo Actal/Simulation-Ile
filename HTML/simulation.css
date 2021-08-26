@@ -14,7 +14,9 @@
     width: 1000px;
     height: 1000px;
 }
+
 /*
+//Easier to see border but mess with table size
 #simulation-area table {
     border: solid;
     border-width: 5px;
