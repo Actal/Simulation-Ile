@@ -112,9 +112,8 @@ function rowCitoyen(citoyen) {
             </td>
 
             <td>
-                <button class="btn btn-primary" type="submit" onclick='console.log("TOTO"); return false;'><i class="icon-save"></i></button>
+                <button class="btn btn-primary" type="submit" form="${c.Id}"><i class="icon-save"></i></button>
             </td>`;
-    
     let row = document.createElement('tr');
     row.innerHTML = res;
     
