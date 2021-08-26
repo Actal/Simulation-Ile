@@ -127,7 +127,7 @@ function createCellSubmit(idForm) {
     btn.setAttribute("class", "btn btn-primary");
     btn.setAttribute("type", "submit")
     btn.setAttribute("form", idForm);
-    btn.innerHTML = '<i class="icon-save"></i>';
+    btn.innerHTML = '<i class="icon icon-save"></i>';
     
     cell.append(btn);
     return(cell);
@@ -136,7 +136,7 @@ function createCellSubmit(idForm) {
 function addDelBtn(row) {
     btn_del = document.createElement('button');
     btn_del.setAttribute("class", "btn btn-danger");
-    btn_del.innerHTML = '<i class="icon-delete"/>';
+    btn_del.innerHTML = '<i class="icon icon-delete"/>';
     btn_del.addEventListener('click', () => {
         row.parentNode.removeChild(row);
     });
@@ -183,7 +183,9 @@ function rowCitoyen(citoyen) {
     } else {
         sel.innerHTML ='<option value="homme">Homme</option><option value="femme" selected>Femme</option>';
     }
-    row.append(sel);
+    let cell = document.createElement("td");
+    cell.append(sel);
+    row.append(cell);
     row.append(createCellSubmit(c.Id));
     
     row.append(f);
