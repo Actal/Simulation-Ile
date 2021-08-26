@@ -29,9 +29,6 @@ for (let e of entities_type) {
 
 document.querySelector('#entity-type').addEventListener('change', () => {
     select = document.querySelector('#entity-type').value;
-
-    console.log(select)
-
     let entity_type = entities_type.find(element => element.id == select);
 
     if (entity_type != undefined) { // dans le cas ou "Selectionner un type d'entite a éditer" est choisi dans la liste deroulante
@@ -67,43 +64,69 @@ function addDelBtn(row) {
     row.append(col_btn_del);
 }
 
-function rowCitoyen(row, c) {
+function rowCitoyen(citoyen) {
 
-
-    temp = `<form method="POST">
-                        <td>
-                            ${c.Id}
-                        </td>
-                        <td>
-                            <input type="text" id="nom" name="nom" value="${c.Nom}"/>
-                        </td>
-                        <td>
-                            <input type="text" id="prenom" name="prenom" value="${c.Prenom}"/>
-                        </td>
-                        <td>
-                            <input type="date" id="date" name="date" value="${c.DateNaissance}"/>
-                        </td>
-                        <td>
-                            <input type="number" id="argent" name="argent" step="0.01" value="${c.Argent}"/>
-                        </td>
-                        <td>
-                            <select id="sexe" name="sexe">`;
-    if (c.Sexe === "Homme") {
-        temp += `<option value="homme" selected>Homme</option>
-        <option value="femme">Femme</option>`;
-    } else {
-        temp += `<option value="homme">Homme</option>
-         <option value="femme" selected>Femme</option>`;
+    let cit_defined = citoyen != undefined;
+    let c = citoyen;
+    if( !cit_defined ) {
+        c = {Id: "0"};
     }
-    temp += `</select>
-                        </td>
 
-                        <td>
-                            <button class="btn btn-primary" type="submit" onclick='console.log("TOTO"); return false;'><i class="icon-save"></i></button>
-                        </td>
-                    </form>`;
+    let f = document.createElement("form");
+    f.setAttribute("method", "POST");
+    f.setAttribute("id", c.Id);
 
-    row.innerHTML = temp;
+    let res = '<td>';
+    if( cit_defined ) { res+=c.Id; }
+    res += ` </td>
+            <td>
+                <input type="text" id="nom" name="nom" form="${c.Id}" `;
+                if( cit_defined ) { res+=`value="${c.Nom}"`; }
+    res +=      `/>
+            </td>
+            <td>
+                <input type="text" id="prenom" name="prenom" form="${c.Id}" `;
+   if( cit_defined ) { res+=`value="${c.Prenom}"`; }
+   res +=       `/>
+            </td>
+            <td>
+                <input type="date" id="date" name="date" form="${c.Id}" `;
+    if( cit_defined ) { res += `value="${c.DateNaissance}"`; }
+    res +=      `/>
+            </td>
+            <td>
+                <input type="number" id="argent" name="argent" step="0.01" form="${c.Id}" `;
+                if( cit_defined ) { res += `value="${c.Argent}"` }
+    res +=      `/>
+            </td>
+            <td>
+                <select id="sexe" name="sexe" form="${c.Id}">`;
+    if ( cit_defined && c.Sexe === "Homme") {
+        res +=      `<option value="homme" selected>Homme</option>
+                    <option value="femme">Femme</option>`;
+    } else {
+        res +=      `<option value="homme">Homme</option>
+                    <option value="femme" selected>Femme</option>`;
+    }
+    res +=      `</select>
+            </td>
+
+            <td>
+                <button class="btn btn-primary" type="submit" onclick='console.log("TOTO"); return false;'><i class="icon-save"></i></button>
+            </td>`;
+    
+    let row = document.createElement('tr');
+    row.innerHTML = res;
+    
+    row.append(f);
+
+    if( cit_defined ) {
+        addDelBtn(row);
+    } else {
+        row.innerHTML += '<td></td>';
+    }
+
+    return (row);
 }
 
 function tableCitoyen() {
@@ -121,42 +144,10 @@ function tableCitoyen() {
     row.append(createCell("", false, "th"));
     row.append(createCell("", false, "th"));
 
-    let row_empty = document.createElement('tr');
-    row_empty.innerHTML = `<form method="POST">
-                        <td>
-                            
-                        </td>
-                        <td>
-                            <input type="text" id="nom" name="nom" />
-                        </td>
-                        <td>
-                            <input type="text" id="prenom" name="prenom"/>
-                        </td>
-                        <td>
-                            <input type="date" id="date" name="date"/>
-                        </td>
-                        <td>
-                            <input type="number" id="argent" name="argent" step="0.01" min="0"/>
-                        </td>
-                        <td>
-                            <select id="sexe" name="sexe">
-                                <option value="homme">Homme</option>
-                                <option value="femme">Femme</option>
-                            </select>
-                        </td>
+    document.querySelector("table tbody").append(rowCitoyen());
 
-                        <td>
-                            <button class="btn btn-primary" type="submit" onclick='console.log(document.querySelector("#argent").value); return false;'><i class="icon-save"></i></button>
-                        </td>
-                        <td/>
-                    </form>`;
-    document.querySelector("tbody").append(row_empty);
-
-    for (let c of entities[idx]) {
-        let row = document.createElement('tr');
-        rowCitoyen(row, c);
-        addDelBtn(row);
-        document.querySelector("tbody").append(row);
+    for (let c of entities[idx]) {      
+        document.querySelector("table tbody").append(rowCitoyen(c));
     }
 }
 
