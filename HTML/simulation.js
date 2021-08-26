@@ -147,11 +147,11 @@ let eventShowBuilding = (event) => {
         elems += (`<p>${attribute}: ${data[attribute]}</p>`);
     }
     tooltip.innerHTML = elems;
-    tooltip.style.bottom = `${1000 - data.y*10}px`;
+    tooltip.style.top = `${data.y*10 - 1000 + data.superficie*10}px`;
     tooltip.style.left = `${data.x*10}px`;
     tooltip.style.visibility = "visible";
-    setTimeout(() => {
+    /*setTimeout(() => {
         tooltip.style.visibility = "hidden";
-    }, 3000);
+    }, 3000);*/
 }
 icons.addEventListener("click", eventShowBuilding);
