@@ -54,7 +54,7 @@ let biomes = [
         superficie: 50
     }
 ]
-let caseColor = {"Default":"red", "Prairie": "lightgreen", "Desert":"lightyellow", "Montagne":"lightgray"}
+let caseColor = {"Default":"red", "Prairie": "lightgreen", "Desert":"gold", "Montagne":"lightgray"}
 
 
 //Store coordinates and associated informations
@@ -90,7 +90,6 @@ let addMapIcon = (object) => {
     newIcon.height = object.superficie*10;
     newIcon.style.bottom = `${1000 - object.y*10 - object.superficie*10}px`;
     newIcon.style.left = `${object.x*10}px`;
-    console.log(newIcon);
 }
 
 //Initialise objects (buildings, biomes) to add in coordinates and on map
@@ -101,7 +100,7 @@ let addCase = (objects) => {
                 let color = "black";
                 if (o.nom in caseColor) color = caseColor[o.nom];
                 else color = caseColor["Default"];
-                document.querySelector(`#coordonnee-${o.x+w}-${o.y+h}`).style.backgroundColor = color;
+                document.querySelector(`#coordonnee-${o.x+w}-${o.y+h}`).style.background = `linear-gradient(${color}, white, ${color})`;
                 coordonnees[o.x+w][o.y+h] = o;
             }
         } 
@@ -135,3 +134,23 @@ tbody.addEventListener('mouseover', eventDisplay);
 //Display for buildings
 let icons = document.querySelector("#icons");
 icons.addEventListener('mouseover', eventDisplay);
+
+//Display informations when clicking on building
+let eventShowBuilding = (event) => {
+    let tooltip  = document.querySelector("#tooltip-content");
+    let coord = event.target.id;
+    coord = coord.split("-");
+    //Id of td elements are of the form "name-x-y" so we can split coordinates into an array
+    let data = coordonnees[parseInt(coord[1])][parseInt(coord[2])];
+    let elems = "";
+    for (attribute in data){
+        elems += (`<p>${attribute}: ${data[attribute]}</p>`);
+    }
+    tooltip.innerHTML = elems;
+    tooltip.style.bottom = `${1000 - data.y*10}px`;
+    tooltip.style.left = `${data.x*10}px`;
+    setTimeout(() => {
+        tooltip.innerHTML = "";
+    }, 2000);
+}
+icons.addEventListener("click", eventShowBuilding);

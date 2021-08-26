@@ -39,3 +39,12 @@
 .map-icon {
     position: absolute;
 }
+
+#tooltip {
+    position: relative;
+}
+#tooltip-content {
+    position: absolute;
+    background-color: #333;
+    color: white;
+}
