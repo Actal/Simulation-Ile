@@ -42,9 +42,11 @@
 
 #tooltip {
     position: relative;
+    visibility: hidden;
 }
 #tooltip-content {
     position: absolute;
     background-color: #333;
     color: white;
+    padding: 10px;
 }

@@ -100,7 +100,7 @@ let addCase = (objects) => {
                 let color = "black";
                 if (o.nom in caseColor) color = caseColor[o.nom];
                 else color = caseColor["Default"];
-                document.querySelector(`#coordonnee-${o.x+w}-${o.y+h}`).style.background = `linear-gradient(${color}, white, ${color})`;
+                document.querySelector(`#coordonnee-${o.x+w}-${o.y+h}`).style.background = color;
                 coordonnees[o.x+w][o.y+h] = o;
             }
         } 
@@ -149,8 +149,9 @@ let eventShowBuilding = (event) => {
     tooltip.innerHTML = elems;
     tooltip.style.bottom = `${1000 - data.y*10}px`;
     tooltip.style.left = `${data.x*10}px`;
+    tooltip.style.visibility = "visible";
     setTimeout(() => {
-        tooltip.innerHTML = "";
-    }, 2000);
+        tooltip.style.visibility = "hidden";
+    }, 3000);
 }
 icons.addEventListener("click", eventShowBuilding);
