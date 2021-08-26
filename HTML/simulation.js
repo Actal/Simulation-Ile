@@ -21,6 +21,13 @@ let batiments = [
         x: 51,
         y: 60,
         superficie: 3
+    },
+    {
+        id: 4,
+        nom: "Banque",
+        x: 73,
+        y: 25,
+        superficie: 2
     }
 ]
 
@@ -42,9 +49,9 @@ let biomes = [
     {
         id: 3,
         nom: "Montagne",
-        x: 40,
-        y: 20,
-        superficie: 20
+        x: 50,
+        y: 10,
+        superficie: 50
     }
 ]
 let caseColor = {"Default":"red", "Prairie": "lightgreen", "Desert":"lightyellow", "Montagne":"lightgray"}
@@ -75,9 +82,22 @@ for (y in coordonnees){
 }
 table.innerHTML = stringTab;
 
+
+//Add icon on the map with its file name
+let area = document.querySelector("#icons");
+let addMapIcon = (object) => {
+    area.innerHTML += `<img src="asset/${object.nom}.svg" alt="${object.nom}" id="icon-${object.nom}" class="map-icon"/>`;
+    let newIcon = document.querySelector(`#icon-${object.nom}`);
+    newIcon.width = object.superficie*10;
+    newIcon.height = object.superficie*10;
+    newIcon.style.bottom = `${1000 - object.y*10 - object.superficie*10}px`;
+    newIcon.style.left = `${object.x*10}px`;
+    console.log(newIcon);
+}
+
 //Initialise objects (buildings, biomes) to add in coordinates and on map
-let addCase = (object) => {
-    for (o of object){
+let addCase = (objects) => {
+    for (o of objects){
         for (let w=0; w<o.superficie; w++){
             for (let h=0; h<o.superficie; h++){
                 let color = "black";
@@ -86,12 +106,16 @@ let addCase = (object) => {
                 document.querySelector(`#coordonnee-${o.x+w}-${o.y+h}`).style.backgroundColor = color;
                 coordonnees[o.x+w][o.y+h] = o;
             }
-        }
-        
+        } 
+        if (objects == batiments) addMapIcon(o);
     }
 }
 addCase(biomes);
 addCase(batiments);
+
+
+
+
 //Initialize biomes
 /*
 for (bi of biomes){
@@ -129,3 +153,4 @@ tbody.addEventListener('mouseover', (event) => {
     sideBar.innerHTML = elems;
 });
 
+//Display information in sidebar for buildings
