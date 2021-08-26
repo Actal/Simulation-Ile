@@ -1,9 +1,9 @@
 let entities_type = [
-    { id: "0", type: "Citoyen", fun: tableCitoyen },
-    { id: "1", type: "Habitation", fun: tableHabitation },
-    { id: "2", type: "Proprietaire", fun: tableProprietaire },
-    { id: "3", type: "Service", fun: tableService },
-    { id: "4", type: "Workplace", fun: tableWorkplace }
+    { id: "0", type: "Citoyen", funTable: tableCitoyen, funRow: rowCitoyen },
+    { id: "1", type: "Habitation", funTable: tableHabitation, funRow: rowHabitation },
+    { id: "2", type: "Proprietaire", funTable: tableProprietaire, funRow: rowCitoyen },
+    { id: "3", type: "Service", funTable: tableService, funRow: rowService },
+    { id: "4", type: "Workplace", funTable: tableWorkplace, funRow: rowWorkplace }
 ];
 
 let entities = [
@@ -41,7 +41,7 @@ document.querySelector('#entity-type').addEventListener('change', () => {
 
     emptyTable();
     if (entity_type != undefined) { // dans le cas ou "Selectionner un type d'entite a éditer" est choisi dans la liste deroulante
-        entity_type.fun();
+        entity_type.funTable(entity_type);
     }
 });
 
@@ -120,14 +120,25 @@ function createCellTime(name, idForm, value) {
     return(cell);
 }
 
-function createCellSubmit(idForm) {
+function createCellSubmit(idForm, newRow=false) {
     let cell = document.createElement("td");
     
     let btn = document.createElement("button");
     btn.setAttribute("class", "btn btn-primary");
     btn.setAttribute("type", "submit")
     btn.setAttribute("form", idForm);
+    btn.setAttribute("onclick", "return false;");
     btn.innerHTML = '<i class="icon icon-save"></i>';
+
+    if(newRow) {
+        btn.addEventListener('click', () => {
+            select = document.querySelector('#entity-type').value;
+            let entity_type = entities_type.find(element => element.id == select);
+            document.querySelector("table tbody").append( entity_type.funRow({Id: "NEW"}));
+            // console.log(document.getElementById("0").elements);
+            return false;
+        });
+    }
     
     cell.append(btn);
     return(cell);
@@ -186,7 +197,12 @@ function rowCitoyen(citoyen) {
     let cell = document.createElement("td");
     cell.append(sel);
     row.append(cell);
-    row.append(createCellSubmit(c.Id));
+    
+    if( cit_defined ) {
+        row.append(createCellSubmit(c.Id, false));
+    } else {
+        row.append(createCellSubmit(c.Id, true));
+    }
     
     row.append(f);
 
@@ -227,7 +243,12 @@ function rowHabitation(habitation) {
     row.append(createCellNum("cout-entretien-base", h.Id, h.coutEntretienBase));
     row.append(createCellNum("loyer", h.Id, h.Loyer));
     row.append(createCellNum("nb-places", h.Id, h.nbPlace, step=1));
-    row.append(createCellSubmit(h.Id));
+
+    if( hab_defined ) {
+        row.append(createCellSubmit(h.Id, false));
+    } else {
+        row.append(createCellSubmit(h.Id, true));
+    }
     
     row.append(f);
 
@@ -271,8 +292,13 @@ function rowWorkplace(workplace) {
     row.append(createCellNum("nb-places", w.Id, w.nbPlace, step=1));
     row.append(createCellTime("heure-ouv", w.Id, w.hOuv));
     row.append(createCellTime("heure-ouv", w.Id, w.hFer));
-    row.append(createCellSubmit(w.Id));
     
+    if( wor_defined ) {
+        row.append(createCellSubmit(w.Id, false));
+    } else {
+        row.append(createCellSubmit(w.Id, true));
+    }
+
     row.append(f);
 
     if( wor_defined ) {
@@ -317,7 +343,12 @@ function rowService(service) {
     row.append(createCellNum("nb-places", s.Id, s.nbPlace, step=1));
     row.append(createCellTime("heure-ouv", s.Id, s.hOuv));
     row.append(createCellTime("heure-ouv", s.Id, s.hFer));
-    row.append(createCellSubmit(s.Id));
+    
+    if( ser_defined ) {
+        row.append(createCellSubmit(s.Id, false));
+    } else {
+        row.append(createCellSubmit(s.Id, true));
+    }
     
     row.append(f);
 
@@ -333,7 +364,7 @@ function rowService(service) {
 
 function tableCitoyen() {
 
-    let idx = entities_type.find(element => element.type === "Citoyen").id;
+    let entity_type = entities_type.find(element => element.type === "Citoyen");
 
     let row = document.querySelector("thead tr");
 
@@ -346,15 +377,15 @@ function tableCitoyen() {
     row.append(createHeaderCell(""));
     row.append(createHeaderCell(""));
 
-    document.querySelector("table tbody").append(rowCitoyen());
+    document.querySelector("table tbody").append(entity_type.funRow());
 
-    for (let c of entities[idx]) {      
-        document.querySelector("table tbody").append(rowCitoyen(c));
+    for (let c of entities[entity_type.id]) {      
+        document.querySelector("table tbody").append(entity_type.funRow(c));
     }
 }
 
-function tableHabitation   () {
-    let idx = entities_type.find(element => element.type === "Habitation").id;
+function tableHabitation() {
+    let entity_type = entities_type.find(element => element.type === "Habitation");
 
     let row = document.querySelector("thead tr");
 
@@ -368,14 +399,14 @@ function tableHabitation   () {
     row.append(createHeaderCell(""));
     row.append(createHeaderCell(""));
 
-    document.querySelector("table tbody").append(rowHabitation());
+    document.querySelector("table tbody").append(entity_type.funRow());
 
-    for (let h of entities[idx]) {      
-        document.querySelector("table tbody").append(rowHabitation(h));
+    for (let h of entities[entity_type.id]) {      
+        document.querySelector("table tbody").append(entity_type.funRow(h));
     }
 }
 function tableProprietaire () {
-    let idx = entities_type.find(element => element.type === "Proprietaire").id;
+    let entity_type = entities_type.find(element => element.type === "Proprietaire");
 
     let row = document.querySelector("thead tr");
 
@@ -388,14 +419,14 @@ function tableProprietaire () {
     row.append(createHeaderCell(""));
     row.append(createHeaderCell(""));
 
-    document.querySelector("table tbody").append(rowCitoyen());
+    document.querySelector("table tbody").append(entity_type.funRow());
 
-    for (let p of entities[idx]) {      
-        document.querySelector("table tbody").append(rowCitoyen(p));
+    for (let p of entities[entity_type.id]) {      
+        document.querySelector("table tbody").append(entity_type.funRow(p));
     }
 }
 function tableService      () {
-    let idx = entities_type.find(element => element.type === "Service").id;
+    let entity_type = entities_type.find(element => element.type === "Service");
 
     let row = document.querySelector("thead tr");
 
@@ -411,14 +442,14 @@ function tableService      () {
     row.append(createHeaderCell(""));
     row.append(createHeaderCell(""));
 
-    document.querySelector("table tbody").append(rowService());
+    document.querySelector("table tbody").append(entity_type.funRow());
 
-    for (let w of entities[idx]) {      
-        document.querySelector("table tbody").append(rowService(w));
+    for (let w of entities[entity_type.id]) {      
+        document.querySelector("table tbody").append(entity_type.funRow(w));
     }
 }
 function tableWorkplace    () {
-    let idx = entities_type.find(element => element.type === "Workplace").id;
+    let entity_type = entities_type.find(element => element.type === "Workplace");
 
     let row = document.querySelector("thead tr");
 
@@ -433,9 +464,9 @@ function tableWorkplace    () {
     row.append(createHeaderCell(""));
     row.append(createHeaderCell(""));
 
-    document.querySelector("table tbody").append(rowWorkplace());
+    document.querySelector("table tbody").append(entity_type.funRow());
 
-    for (let c of entities[idx]) {      
-        document.querySelector("table tbody").append(rowWorkplace(c));
+    for (let c of entities[entity_type.id]) {      
+        document.querySelector("table tbody").append(entity_type.funRow(c));
     }
 }
