@@ -12,8 +12,10 @@ const svg_ligne = d3.select("#statistiques-area3")
     .attr("transform",
         `translate(${margin_ligne.left},${margin_ligne.top})`);
 
+var fileURL = "TwoNumOrdered.csv";
+
 // Collecter les donnees
-d3.csv("TwoNumOrdered.csv",
+d3.csv(fileURL,
 
     // Lisant le csv, formater les variables :
     function(d){
@@ -62,6 +64,19 @@ d3.csv("TwoNumOrdered.csv",
         .attr("y", -20)
         .attr("dy", ".75em")
         //.attr("transform", "rotate(-90)")
-        .text("quantité");
+        .text("argent");
 
 });
+
+var request = new XMLHttpRequest(); 
+request.open("GET", fileURL, false);   
+request.send(null);  
+
+var csvData = new Array();
+var tab = request.responseText.split(/\r?\n|\r/);
+for (var i = 0; i < tab.length; i++) {
+    csvData.push(tab[i].split(','));
+}
+var lastval = csvData[tab.length-1][1];
+
+document.querySelector("#argent-total").innerHTML = lastval;
