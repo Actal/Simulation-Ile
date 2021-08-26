@@ -50,8 +50,9 @@ function emptyTable() {
     document.querySelector("thead tr").innerHTML = "";
 }
 
-function createHeaderCell(value) {
+function createHeaderCell(value, width) {
     let cell = document.createElement("th");
+    // cell.setAttribute("style", "width: "+width)
     cell.textContent = value;
     return cell;
 }
@@ -368,14 +369,14 @@ function tableCitoyen() {
 
     let row = document.querySelector("thead tr");
 
-    row.append(createHeaderCell("ID"));
-    row.append(createHeaderCell("Nom"));
-    row.append(createHeaderCell("Prenom"));
-    row.append(createHeaderCell("Date de naissance"));
-    row.append(createHeaderCell("Argent (€)"));
-    row.append(createHeaderCell("Sexe"));
-    row.append(createHeaderCell(""));
-    row.append(createHeaderCell(""));
+    row.append(createHeaderCell("ID", "1%"));
+    row.append(createHeaderCell("Nom", "10%"));
+    row.append(createHeaderCell("Prenom", "10%"));
+    row.append(createHeaderCell("Date de naissance", "10%"));
+    row.append(createHeaderCell("Argent (€)", "10%"));
+    row.append(createHeaderCell("Sexe", "10%"));
+    row.append(createHeaderCell("","2%"));
+    row.append(createHeaderCell("",""));
 
     document.querySelector("table tbody").append(entity_type.funRow());
 
