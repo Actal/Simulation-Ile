@@ -6,12 +6,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.formation.dao.IPersonneDao;
 import fr.formation.dao.IPrestationDao;
 import fr.formation.model.Personne;
 import fr.formation.model.Prestation;
 
+@Service
 public class PrestationService extends WorkplaceService {
 
 	@Autowired

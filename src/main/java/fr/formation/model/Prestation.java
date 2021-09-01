@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "service")
+@Table (name = "prestation")
 public class Prestation extends Workplace{
 
 	@Column(name = "SER_ID")
@@ -19,7 +19,7 @@ public class Prestation extends Workplace{
 	@Column(name = "SER_NB_CLI_MENSUEL")
 	private int nbClientMensuel;
 	
-	@OneToMany(mappedBy ="service")
+	@OneToMany(mappedBy = "prestation")
 	private List<Personne> clients;
 	
 	public Prestation(){
