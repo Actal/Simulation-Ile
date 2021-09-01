@@ -30,6 +30,5 @@
             <jsp:doBody></jsp:doBody>
         </div>
     </div>
-    <script src="simulation.js"></script>
 </body>
 </html>
