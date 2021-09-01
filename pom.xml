@@ -5,6 +5,7 @@
 	<groupId>fr.formation</groupId>
 	<artifactId>Simulation-Ile</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 
 	<properties>
 		<!-- Version JAVA 8 -->
@@ -66,6 +67,26 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.2.23</version>
 			<scope>runtime</scope>
+		</dependency>
+	
+		<!-- SPRING WEB -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.1</version>
+		    <scope>provided</scope>
 		</dependency>
 
 	</dependencies>
