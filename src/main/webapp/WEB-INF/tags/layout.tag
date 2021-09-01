@@ -21,9 +21,9 @@
     <div id="main">
         <nav id="navbar" class="navbar-nav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Simulation-Ile/simulation.html">Main page</a>
-                <a class="navbar-brand" href="Simulation-Ile/statistiques.html">Stats</a>
-                <a class="navbar-brand" href="Simulation-Ile/entityEditor.html">Edition</a>
+                <a class="navbar-brand" href="simulation">Main page</a>
+                <a class="navbar-brand" href="statistiques">Stats</a>
+                <a class="navbar-brand" href="entityEditor">Edition</a>
             </div>
         </nav>
         <div id="content">
