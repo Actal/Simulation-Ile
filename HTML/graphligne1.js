@@ -74,6 +74,10 @@ request.send(null);
 
 var csvData = new Array();
 var tab = request.responseText.split(/\r?\n|\r/);
+
+// const fs = require('fs');
+// var tab = fs.readFileSync(fileURL).toString().split('\r\n');
+
 for (var i = 0; i < tab.length; i++) {
     csvData.push(tab[i].split(','));
 }
