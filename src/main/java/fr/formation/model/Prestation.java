@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "service")
-public class Service extends Workplace{
+public class Prestation extends Workplace{
 
 	@Column(name = "SER_ID")
 	private BigDecimal prixEntree;
@@ -22,11 +22,11 @@ public class Service extends Workplace{
 	@OneToMany(mappedBy ="service")
 	private List<Personne> clients;
 	
-	public Service(){
+	public Prestation(){
 		
 	}
 
-	public Service(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
+	public Prestation(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
 			Adresse adresse, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture, LocalTime heureFermeture,
 			BigDecimal prixEntree, int nbClientMensuel) {
 		super(superficie, nom, prix, coutEntretienBase, nbPlace, adresse, biome, proprietaire, heureOuverture,

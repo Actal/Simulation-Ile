@@ -41,7 +41,7 @@ public class Personne {
 
 	@ManyToOne
 	@JoinColumn(name = "PER_SERVICE_ID")
-	private Service service;
+	private Prestation prestation;
 	
 	@OneToOne
 	@JoinColumn(name = "PER_COORDONNEES_ID")
@@ -115,12 +115,12 @@ public class Personne {
 		this.sexe = sexe;
 	}
 
-	public Service getService() {
-		return service;
+	public Prestation getPrestation() {
+		return prestation;
 	}
 
-	public void setService(Service service) {
-		this.service = service;
+	public void setPrestation(Prestation prestation) {
+		this.prestation = prestation;
 	}
 	
 }

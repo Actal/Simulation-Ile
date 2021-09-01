@@ -19,25 +19,25 @@ public class ApplicationDropAllTable {
 					"metier",
 					"personne",
 					"poste",
+					"prestation",
 					"proprietaire",
-					"service",
 					"workplace"
 					};
 			
-			//étape 1: charger la classe driver
+			//etape 1: charger la classe driver
 			Class.forName("org.postgresql.Driver");
-			//étape 2: créer l'objet de connexion
+			//etape 2: creer l'objet de connexion
 			Connection conn = DriverManager.getConnection(
-					"jdbc:postgresql://127.0.0.1:5432/Simulation-Ile", "postgres", "a");
-			//étape 3: créer l'objet statement 
+					"jdbc:postgresql://127.0.0.1:5432/Simulation-Ile", "postgres", "");
+			//etape 3: creer l'objet statement 
 			Statement stmt = conn.createStatement();
-			//étape 4: exécuter la requéte
+			//etape 4: executer la requete
 			for(String name: tablesName) {
 				System.out.println("Suppression de la table " + name + "...");
 				stmt.executeUpdate("DROP TABLE " + name + " cascade");
-				System.out.println("Table " + name + " supprimée avec succés...");
+				System.out.println("Table " + name + " supprimee avec succes...");
 			}
-			//étape 5: fermez l'objet de connexion
+			//etape 5: fermez l'objet de connexion
 			conn.close();
 		}
 		catch(Exception e){ 

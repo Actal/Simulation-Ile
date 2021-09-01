@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.formation.dao.IPersonneDao;
-import fr.formation.dao.IServiceDao;
+import fr.formation.dao.IPrestationDao;
 import fr.formation.model.Personne;
 
 @Service
@@ -17,10 +17,10 @@ public class PersonneService {
 	private IPersonneDao daoPersonne;
 	
 	@Autowired
-	private IServiceDao daoService;
+	private IPrestationDao daoPrestation;
 	
 	@Autowired
-	private ServiceService serviceService;
+	private PrestationService prestationService;
 
 	public Boolean payer(int idPersonne, BigDecimal somme) {
 		Personne personne = daoPersonne.findById(idPersonne).get();
@@ -42,14 +42,14 @@ public class PersonneService {
 	public void chercherService(int idPersonne){
 		LocalTime time = LocalTime.of(6,0); // A remplacer par l heure de la simulation
 		Personne personne = daoPersonne.findById(idPersonne).get();
-		List<fr.formation.model.Service> services = daoService.findAll();
-		for (fr.formation.model.Service s: services){
+		List<fr.formation.model.Prestation> services = daoPrestation.findAll();
+		for (fr.formation.model.Prestation s: services){
 			if (time.isAfter(s.getHeureOuverture()) && time.isBefore(s.getHeureFermeture())){
 				if (personne.getArgent().compareTo(s.getPrixEntree()) > 0){
 					personne.setCoordonnees(s.getAdresse().getCoordonnees());
-					serviceService.ajoutClient(s.getId(), personne);
+					prestationService.ajoutClient(s.getId(), personne);
 					daoPersonne.save(personne);
-					daoService.save(s);
+					daoPrestation.save(s);
 					break;
 				}
 			}
