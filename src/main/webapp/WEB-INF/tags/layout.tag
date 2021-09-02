@@ -37,9 +37,10 @@
 								<li><a class="dropdown-item" href="liste-metiers">Metier</a></li>
 								<li><a class="dropdown-item" href="liste-postes">Poste</a></li>
 								<li><a class="dropdown-item" href="liste-prestations">Prestation</a></li>
-								<li><a class="dropdown-item" href="liste-propritaires">Propriétaire</a></li>
+								<li><a class="dropdown-item" href="liste-proprietaires">Propriétaire</a></li>
 								<li><a class="dropdown-item" href="liste-workplaces">Workplace</a></li>
-							</ul></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
