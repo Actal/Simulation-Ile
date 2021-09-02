@@ -5,16 +5,7 @@
     position: relative;
 }
 
-#entity-type {
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    top: 30px;
-    border-radius: 0;
-}
-
 table {
-    top: 30px;
     position: relative;
     /* border-collapse: separate; */
 }
