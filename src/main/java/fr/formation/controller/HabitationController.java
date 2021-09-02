@@ -37,16 +37,14 @@ public class HabitationController {
 	}
 	
 	@PostMapping("/liste-habitations")
-	public String save(@RequestParam String nom, @RequestParam int longueur, @RequestParam BigDecimal prix, @RequestParam BigDecimal coutEntretienBase, @RequestParam BigDecimal loyer, @RequestParam int nbPlace, @RequestParam int proprietaireId,  @RequestParam int x, @RequestParam int y) {
+	public String save(Habitation habitation,  @RequestParam int x, @RequestParam int y) {
 		
 		Coordonnees c = new Coordonnees(x,y);
 		daoCoordonnees.save(c);
-		
-		Proprietaire p = new Proprietaire();
-		p.setId(proprietaireId);
-		
-		Habitation h = new Habitation(longueur, nom, prix, coutEntretienBase, nbPlace, c, serviceBiome.findBiomeContaining(c), p, loyer);
-		daoHabitation.save(h);
+				
+		habitation.setCoordonnees(c);
+		habitation.setBiome(serviceBiome.findBiomeContaining(c));
+		daoHabitation.save(habitation);
 		
 		return "redirect:/liste-habitations";
 	}
