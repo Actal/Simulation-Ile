@@ -37,7 +37,7 @@ public class CitoyenService extends PersonneService {
 	public void allerTravailler(int idCitoyen) {
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
 		if (this.isTravailleur(idCitoyen)) {
-			citoyen.setCoordonnees(citoyen.getPoste().getWorkplace().getAdresse().getCoordonnees());
+			citoyen.setCoordonnees(citoyen.getPoste().getWorkplace().getCoordonnees());
 			daoCitoyen.save(citoyen);
 		}
 	}
@@ -45,7 +45,7 @@ public class CitoyenService extends PersonneService {
 	public void rentrer(int idCitoyen) {
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
 		if (this.isLocataire(idCitoyen)) {
-			citoyen.setCoordonnees(citoyen.getHabitation().getAdresse().getCoordonnees());
+			citoyen.setCoordonnees(citoyen.getHabitation().getCoordonnees());
 			daoCitoyen.save(citoyen);
 		}
 	}
