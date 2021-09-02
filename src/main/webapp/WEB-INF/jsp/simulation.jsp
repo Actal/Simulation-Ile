@@ -1,5 +1,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
-<link rel="stylesheet" href="simulation.css">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="stylesheet" href="assets/css/simulation.css">
 
 <t:layout>
 	<div id="simulation">
@@ -14,8 +17,9 @@
 			<div id="tooltip">
 				<div id="tooltip-content"></div>
 			</div>
+			<div>${ batiments }</div>
 		</div>
 	</div>
 	
-    <script src="simulation.js"></script>
+    <script src="assets/js/simulation.js"></script>
 </t:layout>
