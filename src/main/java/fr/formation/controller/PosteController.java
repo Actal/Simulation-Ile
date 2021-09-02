@@ -22,13 +22,13 @@ public class PosteController {
 		return "poste-liste";
 	}
 	
-	@PostMapping({ "/liste-workplaces" })
+	@PostMapping({ "/liste-postes" })
 	public String save(Poste poste) {
 		daoPoste.save(poste);
 		return "redirect:/liste-postes";
 	}
 	
-	@GetMapping("/supprimer-workplace")
+	@GetMapping("/supprimer-poste")
 	public String deleteById(@RequestParam int id) {
 		daoPoste.deleteById(id);
 		return "redirect:/liste-postes";
