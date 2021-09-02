@@ -46,7 +46,7 @@ public class PersonneService {
 		for (fr.formation.model.Prestation s: services){
 			if (time.isAfter(s.getHeureOuverture()) && time.isBefore(s.getHeureFermeture())){
 				if (personne.getArgent().compareTo(s.getPrixEntree()) > 0){
-					personne.setCoordonnees(s.getAdresse().getCoordonnees());
+					personne.setCoordonnees(s.getCoordonnees());
 					prestationService.ajoutClient(s.getId(), personne);
 					daoPersonne.save(personne);
 					daoPrestation.save(s);
