@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "personne")
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -31,6 +33,7 @@ public class Personne {
 	private String prenom;
 
 	@Column(name = "PER_DATE_NAISSANCE", nullable = false)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate dateNaissance;
 
 	@Column(name = "PER_SEXE", nullable = false)
