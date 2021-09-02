@@ -84,7 +84,7 @@ table.innerHTML = stringTab;
 //Add icon on the map with its file name
 let area = document.querySelector("#icons");
 let addMapIcon = (object) => {
-    area.innerHTML += `<img src="asset/${object.nom}.svg" alt="${object.nom}" id="icon-${object.x}-${object.y}" class="map-icon"/>`;
+    area.innerHTML += `<img src="assets/img/${object.nom}.svg" alt="${object.nom}" id="icon-${object.x}-${object.y}" class="map-icon"/>`;
     let newIcon = document.querySelector(`#icon-${object.x}-${object.y}`);
     newIcon.width = object.superficie*10;
     newIcon.height = object.superficie*10;
