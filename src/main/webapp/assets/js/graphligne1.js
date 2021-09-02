@@ -12,7 +12,7 @@ const svg_ligne = d3.select("#statistiques-area3")
     .attr("transform",
         `translate(${margin_ligne.left},${margin_ligne.top})`);
 
-var fileURL = "TwoNumOrdered.csv";
+var fileURL = "assets/data/TwoNumOrdered.csv";
 
 // Collecter les donnees
 d3.csv(fileURL,

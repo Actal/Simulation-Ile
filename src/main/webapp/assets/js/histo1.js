@@ -13,7 +13,7 @@ const svg = d3.select("#statistiques-area2")
           `translate(${margin.left},${margin.top})`);
 
 // Collecter les donnees
-d3.csv("OneNum.csv").then( function(data) {
+d3.csv("assets/data/OneNum.csv").then( function(data) {
 
     // Axe X : scale et tracage
     const x = d3.scaleLinear()
@@ -50,7 +50,7 @@ d3.csv("OneNum.csv").then( function(data) {
         .attr("y", -20)
         .attr("dy", ".75em")
         //.attr("transform", "rotate(-90)")
-        .text("quantité");
+        .text("quantite");
 
     // Append les rectangles a l'element svg
     svg.selectAll("rect")
