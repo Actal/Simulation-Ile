@@ -41,11 +41,11 @@
 				<form method="POST" id="${ citoyen.id }"></form>
 				<tr>
 					<td>${ citoyen.id }<input type="hidden" name="id" form="${ citoyen.id }" value="${ citoyen.id }" /></td>
-					<td><input type="text" name="nom" form="${ citoyen.id }" value="${ citoyen.nom }" /></td>
-					<td><input type="text" name="prenom" form="${ citoyen.id }" value="${ citoyen.prenom }" /></td>
-					<td><input type="date" name="dateNaissance" form="${ citoyen.id }" value="${ citoyen.dateNaissance }" /></td>
-					<td><input type="number" name="argent" form="${ citoyen.id }" value="${ citoyen.argent }" /></td>
-					<td><select name="sexe" form="${ citoyen.id }">
+					<td><input type="text"   name="nom"				form="${ citoyen.id }" value="${ citoyen.nom }" /></td>
+					<td><input type="text"   name="prenom"			form="${ citoyen.id }" value="${ citoyen.prenom }" /></td>
+					<td><input type="date"   name="dateNaissance"	form="${ citoyen.id }" value="${ citoyen.dateNaissance }" /></td>
+					<td><input type="number" name="argent"			form="${ citoyen.id }" value="${ citoyen.argent }" /></td>
+					<td><select 			 name="sexe"			form="${ citoyen.id }">
 							<c:if test="${ citoyen.sexe.isHomme()}">
 								<option value="Homme" selected>Homme</option>
 								<option value="Femme">Femme</option>

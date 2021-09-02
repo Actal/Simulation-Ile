@@ -33,7 +33,7 @@
 			<c:forEach items="${ biomes }" var="biome">
 				<form method="POST" id="${ biome.id }"></form>
 				<tr>
-					<td>${ biome.id }<input type="hidden" name="id" form="${ biome.id }" value="${ biome.id }" /></td>
+					<td>${ biome.id }<input type="hidden" name="id"		form="${ biome.id }" value="${ biome.id }" /></td>
 					<td><input type="text"   name="type"				form="${ biome.id }" value="${ biome.type }" /></td>
 					<td><input type="number" name="longueur"			form="${ biome.id }" value="${ biome.longueur }" /></td>
 					<td><input type="number" name="x"					form="${ biome.id }" value="${ biome.coordonnees.x }" /></td>

@@ -26,13 +26,15 @@ public class BiomeController {
 		return "biome-liste";
 	}
 	
-	@PostMapping({ "/liste-biomes" })
-	public String save(String type, int longueur, int x, int y) {
+	@PostMapping("/liste-biomes")
+	public String save(Biome b, int x, int y) {
 		
 		Coordonnees c = new Coordonnees(x,y);
 		daoCoordonnees.save(c);
 		
-		daoBiome.save(new Biome(type, longueur, c));
+		b.setCoordonnees(c);
+		daoBiome.save(b);
+		
 		return "redirect:/liste-biomes";
 	}
 	
