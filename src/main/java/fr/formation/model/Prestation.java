@@ -26,7 +26,7 @@ public class Prestation extends Workplace{
 		
 	}
 
-	public Prestation(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
+	public Prestation(int superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
 			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture, LocalTime heureFermeture,
 			BigDecimal prixEntree, int nbClientMensuel) {
 		super(superficie, nom, prix, coutEntretienBase, nbPlace, coordonnees, biome, proprietaire, heureOuverture,

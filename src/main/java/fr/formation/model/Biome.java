@@ -1,6 +1,5 @@
 package fr.formation.model;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,7 +24,7 @@ public class Biome {
 	private String type;
 	
 	@Column(name = "BIO_SUPERFICIE")
-	private BigDecimal superficie;
+	private int longueur;
 
 	@OneToOne
 	@JoinColumn(name = "BIO_COORDONNEES_ID", unique = true)
@@ -37,9 +36,9 @@ public class Biome {
 	public Biome() {
 	}
 
-	public Biome(String type, BigDecimal superficie) {
+	public Biome(String type, int longueur) {
 		this.type = type;
-		this.superficie = superficie;
+		this.longueur = longueur;
 	}
 
 	public int getId() {
@@ -58,12 +57,12 @@ public class Biome {
 		this.type = type;
 	}
 
-	public BigDecimal getSuperficie() {
-		return superficie;
+	public int getLongueur() {
+		return longueur;
 	}
 
-	public void setSuperficie(BigDecimal superficie) {
-		this.superficie = superficie;
+	public void setLongueur(int longueur) {
+		this.longueur = longueur;
 	}
 
 	public Coordonnees getCoordonnees() {

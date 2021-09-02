@@ -11,7 +11,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Nom</th>
-				<th>Superficie</th>
+				<th>Longueur</th>
 				<th>Prix</th>
 				<th>Cout d'entretien base</th>
 				<th># places</th>
@@ -25,7 +25,7 @@
 			<tr>
 				<td></td>
 				<td><input type="text" name="nom" form="0"/></td>
-				<td><input type="number" name="superficie" form="0"/></td>
+				<td><input type="number" name="longueur" form="0"/></td>
 				<td><input type="number" name="prix" form="0"/></td>
 				<td><input type="number" name="coutEntretienBase" form="0"/></td>
 				<td><input type="number" name="nbPlace" form="0"/></td>
@@ -40,8 +40,8 @@
 				<form method="POST" id="${ workplace.id }"></form>
 				<tr>
 					<td>${ workplace.id }<input type="hidden" name="id" form="${ workplace.id }" value="${ workplace.id }" /></td>
-					<td><input type="text"   name="nom"					form="${ workplace.id }" value="${ workplace.superficie }" /></td>
-					<td><input type="number" name="superficie"			form="${ workplace.id }" value="${ workplace.argent }" /></td>
+					<td><input type="text"   name="nom"					form="${ workplace.id }" value="${ workplace.nom }" /></td>
+					<td><input type="number" name="longueur"			form="${ workplace.id }" value="${ workplace.longueur }" /></td>
 					<td><input type="number" name="prix"				form="${ workplace.id }" value="${ workplace.prix }" /></td>
 					<td><input type="number" name="coutEntretienBase"	form="${ workplace.id }" value="${ workplace.coutEntretienBase }" /></td>
 					<td><input type="number" name="nbPlace"				form="${ workplace.id }" value="${ workplace.nbPlace }" /></td>
