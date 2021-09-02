@@ -27,9 +27,9 @@ public class Prestation extends Workplace{
 	}
 
 	public Prestation(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
-			Adresse adresse, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture, LocalTime heureFermeture,
+			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture, LocalTime heureFermeture,
 			BigDecimal prixEntree, int nbClientMensuel) {
-		super(superficie, nom, prix, coutEntretienBase, nbPlace, adresse, biome, proprietaire, heureOuverture,
+		super(superficie, nom, prix, coutEntretienBase, nbPlace, coordonnees, biome, proprietaire, heureOuverture,
 				heureFermeture);
 		this.prixEntree = prixEntree;
 		this.nbClientMensuel = nbClientMensuel;

@@ -40,8 +40,8 @@ public abstract class Batiment {
 	private int nbPlace;
 	
 	@OneToOne
-	@JoinColumn(name = "BAT_ADRESSE_ID", nullable = false, unique = true)
-	private Adresse adresse;
+	@JoinColumn(name = "BAT_COORDONEE_ID", nullable = false, unique = true)
+	private Coordonnees coordonnees;
 	
 	@ManyToOne
 	@JoinColumn(name = "BAT_BIOME_ID", nullable = false)
@@ -51,12 +51,12 @@ public abstract class Batiment {
 	@JoinColumn(name = "BAT_PROPRIETAIRE", nullable = false)
 	private Proprietaire proprietaire;
 	
-	public Adresse getAdresse() {
-		return adresse;
+	public Coordonnees getCoordonnees() {
+		return coordonnees;
 	}
 
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
+	public void setCoordonnees(Coordonnees coordonnees) {
+		this.coordonnees = coordonnees;
 	}
 
 	public BigDecimal getSuperficie() {
@@ -124,14 +124,14 @@ public abstract class Batiment {
 	}
 
 	public Batiment(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
-			Adresse adresse, Biome biome, Proprietaire proprietaire) {
+			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire) {
 		super();
 		this.superficie = superficie;
 		this.nom = nom;
 		this.prix = prix;
 		this.coutEntretienBase = coutEntretienBase;
 		this.nbPlace = nbPlace;
-		this.adresse = adresse;
+		this.coordonnees = coordonnees;
 		this.biome = biome;
 		this.proprietaire = proprietaire;
 	}

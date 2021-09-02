@@ -39,8 +39,8 @@ public class Habitation extends Batiment {
 	}
 
 	public Habitation(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
-			Adresse adresse, Biome biome, Proprietaire proprietaire, BigDecimal loyer) {
-		super(superficie, nom, prix, coutEntretienBase, nbPlace, adresse, biome, proprietaire);
+			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire, BigDecimal loyer) {
+		super(superficie, nom, prix, coutEntretienBase, nbPlace, coordonnees, biome, proprietaire);
 		this.loyer = loyer;
 	}
 

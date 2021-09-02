@@ -61,9 +61,9 @@ public class Workplace extends Batiment {
 	
 
 	public Workplace(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
-			Adresse adresse, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture,
+			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture,
 			LocalTime heureFermeture) {
-		super(superficie, nom, prix, coutEntretienBase, nbPlace, adresse, biome, proprietaire);
+		super(superficie, nom, prix, coutEntretienBase, nbPlace, coordonnees, biome, proprietaire);
 		this.heureOuverture = heureOuverture;
 		this.heureFermeture = heureFermeture;
 		this.isOuvert = false;
