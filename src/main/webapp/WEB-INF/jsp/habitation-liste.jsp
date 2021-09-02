@@ -16,6 +16,7 @@
 				<th>Cout d'entretien base</th>
 				<th>Loyer</th>
 				<th># places</th>
+				<th>Proprietaire</th>
 				<th>X</th>
 				<th>Y</th>
 				<th />
@@ -31,6 +32,13 @@
 				<td><input type="number" name="coutEntretienBase" form="0"/></td>
 				<td><input type="number" name="loyer" form="0"/></td>
 				<td><input type="number" name="nbPlace" form="0"/></td>
+				<td>
+					<select name="proprietaireId" form="0">
+						<c:forEach items="${ proprietaires }" var="proprietaire">
+							<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
+						</c:forEach>
+					</select>
+				</td>
 				<td><input type="number" name="x" form="0"/></td>
 				<td><input type="number" name="y" form="0"/></td>
 				<td><button type="submit" class="btn btn-primary" form="0"> <i class="icon icon-save"></i> </button></td>
@@ -48,6 +56,19 @@
 					<td><input type="number" name="coutEntretienBase"	form="${ habitation.id }" value="${ habitation.coutEntretienBase }" /></td>
 					<td><input type="number" name="loyer"				form="${ habitation.id }" value="${ habitation.loyer }" /></td>
 					<td><input type="number" name="nbPlace"				form="${ habitation.id }" value="${ habitation.nbPlace }" /></td>
+					<td>
+						<select name="proprietaireId" form="${ habitation.id }">
+							<c:forEach items="${ proprietaires }" var="proprietaire">
+								<c:if test="${ proprietaire.id != habitation.proprietaire.id }">
+									<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
+								</c:if>
+							
+								<c:if test="${ proprietaire.id == habitation.proprietaire.id }">
+									<option value="${ proprietaire.id }" selected>${ proprietaire.nom } ${ proprietaire.prenom }</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</td>
 					<td><input type="number" name="x"					form="${ habitation.id }" value="${ habitation.coordonnees.x }" /></td>
 					<td><input type="number" name="y"					form="${ habitation.id }" value="${ habitation.coordonnees.y }" /></td>
 					<td><button type="submit" class="btn btn-primary"	form="${ habitation.id }"> <i class="icon icon-save"></i> </button></td>

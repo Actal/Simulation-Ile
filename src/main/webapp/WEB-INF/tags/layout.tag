@@ -32,6 +32,7 @@
 							role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Edition </a>
 							<ul class="dropdown-menu" aria-labelledby="editionMenu">
+							<li><a class="dropdown-item" href="liste-biomes">Biome</a></li>
 								<li><a class="dropdown-item" href="liste-citoyens">Citoyen</a></li>
 								<li><a class="dropdown-item" href="liste-habitations">Habitation</a></li>
 								<li><a class="dropdown-item" href="liste-metiers">Metier</a></li>

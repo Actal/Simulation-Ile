@@ -36,9 +36,10 @@ public class Biome {
 	public Biome() {
 	}
 
-	public Biome(String type, int longueur) {
+	public Biome(String type, int longueur, Coordonnees c) {
 		this.type = type;
 		this.longueur = longueur;
+		this.coordonnees = c;
 	}
 
 	public int getId() {

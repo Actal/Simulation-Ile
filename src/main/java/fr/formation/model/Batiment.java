@@ -24,8 +24,8 @@ public abstract class Batiment {
 	@Column(name = "BAT_ID")
 	private int id;
 	
-	@Column(name = "BAT_SUPERFICIE", nullable = false)
-	private int longeur;
+	@Column(name = "BAT_LONGUEUR", nullable = false)
+	private int longueur;
 	
 	@Column(name = "BAT_NOM", nullable = false)
 	private String nom;
@@ -59,12 +59,12 @@ public abstract class Batiment {
 		this.coordonnees = coordonnees;
 	}
 
-	public int getLongeur() {
-		return longeur;
+	public int getLongueur() {
+		return longueur;
 	}
 
-	public void setLongeur(int longeur) {
-		this.longeur = longeur;
+	public void setLongueur(int longueur) {
+		this.longueur = longueur;
 	}
 
 	public Biome getBiome() {
@@ -125,8 +125,7 @@ public abstract class Batiment {
 
 	public Batiment(int longueur, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
 			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire) {
-		super();
-		this.longeur = longueur;
+		this.longueur = longueur;
 		this.nom = nom;
 		this.prix = prix;
 		this.coutEntretienBase = coutEntretienBase;

@@ -60,7 +60,7 @@ public class Workplace extends Batiment {
 
 	
 
-	public Workplace(BigDecimal superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
+	public Workplace(int superficie, String nom, BigDecimal prix, BigDecimal coutEntretienBase, int nbPlace,
 			Coordonnees coordonnees, Biome biome, Proprietaire proprietaire, LocalTime heureOuverture,
 			LocalTime heureFermeture) {
 		super(superficie, nom, prix, coutEntretienBase, nbPlace, coordonnees, biome, proprietaire);
