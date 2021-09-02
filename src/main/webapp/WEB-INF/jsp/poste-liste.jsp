@@ -6,10 +6,6 @@
 <link rel="stylesheet" href="assets/css/icon.css">
 
 <t:layout>
-
-	<select class="form-select" id="entity-type">
-		<option selected>Sélectionnez un type d'entité à éditer</option>
-	</select>
 	<table class="table table-striped">
 		<thead>
 			<tr>
