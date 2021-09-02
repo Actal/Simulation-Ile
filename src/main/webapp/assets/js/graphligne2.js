@@ -13,7 +13,7 @@ const svg_ligne2 = d3.select("#statistiques-area3")
         `translate(${margin_ligne2.left},${margin_ligne2.top})`);
 
 // Collecter les donnees
-d3.csv("TwoNumOrdered2.csv",
+d3.csv("assets/data/TwoNumOrdered2.csv",
 
     // Lisant le csv, formater les variables :
     function(d){
@@ -62,6 +62,6 @@ d3.csv("TwoNumOrdered2.csv",
         .attr("y", -20)
         .attr("dy", ".75em")
         //.attr("transform", "rotate(-90)")
-        .text("quantité");
+        .text("quantite");
 
 });

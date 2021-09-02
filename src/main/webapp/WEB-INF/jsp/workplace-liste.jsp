@@ -6,10 +6,6 @@
 <link rel="stylesheet" href="assets/css/icon.css">
 
 <t:layout>
-
-	<select class="form-select" id="entity-type">
-		<option selected>Sélectionnez un type d'entité à éditer</option>
-	</select>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -17,7 +13,7 @@
 				<th>Nom</th>
 				<th>Superficie</th>
 				<th>Prix</th>
-				<th>Cout d'entretient base</th>
+				<th>Cout d'entretien base</th>
 				<th># places</th>
 				<th>Heure ouverture</th>
 				<th>Heure fermeture</th>
