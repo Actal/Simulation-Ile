@@ -6,8 +6,10 @@
 	<div id="statistiques" class="row">
 		<div id="statistiques-area">
 			<h2>Statistiques de l'île</h2>
-			<p>Nombre d'habitants : <span id="nb-habitants">${ nb-habitants-total }</span></p>
-			<p>Quantité d'argent : <span id="argent-total"></span></p>
+<!-- 			<p>Nombre d'habitants : <span id="nb-habitants"></span></p> -->
+<!-- 			<p>Quantité d'argent : <span id="argent-total"></span></p> -->
+			<p>Nombre d'habitants : ${ nbhabitants }</p>
+			<p>Quantité d'argent : ${ argenttotal }</p>
 		</div>
 		<div id="statistiques-area2">
 			<h2>Affichage des histogrammes</h2>

@@ -19,15 +19,18 @@ public class StatsController {
 	
 	@GetMapping("/statistiques")
 	public String findParameters(Model model) {
-		BigDecimal argentTotal = new BigDecimal(0);
+		BigDecimal argenttotal = new BigDecimal(0);
+		int nbhabitants = 0;
+		
 		List<Personne> personnes = daoPersonne.findAll();
 
 		for (Personne p : personnes) {
-			argentTotal = argentTotal.add(p.getArgent());
+			argenttotal = argenttotal.add(p.getArgent());
+			nbhabitants++;
 		}
 		
-		model.addAttribute("argent-total", argentTotal);
-		model.addAttribute("nb-habitants-total", personnes.size());
+		model.addAttribute("argenttotal", argenttotal);
+		model.addAttribute("nbhabitants", nbhabitants);
 		
 		return "statistiques";
 	}
