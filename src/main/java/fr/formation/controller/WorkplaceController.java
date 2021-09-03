@@ -28,7 +28,8 @@ public class WorkplaceController {
 	
 	@GetMapping("/liste-workplaces")
 	public String findAll(Model model) {
-		model.addAttribute("workplaces", daoWorkplace.findAll());
+
+		model.addAttribute("workplaces", daoWorkplace.findAllWorkplaces());
 		model.addAttribute("proprietaires", daoProprietaire.findAll());
 		return "workplace-liste";
 	}
