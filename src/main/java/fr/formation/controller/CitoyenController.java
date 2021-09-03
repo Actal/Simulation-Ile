@@ -19,6 +19,7 @@ public class CitoyenController {
 	@GetMapping("/liste-citoyens")
 	public String findAll(Model model) {
 		model.addAttribute("citoyens", daoCitoyen.findAllCitoyens());
+		model.addAttribute("nameEntity", "Citoyen");
 		return "citoyen-liste";
 	}
 	
