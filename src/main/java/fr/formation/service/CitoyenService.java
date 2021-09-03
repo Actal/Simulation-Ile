@@ -100,9 +100,13 @@ public class CitoyenService extends PersonneService {
 	public void faireAction(int idCitoyen, LocalTime time){
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
 		if (time.compareTo(citoyen.getPoste().getWorkplace().getHeureOuverture()) > 0  && time.compareTo(citoyen.getPoste().getWorkplace().getHeureFermeture()) < 0){
-			citoyen.setCoordonnees(citoyen.getPoste().getWorkplace().getCoordonnees());
+			allerTravailler(idCitoyen);
 		}
-		//if dormir
-		//if loisir
+		else if (true){
+			rentrer(idCitoyen);
+		}
+		else {
+			//loisir
+		}
 	}
 }
