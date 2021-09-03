@@ -1,61 +1,5 @@
 
-//Load objects
-let batiments = [
-    {
-        id: 1,
-        nom: "Usine",
-        x: 5,
-        y: 5,
-        superficie: 2
-    },
-    {
-        id: 2,
-        nom: "Ecole",
-        x: 20,
-        y: 37,
-        superficie: 1
-    },
-    {
-        id: 3,
-        nom: "Caserne",
-        x: 51,
-        y: 60,
-        superficie: 3
-    },
-    {
-        id: 4,
-        nom: "Banque",
-        x: 73,
-        y: 25,
-        superficie: 2
-    }
-]
-
-let biomes = [
-    {
-        id: 1,
-        nom: "Prairie",
-        x: 0,
-        y: 0,
-        superficie: 100
-    },
-    {
-        id: 2,
-        nom: "Desert",
-        x: 10,
-        y: 30,
-        superficie: 30
-    },
-    {
-        id: 3,
-        nom: "Montagne",
-        x: 50,
-        y: 10,
-        superficie: 50
-    }
-]
 let caseColor = {"Default":"red", "Prairie": "lightgreen", "Desert":"gold", "Montagne":"lightgray"}
-
 
 //Store coordinates and associated informations
 let coordonnees = [];
@@ -67,7 +11,7 @@ for (let y=0; y<100; y++){
     coordonnees.push(tmpTab);
 }
 
-//Create graphical interface as array for simulation
+//Create graphical interface as table for simulation
 let table = document.querySelector("#simulation-area table");
 let stringTab = "";
 for (y in coordonnees){
@@ -84,19 +28,32 @@ table.innerHTML = stringTab;
 //Add icon on the map with its file name
 let area = document.querySelector("#icons");
 let addMapIcon = (object) => {
-    area.innerHTML += `<img src="assets/img/${object.nom}.svg" alt="${object.nom}" id="icon-${object.x}-${object.y}" class="map-icon"/>`;
+
+    //Check if image exists. XMLHTTP deprecated
+    var http = new XMLHttpRequest();
+    http.open('HEAD', `assets/img/${object.nom}.svg`, false);
+    http.send();
+    let img = "";
+    if (http.status != 404){
+        img = `assets/img/${object.nom}.svg`;
+    }
+    else {
+        img = `assets/img/BatimentPlaceholder.svg`;
+    }
+
+    area.innerHTML += `<img src="${ img }" alt="${object.nom}" id="icon-${object.x}-${object.y}" class="map-icon"/>`;
     let newIcon = document.querySelector(`#icon-${object.x}-${object.y}`);
-    newIcon.width = object.superficie*10;
-    newIcon.height = object.superficie*10;
-    newIcon.style.bottom = `${1000 - object.y*10 - object.superficie*10}px`;
+    newIcon.width = object.longueur*10;
+    newIcon.height = object.longueur*10;
+    newIcon.style.bottom = `${1000 - object.y*10 - object.longueur*10}px`;
     newIcon.style.left = `${object.x*10}px`;
 }
 
 //Initialise objects (buildings, biomes) to add in coordinates and on map
 let addCase = (objects) => {
     for (o of objects){
-        for (let w=0; w<o.superficie; w++){
-            for (let h=0; h<o.superficie; h++){
+        for (let w=0; w<o.longueur; w++){
+            for (let h=0; h<o.longueur; h++){
                 let color = "black";
                 if (o.nom in caseColor) color = caseColor[o.nom];
                 else color = caseColor["Default"];
@@ -147,11 +104,11 @@ let eventShowBuilding = (event) => {
         elems += (`<p>${attribute}: ${data[attribute]}</p>`);
     }
     tooltip.innerHTML = elems;
-    tooltip.style.top = `${data.y*10 - 1000 + data.superficie*10}px`;
+    tooltip.style.top = `${data.y*10 - 1000 + data.longueur*10}px`;
     tooltip.style.left = `${data.x*10}px`;
     tooltip.style.visibility = "visible";
-    /*setTimeout(() => {
+    setTimeout(() => {
         tooltip.style.visibility = "hidden";
-    }, 3000);*/
+    }, 3000);
 }
 icons.addEventListener("click", eventShowBuilding);
