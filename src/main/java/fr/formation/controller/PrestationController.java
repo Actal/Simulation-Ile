@@ -13,6 +13,7 @@ import fr.formation.dao.IProprietaireDao;
 import fr.formation.model.Coordonnees;
 import fr.formation.model.Prestation;
 import fr.formation.service.BiomeService;
+import fr.formation.service.PrestationService;
 
 @Controller
 public class PrestationController {
@@ -25,6 +26,8 @@ public class PrestationController {
 	private IProprietaireDao daoProprietaire;
 	@Autowired
 	private BiomeService serviceBiome;
+	@Autowired
+	private PrestationService servicePrestation;
 	
 	@GetMapping("/liste-prestations")
 	public String findAll(Model model) {
@@ -40,7 +43,11 @@ public class PrestationController {
 				
 		prestation.setCoordonnees(c);
 		prestation.setBiome(serviceBiome.findBiomeContaining(c));
-		daoPrestation.save(prestation);
+
+		if(servicePrestation.estConstructible(prestation) ) {
+			daoPrestation.save(prestation);
+		}
+		
 		return "redirect:/liste-prestations";
 	}
 	

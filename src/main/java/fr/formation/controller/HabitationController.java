@@ -1,7 +1,5 @@
 package fr.formation.controller;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +12,8 @@ import fr.formation.dao.IHabitationDao;
 import fr.formation.dao.IProprietaireDao;
 import fr.formation.model.Coordonnees;
 import fr.formation.model.Habitation;
-import fr.formation.model.Proprietaire;
 import fr.formation.service.BiomeService;
+import fr.formation.service.HabitationService;
 
 @Controller
 public class HabitationController {
@@ -28,6 +26,8 @@ public class HabitationController {
 	private IProprietaireDao daoProprietaire;
 	@Autowired
 	private BiomeService serviceBiome;
+	@Autowired
+	private HabitationService serviceHabitation;
 	
 	@GetMapping("/liste-habitations")
 	public String findAll(Model model) {
@@ -44,7 +44,10 @@ public class HabitationController {
 				
 		habitation.setCoordonnees(c);
 		habitation.setBiome(serviceBiome.findBiomeContaining(c));
-		daoHabitation.save(habitation);
+		
+		if(serviceHabitation.estConstructible(habitation) ) {
+			daoHabitation.save(habitation);
+		}
 		
 		return "redirect:/liste-habitations";
 	}

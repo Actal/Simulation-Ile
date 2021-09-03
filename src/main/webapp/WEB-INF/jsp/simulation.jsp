@@ -31,7 +31,10 @@
 	nom:'${ batiment.nom }',
 	x:${ batiment.coordonnees.x },
 	y:${ batiment.coordonnees.y },
-	longueur:'${ batiment.longueur }'
+	longueur:'${ batiment.longueur }',
+	prix:${ batiment.prix },
+	coutEntretien:${ batiment.coutEntretienBase },
+	places:${ batiment.nbPlace }
 },
 </c:forEach>
 	]
