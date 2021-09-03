@@ -1,5 +1,6 @@
 package fr.formation.service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -94,6 +95,14 @@ public class CitoyenService extends PersonneService {
 				break;
 			}
 		}
-
+	}
+	
+	public void faireAction(int idCitoyen, LocalTime time){
+		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
+		if (time.compareTo(citoyen.getPoste().getWorkplace().getHeureOuverture()) > 0  && time.compareTo(citoyen.getPoste().getWorkplace().getHeureFermeture()) < 0){
+			citoyen.setCoordonnees(citoyen.getPoste().getWorkplace().getCoordonnees());
+		}
+		//if dormir
+		//if loisir
 	}
 }

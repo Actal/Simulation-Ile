@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fr.formation.dao.IPersonneDao;
 import fr.formation.dao.IPrestationDao;
 import fr.formation.model.Personne;
+import fr.formation.model.Prestation;
 
 @Service
 public class PersonneService {
@@ -39,11 +40,11 @@ public class PersonneService {
 		daoPersonne.save(personne);
 	}
 	
-	public void chercherService(int idPersonne){
+	public void chercherPrestation(int idPersonne){
 		LocalTime time = LocalTime.of(6,0); // A remplacer par l heure de la simulation
 		Personne personne = daoPersonne.findById(idPersonne).get();
-		List<fr.formation.model.Prestation> services = daoPrestation.findAll();
-		for (fr.formation.model.Prestation s: services){
+		List<Prestation> services = daoPrestation.findAll();
+		for (Prestation s: services){
 			if (time.isAfter(s.getHeureOuverture()) && time.isBefore(s.getHeureFermeture())){
 				if (personne.getArgent().compareTo(s.getPrixEntree()) > 0){
 					personne.setCoordonnees(s.getCoordonnees());
@@ -55,4 +56,5 @@ public class PersonneService {
 			}
 		}
 	}
+
 }
