@@ -1,5 +1,5 @@
 
-let caseColor = {"Default":"red", "Prairie": "lightgreen", "Desert":"gold", "Montagne":"lightgray"}
+let caseColor = {"Default":"#888888", "Prairie": "lightgreen", "Desert":"gold", "Montagne":"lightgray"}
 
 //Store coordinates and associated informations
 let coordonnees = [];

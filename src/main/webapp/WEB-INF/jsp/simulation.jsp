@@ -28,6 +28,7 @@
 <c:forEach items="${ batiments }" var="batiment">
 {
 	id:${ batiment.id },
+	proprietaire:'${ batiment.proprietaire.nom } ${ batiment.proprietaire.prenom }',
 	nom:'${ batiment.nom }',
 	x:${ batiment.coordonnees.x },
 	y:${ batiment.coordonnees.y },
