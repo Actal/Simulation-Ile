@@ -17,6 +17,9 @@
 				<th># places</th>
 				<th>Heure ouverture</th>
 				<th>Heure fermeture</th>
+				<th>Proprietaire</th>
+				<th>X</th>
+				<th>Y</th>
 				<th />
 				<th />
 			</tr>
@@ -31,6 +34,15 @@
 				<td><input type="number" name="nbPlace" form="0"/></td>
 				<td><input type="time"   name="heureOuverture" form="0"/></td>
 				<td><input type="time"   name="heureFermeture" form="0"/></td>
+				<td>
+					<select name="proprietaire.id" form="0">
+						<c:forEach items="${ proprietaires }" var="proprietaire">
+							<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
+						</c:forEach>
+					</select>
+				</td>
+				<td><input type="number" name="x" form="0"/></td>
+				<td><input type="number" name="y" form="0"/></td>
 				<td><button type="submit" class="btn btn-primary" form="0"> <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
@@ -47,6 +59,21 @@
 					<td><input type="number" name="nbPlace"				form="${ workplace.id }" value="${ workplace.nbPlace }" /></td>
 					<td><input type="time"   name="heureOuverture"		form="${ workplace.id }" value="${ workplace.heureOuverture }" /></td>
 					<td><input type="time"   name="heureFermeture"		form="${ workplace.id }" value="${ workplace.heureFermeture }" /></td>
+					<td>
+						<select name="proprietaire.id" form="${ workplace.id }">
+							<c:forEach items="${ proprietaires }" var="proprietaire">
+								<c:if test="${ proprietaire.id != workplace.proprietaire.id }">
+									<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
+								</c:if>
+							
+								<c:if test="${ proprietaire.id == workplace.proprietaire.id }">
+									<option value="${ proprietaire.id }" selected>${ proprietaire.nom } ${ proprietaire.prenom }</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</td>
+					<td><input type="number" name="x"					form="${ workplace.id }" value="${ workplace.coordonnees.x }" /></td>
+					<td><input type="number" name="y"					form="${ workplace.id }" value="${ workplace.coordonnees.y }" /></td>
 					<td><button type="submit" class="btn btn-primary"	form="${ workplace.id }"> <i class="icon icon-save"></i> </button></td>
 					<td><a href="supprimer-workplace?id=${ workplace.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
 				</tr>

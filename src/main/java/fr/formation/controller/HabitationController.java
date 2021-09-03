@@ -37,7 +37,7 @@ public class HabitationController {
 	}
 	
 	@PostMapping("/liste-habitations")
-	public String save(Habitation habitation,  @RequestParam int x, @RequestParam int y) {
+	public String save(Habitation habitation, @RequestParam int x, @RequestParam int y) {
 		
 		Coordonnees c = new Coordonnees(x,y);
 		daoCoordonnees.save(c);

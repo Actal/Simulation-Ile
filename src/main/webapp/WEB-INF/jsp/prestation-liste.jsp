@@ -18,7 +18,9 @@
 				<th>Heure ouverture</th>
 				<th>Heure fermeture</th>
 				<th>Prix d'entrée</th>
-				<th>Nombre clients mensuel</th>
+				<th>Proprietaire</th>
+				<th>X</th>
+				<th>Y</th>
 				<th />
 				<th />
 			</tr>
@@ -34,7 +36,15 @@
 				<td><input type="time"   name="heureOuverture" form="0"/></td>
 				<td><input type="time"   name="heureFermeture" form="0"/></td>
 				<td><input type="number" name="prixEntree" form="0"/></td>
-				<td><input type="number" name="nbClientMensuel" form="0"/></td>
+				<td>
+					<select name="proprietaire.id" form="0">
+						<c:forEach items="${ proprietaires }" var="proprietaire">
+							<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
+						</c:forEach>
+					</select>
+				</td>
+				<td><input type="number" name="x" form="0"/></td>
+				<td><input type="number" name="y" form="0"/></td>
 				<td><button type="submit" class="btn btn-primary" form="0"> <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
@@ -52,7 +62,21 @@
 					<td><input type="time"   name="heureOuverture"		form="${ prestation.id }" value="${ prestation.heureOuverture }" /></td>
 					<td><input type="time"   name="heureFermeture"		form="${ prestation.id }" value="${ prestation.heureFermeture }" /></td>
 					<td><input type="number" name="prixEntree"			form="${ prestation.id }" value="${ prestation.prixEntree }" /></td>
-					<td><input type="number" name="nbClientMensuel"		form="${ prestation.id }" value="${ prestation.nbClientMensuel }" /></td>
+					<td>
+						<select name="proprietaire.id" form="${ prestation.id }">
+							<c:forEach items="${ proprietaires }" var="proprietaire">
+								<c:if test="${ proprietaire.id != prestation.proprietaire.id }">
+									<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
+								</c:if>
+							
+								<c:if test="${ proprietaire.id == prestation.proprietaire.id }">
+									<option value="${ proprietaire.id }" selected>${ proprietaire.nom } ${ proprietaire.prenom }</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</td>
+					<td><input type="number" name="x"					form="${ prestation.id }" value="${ prestation.coordonnees.x }" /></td>
+					<td><input type="number" name="y"					form="${ prestation.id }" value="${ prestation.coordonnees.y }" /></td>
 					<td><button type="submit" class="btn btn-primary"	form="${ prestation.id }"> <i class="icon icon-save"></i> </button></td>
 					<td><a href="supprimer-prestation?id=${ prestation.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
 				</tr>

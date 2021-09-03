@@ -33,7 +33,7 @@
 				<td><input type="number" name="loyer" form="0"/></td>
 				<td><input type="number" name="nbPlace" form="0"/></td>
 				<td>
-					<select name="proprietaireI.id" form="0">
+					<select name="proprietaire.id" form="0">
 						<c:forEach items="${ proprietaires }" var="proprietaire">
 							<option value="${ proprietaire.id }">${ proprietaire.nom } ${ proprietaire.prenom }</option>
 						</c:forEach>
