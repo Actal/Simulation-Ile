@@ -7,6 +7,7 @@
 
 
 <t:layout>
+	<h1>Citoyen</h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>

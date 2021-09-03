@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="assets/css/icon.css">
 
 <t:layout>
+	<h1>Habitation</h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>
