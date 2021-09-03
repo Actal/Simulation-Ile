@@ -18,8 +18,8 @@
 		<tbody>
 			<tr>
 				<td></td>
-				<td><input type="text" name="intitule" form="0"/></td>
-				<td><button type="submit" class="btn btn-primary" form="0"> <i class="icon icon-save"></i> </button></td>
+				<td><input  type="text"   name="intitule"			form="0" class="form-control"/></td>
+				<td><button type="submit" class="btn btn-primary"	form="0"> <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
 			<form method="POST" id=0></form>
@@ -28,7 +28,7 @@
 				<form method="POST" id="${ metier.id }"></form>
 				<tr>
 					<td>${ metier.id }<input type="hidden" name="id" form="${ metier.id }" value="${ metier.id }" /></td>
-					<td><input type="text" name="intitule" form="${ metier.id }" value="${ metier.intitule }" /></td>
+					<td><input  type="text"   name="intitule"         form="${ metier.id }" value="${ metier.intitule }" class="form-control"/></td>
 					<td><button type="submit" class="btn btn-primary" form="${ metier.id }"> <i class="icon icon-save"></i> </button></td>
 					<td><a href="supprimer-metier?id=${ metier.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
 				</tr>

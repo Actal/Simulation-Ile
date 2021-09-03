@@ -21,11 +21,11 @@
 		<tbody>
 			<tr>
 				<td></td>
-				<td><input type="text" name="type" form="0"/></td>
-				<td><input type="number" name="longueur" form="0"/></td>
-				<td><input type="number" name="x" form="0"/></td>
-				<td><input type="number" name="y" form="0"/></td>
-				<td><button type="submit" class="btn btn-primary" form="0"> <i class="icon icon-save"></i> </button></td>
+				<td><input type="text"		name="type"				form="0" class="form-control"/></td>
+				<td><input type="number"	name="longueur" 		form="0" class="form-control"/></td>
+				<td><input type="number"	name="x"				form="0" class="form-control"/></td>
+				<td><input type="number"	name="y"				form="0" class="form-control"/></td>
+				<td><button type="submit" class="btn btn-primary"	form="0"> <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
 			<form method="POST" id=0></form>
@@ -33,11 +33,11 @@
 			<c:forEach items="${ biomes }" var="biome">
 				<form method="POST" id="${ biome.id }"></form>
 				<tr>
-					<td>${ biome.id }<input type="hidden" name="id"		form="${ biome.id }" value="${ biome.id }" /></td>
-					<td><input type="text"   name="type"				form="${ biome.id }" value="${ biome.type }" /></td>
-					<td><input type="number" name="longueur"			form="${ biome.id }" value="${ biome.longueur }" /></td>
-					<td><input type="number" name="x"					form="${ biome.id }" value="${ biome.coordonnees.x }" /></td>
-					<td><input type="number" name="y"					form="${ biome.id }" value="${ biome.coordonnees.y }" /></td>
+					<td>${ biome.id }<input type="hidden" name="id"		form="${ biome.id }" value="${ biome.id }"				class="form-control"/></td>
+					<td><input type="text"   name="type"				form="${ biome.id }" value="${ biome.type }"			class="form-control"/></td>
+					<td><input type="number" name="longueur"			form="${ biome.id }" value="${ biome.longueur }"		class="form-control"/></td>
+					<td><input type="number" name="x"					form="${ biome.id }" value="${ biome.coordonnees.x }"	class="form-control"/></td>
+					<td><input type="number" name="y"					form="${ biome.id }" value="${ biome.coordonnees.y }"	class="form-control"/></td>
 					<td><button type="submit" class="btn btn-primary"	form="${ biome.id }"> <i class="icon icon-save"></i> </button></td>
 					<td><a href="supprimer-biome?id=${ biome.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
 				</tr>

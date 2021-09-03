@@ -20,13 +20,13 @@
 		<tbody>
 			<tr>
 				<td></td>
-				<td><input type="number" name="salaire" form="0"/></td>
-				<td><select name="metier.id" form="0">
+				<td><input type="number"	name="salaire"		form="0" class="form-control"/></td>
+				<td><select					name="metier.id"	form="0" class="form-select">
 					<c:forEach items="${ metiers }" var="metier">
 						<option value="${ metier.id }">${ metier.intitule }</option>
 					</c:forEach>
 				</select></td>
-				<td><select name="workplace.id" form="0">
+				<td><select 				name="workplace.id"	form="0" class="form-control">
 					<c:forEach items="${ workplaces }" var="workplace">
 						<option value="${ workplace.id }">${ workplace.nom }</option>
 					</c:forEach>
@@ -40,8 +40,8 @@
 				<form method="POST" id="${ poste.id }"></form>
 				<tr>
 					<td>${ poste.id }<input type="hidden" name="id" form="${ poste.id }" value="${ poste.id }" /></td>
-					<td><input type="number" name="salaire"				form="${ poste.id }" value="${ poste.salaire }" /></td>
-					<td><select name="metier.id" form="${ poste.id }">
+					<td><input type="number"	name="salaire"		form="${ poste.id }" value="${ poste.salaire }" class="form-control"/></td>
+					<td><select					name="metier.id"	form="${ poste.id }" 							class="form-select">
 						<c:forEach items="${ metiers }" var="metier">
 							<c:if test="${ metier.id != poste.metier.id }">
 								<option value="${ metier.id }">${ metier.intitule }</option>
@@ -51,7 +51,7 @@
 							</c:if>
 						</c:forEach>
 					</select></td>
-					<td><select name="workplace.id" form="${ poste.id }">
+					<td><select					name="workplace.id"	form="${ poste.id }"							class="form-control">
 						<c:forEach items="${ workplaces }" var="workplace">
 							<c:if test="${ workplace.id != poste.workplace.id }">
 								<option value="${ workplace.id }">${ workplace.nom }</option>
