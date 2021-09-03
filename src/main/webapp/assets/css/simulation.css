@@ -25,6 +25,7 @@
 #simulation-area td {
     width: 10px;
     height: 10px;
+    background-color: #2277EE;
 }
 #simulation-area td:hover {
     opacity: 0.5;
