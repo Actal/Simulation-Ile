@@ -1,6 +1,7 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import fr.formation.dao.IWorkplaceDao;
 import fr.formation.model.Coordonnees;
 import fr.formation.model.Workplace;
 import fr.formation.service.BiomeService;
+import fr.formation.service.WorkplaceService;
 
 @Controller
 public class WorkplaceController {
@@ -25,6 +27,9 @@ public class WorkplaceController {
 	private IProprietaireDao daoProprietaire;
 	@Autowired
 	private BiomeService serviceBiome;
+	@Autowired
+//	@Qualifier("WorkplaceService")
+	WorkplaceService workplaceService;
 	
 	@GetMapping("/liste-workplaces")
 	public String findAll(Model model) {
@@ -41,7 +46,11 @@ public class WorkplaceController {
 		
 		workplace.setCoordonnees(c);
 		workplace.setBiome(serviceBiome.findBiomeContaining(c));
-		daoWorkplace.save(workplace);
+
+		if(workplaceService.estConstructible(workplace) ) {
+			daoWorkplace.save(workplace);
+		}
+		
 		return "redirect:/liste-workplaces";
 	}
 	
