@@ -68,7 +68,7 @@ d3.csv(fileURL,
 
 });
 
-var request = new XMLHttpRequest(); 
+/*var request = new XMLHttpRequest(); 
 request.open("GET", fileURL, false);   
 request.send(null);  
 
@@ -83,4 +83,4 @@ for (var i = 0; i < tab.length; i++) {
 }
 var lastval = csvData[tab.length-1][1];
 
-document.querySelector("#argent-total").innerHTML = lastval;
+document.querySelector("#argent-total").innerHTML = lastval;*/
