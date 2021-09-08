@@ -7,14 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-//@Service
 public class EditCsvService {
 
-//	private String filepath = "src/main/webapp/assets/data/argentsomme2.csv";
-	private String filepath = "src/main/webapp/assets/data/argentsomme.csv";
-
+	private String filepath = "Simulation-Ile/src/main/resources/static/assets/data/argentsomme.csv";
 	
 	public static void main(String[] args) {
 		run2();
