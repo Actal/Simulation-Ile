@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.formation</groupId>
-	<artifactId>exoadmin</artifactId>
+	<artifactId>Simulation-Ile</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>exoadmin</name>
+	<name>Simulation-Ile</name>
 	<description>Exo admin</description>
 	<properties>
 		<java.version>8</java.version>

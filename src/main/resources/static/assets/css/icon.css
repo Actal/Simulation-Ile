@@ -11,9 +11,9 @@
 }
 
 .icon-save{
-    background-image: url('/Simulation-Ile/assets/img/save-solid.svg');
+    background-image: url('../img/save-solid.svg');
 }
 
 .icon-delete{
-    background-image: url('/Simulation-Ile/assets/img/trash-alt-regular.svg');
+    background-image: url('../img/trash-alt-regular.svg');
 }
