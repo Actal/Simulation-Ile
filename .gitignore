@@ -16,9 +16,7 @@
 .settings
 
 # maven
-src/main/resources/*
+src/main/java/fr/formation/ApplicationDropAllTable.java
+src/main/resources/application.properties
 target/*
 /target/
-
-# pour ne pas devoir changer le mdp a chaque fois
-src/main/java/fr/formation/config/JpaConfig.java
