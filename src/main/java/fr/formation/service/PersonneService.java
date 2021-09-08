@@ -40,8 +40,7 @@ public class PersonneService {
 		daoPersonne.save(personne);
 	}
 	
-	public void chercherPrestation(int idPersonne){
-		LocalTime time = LocalTime.of(6,0); // A remplacer par l heure de la simulation
+	public void chercherPrestation(int idPersonne, LocalTime time){
 		Personne personne = daoPersonne.findById(idPersonne).get();
 		List<Prestation> services = daoPrestation.findAll();
 		for (Prestation s: services){

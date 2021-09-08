@@ -96,17 +96,35 @@ public class CitoyenService extends PersonneService {
 			}
 		}
 	}
-	
+
 	public void faireAction(int idCitoyen, LocalTime time){
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
-		if (time.compareTo(citoyen.getPoste().getWorkplace().getHeureOuverture()) > 0  && time.compareTo(citoyen.getPoste().getWorkplace().getHeureFermeture()) < 0){
+		LocalTime workStart = LocalTime.of(8, 0);
+		LocalTime workStop = LocalTime.of(9, 0);
+		if (citoyen.getPoste().getWorkplace() != null){
+			workStart = citoyen.getPoste().getWorkplace().getHeureOuverture();
+			workStop = citoyen.getPoste().getWorkplace().getHeureFermeture();
+		}
+
+		LocalTime sleepStart = workStart.minusHours(8);
+
+		if (time.compareTo(workStart) == 0){
 			allerTravailler(idCitoyen);
 		}
-		else if (true){
+		else if (time.compareTo(sleepStart) == 0){
 			rentrer(idCitoyen);
 		}
-		else {
-			//loisir
+		else if (time.compareTo(workStop) == 0){
+			if (citoyen.getPoste().getWorkplace() == null){
+				chercherTravail(idCitoyen);
+			}
+			if (citoyen.getHabitation() == null){
+				chercherLogement(idCitoyen);
+			}
+		}
+		else if (!(time.compareTo(workStart) > 0 && time.compareTo(workStop) < 0)
+		&& !(time.compareTo(sleepStart) > 0 && time.compareTo(workStart) < 0)){
+			chercherPrestation(idCitoyen, time);
 		}
 	}
 }
