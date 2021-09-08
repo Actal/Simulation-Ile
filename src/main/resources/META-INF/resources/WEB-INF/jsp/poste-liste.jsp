@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 <link rel="stylesheet" href="assets/css/entityEditor.css">
@@ -12,7 +12,7 @@
 			<tr>
 				<th>ID</th>
 				<th>Salaire</th>
-				<th>Métier</th>
+				<th>MÃ©tier</th>
 				<th>Workplace</th>
 				<th />
 				<th />
@@ -27,7 +27,7 @@
 						<option value="${ metier.id }">${ metier.intitule }</option>
 					</c:forEach>
 				</select></td>
-				<td><select 				name="workplace.id"	form="0" class="form-control">
+				<td><select 				name="workplace.id"	form="0" class="form-select">
 					<c:forEach items="${ workplaces }" var="workplace">
 						<option value="${ workplace.id }">${ workplace.nom }</option>
 					</c:forEach>

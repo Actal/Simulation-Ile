@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.formation.dao.IMetierDao;
 import fr.formation.dao.IPosteDao;
+import fr.formation.dao.IWorkplaceDao;
 import fr.formation.model.Poste;
 
 @Controller
@@ -15,9 +17,17 @@ public class PosteController {
 
 	@Autowired
 	private IPosteDao daoPoste;
+
+	@Autowired
+	private IMetierDao daoMetier;
+
+	@Autowired
+	private IWorkplaceDao daoWorkplace;
 	
 	@GetMapping("/liste-postes")
 	public String findAll(Model model) {
+		model.addAttribute("metiers", daoMetier.findAll());
+		model.addAttribute("workplaces", daoWorkplace.findAll());
 		model.addAttribute("postes", daoPoste.findAll());
 		return "poste-liste";
 	}
