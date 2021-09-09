@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EditCsvService {
 
-	private String filepath = "Simulation-Ile/src/main/resources/static/assets/data/argentsomme2.csv";
+	private String filepath = "src/main/resources/static/assets/data/argentsomme2.csv";
 	
 	public static void main(String[] args) {
 		run2();
