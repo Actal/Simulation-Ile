@@ -41,6 +41,7 @@ public class CronService {
 	// Toutes les 6 secondes, pour simuler une heure
 	@Scheduled(fixedRate = 1000 * 6) // Scheduled : il faut activer cette annotation dans la configuration
 	public void heureCron() {
+
 		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
 		LocalTime time = simulationEtat.getTime().toLocalTime();
 		LocalDate date = simulationEtat.getTime().toLocalDate();
@@ -51,7 +52,7 @@ public class CronService {
 			citoyenService.faireAction(f.getId(), time);
 		}
 
-		simulationEtat.getTime().plusHours(1);
+		simulationEtat.setTime(simulationEtat.getTime().plusHours(1));
 		daoSimEtat.save(simulationEtat);
 	}
 
@@ -63,8 +64,8 @@ public class CronService {
 
 		System.out.println("CRON semaine... Date : " + date.toString());
 
-		List<Proprietaire> proprietaires = daoProprietaire.findAll(); for
-		(Proprietaire p: proprietaires){
+		List<Proprietaire> proprietaires = daoProprietaire.findAll();
+		for (Proprietaire p: proprietaires){
 			proprietaireService.payerEmployes(p.getId());
 			proprietaireService.percevoirBenefice(p.getId());
 		}

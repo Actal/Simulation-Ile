@@ -1,6 +1,7 @@
 package fr.formation.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -50,13 +51,14 @@ public class ProprietaireService extends CitoyenService {
 		daoProprietaire.save(p);
 	}
 
-	
 	public void percevoirBenefice(int id) {
 		Proprietaire p = daoProprietaire.findById(id).get();
 		BigDecimal benefTot = new BigDecimal(0);
 		
-		for (Batiment b : p.getBatiments()) {
-			
+		List<Batiment> batiments = p.getBatiments();
+
+		for (int i=0; i<batiments.size(); i++ ) {
+			Batiment b = batiments.get(i);
 			BigDecimal benef = new BigDecimal(0);
 			
 			if( b instanceof Habitation) {

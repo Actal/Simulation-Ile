@@ -66,8 +66,8 @@ public class HabitationService extends BatimentService{
 		Habitation habitation = daoHabitation.findById(idHabitation).get();
 		List<Citoyen> habitants = habitation.getHabitants();
 		BigDecimal somme = new BigDecimal(0);
-		for (Citoyen c : habitants) {
-			boolean aPaye = citoyenService.payer(c.getId(), habitation.getLoyer());
+		for (int i=0; i<habitants.size(); i++) {
+			boolean aPaye = citoyenService.payer(habitants.get(i).getId(), habitation.getLoyer());
 			if (aPaye) {
 				somme = somme.add(habitation.getLoyer());
 			}
