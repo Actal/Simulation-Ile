@@ -43,40 +43,43 @@ public class CronService {
 	public void heureCron() {
 
 		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
-		LocalTime time = simulationEtat.getTime().toLocalTime();
-		LocalDate date = simulationEtat.getTime().toLocalDate();
 
-		System.out.println("CRON heure... Date : " + date.toString() + " Time : " + time.toString());
+		if( !simulationEtat.isPause()) {
 
-		for (Citoyen f : daoCitoyen.findAll()) {
-			citoyenService.faireAction(f.getId(), time);
-		}
+			LocalTime time = simulationEtat.getTime().toLocalTime();
+			LocalDate date = simulationEtat.getTime().toLocalDate();
 
-		//(date.getDayOfWeek() ==  DayOfWeek.MONDAY) &&
-		if( (time.compareTo(LocalTime.of(0, 0)) == 0) ) {
-			System.out.println("CRON semaine... Date : " + date.toString());
+			System.out.println("CRON heure... Date : " + date.toString() + " Time : " + time.toString());
 
-			List<Proprietaire> proprietaires = daoProprietaire.findAll();
-			for (int i=0; i<proprietaires.size(); i++){
-				Proprietaire p = proprietaires.get(i);
-				proprietaireService.payerEmployes(p.getId());
-				proprietaireService.percevoirBenefice(p.getId());
+			for (Citoyen f : daoCitoyen.findAll()) {
+				citoyenService.faireAction(f.getId(), time);
 			}
-	
-			BigDecimal argenttotal = daoPersonne.countArgentTotal();
-			BigDecimal argentproprietaires = daoProprietaire.countArgentTotal();
-			
-			BigDecimal[] desValues = new BigDecimal[3];
-			desValues[0] = argenttotal.subtract(argentproprietaires);
-			desValues[1] = argentproprietaires;
-			desValues[2] = argenttotal;
-	
-			EditCsvService editCsv = new EditCsvService();
-			editCsv.write(date, desValues);
-		}
 
-		simulationEtat.setTime(simulationEtat.getTime().plusHours(1));
-		daoSimEtat.save(simulationEtat);
+			if( (date.getDayOfWeek() ==  DayOfWeek.MONDAY) && (time.compareTo(LocalTime.of(0, 0)) == 0) ) {
+				System.out.println("CRON semaine... Date : " + date.toString());
+
+				List<Proprietaire> proprietaires = daoProprietaire.findAll();
+				for (int i=0; i<proprietaires.size(); i++){
+					Proprietaire p = proprietaires.get(i);
+					proprietaireService.payerEmployes(p.getId());
+					proprietaireService.percevoirBenefice(p.getId());
+				}
+		
+				BigDecimal argenttotal = daoPersonne.countArgentTotal();
+				BigDecimal argentproprietaires = daoProprietaire.countArgentTotal();
+				
+				BigDecimal[] desValues = new BigDecimal[3];
+				desValues[0] = argenttotal.subtract(argentproprietaires);
+				desValues[1] = argentproprietaires;
+				desValues[2] = argenttotal;
+		
+				EditCsvService editCsv = new EditCsvService();
+				editCsv.write(date, desValues);
+			}
+
+			simulationEtat.setTime(simulationEtat.getTime().plusHours(1));
+			daoSimEtat.save(simulationEtat);
+		}
 	}
 
 }

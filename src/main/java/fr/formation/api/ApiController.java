@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,5 +50,13 @@ public class ApiController {
     @GetMapping("/dateTimeSimu")
     public SimulationEtat findDateTimeSimu(){
         return daoSimEtat.findById(1).get();
+    }
+
+    @PostMapping("/play-pause")
+    public boolean playPause(@RequestBody Boolean pause) {
+        SimulationEtat s = daoSimEtat.findById(1).get();
+        s.setPause(pause);
+        daoSimEtat.save(s);
+        return true;
     }
 }

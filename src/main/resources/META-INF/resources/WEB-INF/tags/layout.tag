@@ -45,6 +45,8 @@
 					</ul>
 					<div>
 						<span class="navbar-text" id="dateTimeSim"></span>
+						<button id="button_play" class="btn" onclick='buttonPlayPress()'>
+    					</button>
 					</div>
 				</div>
 			</div>
