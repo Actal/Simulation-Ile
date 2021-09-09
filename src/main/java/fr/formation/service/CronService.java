@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import fr.formation.dao.ICitoyenDao;
 import fr.formation.dao.IPersonneDao;
 import fr.formation.dao.IProprietaireDao;
+import fr.formation.dao.ISimEtatDao;
 import fr.formation.model.Citoyen;
 import fr.formation.model.Personne;
 import fr.formation.model.Proprietaire;
@@ -35,11 +36,12 @@ public class CronService {
 	private IPersonneDao daoPersonne;
 
 	@Autowired
-	SimulationEtat simulationEtat;
+	private ISimEtatDao daoSimEtat;
 
 	// Toutes les 6 secondes, pour simuler une heure
 	@Scheduled(fixedRate = 1000 * 6) // Scheduled : il faut activer cette annotation dans la configuration
 	public void heureCron() {
+		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
 		LocalTime time = simulationEtat.getTime().toLocalTime();
 		LocalDate date = simulationEtat.getTime().toLocalDate();
 
@@ -50,11 +52,13 @@ public class CronService {
 		}
 
 		simulationEtat.getTime().plusHours(1);
+		daoSimEtat.save(simulationEtat);
 	}
 
 	// Simule une semaine, appele des fonctions de fin de semaine comme payer loyer
 	@Scheduled(fixedRate = 1000 * 6 * 24 * 7) // Scheduled : il faut activer cette annotation dans la configuration
 	public void semaineCron() {
+		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
 		LocalDate date = simulationEtat.getTime().toLocalDate();
 
 		System.out.println("CRON semaine... Date : " + date.toString());
