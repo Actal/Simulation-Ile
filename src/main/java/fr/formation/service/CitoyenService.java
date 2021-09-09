@@ -98,16 +98,17 @@ public class CitoyenService extends PersonneService {
 	}
 
 	public void faireAction(int idCitoyen, LocalTime time){
+		// Definit les horraires d action
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();
 		LocalTime workStart = LocalTime.of(8, 0);
 		LocalTime workStop = LocalTime.of(9, 0);
-		if (citoyen.getPoste().getWorkplace() != null){
+		if (citoyen.getPoste() != null){
 			workStart = citoyen.getPoste().getWorkplace().getHeureOuverture();
 			workStop = citoyen.getPoste().getWorkplace().getHeureFermeture();
 		}
-
 		LocalTime sleepStart = workStart.minusHours(8);
 
+		//Actions ponctuelles
 		if (time.compareTo(workStart) == 0){
 			allerTravailler(idCitoyen);
 		}
@@ -115,13 +116,14 @@ public class CitoyenService extends PersonneService {
 			rentrer(idCitoyen);
 		}
 		else if (time.compareTo(workStop) == 0){
-			if (citoyen.getPoste().getWorkplace() == null){
+			if (citoyen.getPoste() == null){
 				chercherTravail(idCitoyen);
 			}
 			if (citoyen.getHabitation() == null){
 				chercherLogement(idCitoyen);
 			}
 		}
+		//Si ne travaille pas et ne dort pas
 		else if (!(time.compareTo(workStart) > 0 && time.compareTo(workStop) < 0)
 		&& !(time.compareTo(sleepStart) > 0 && time.compareTo(workStart) < 0)){
 			chercherPrestation(idCitoyen, time);
