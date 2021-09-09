@@ -54,7 +54,7 @@ let addCase = (objects) => {
         for (let w=0; w<o.longueur; w++){
             for (let h=0; h<o.longueur; h++){
                 let color = "black";
-                if (o.nom in caseColor) color = caseColor[o.nom];
+                if (o.type in caseColor) color = caseColor[o.type];
                 else color = caseColor["Default"];
                 document.querySelector(`#coordonnee-${o.coordonnees.x+w}-${o.coordonnees.y+h}`).style.background = color;
                 coordonnees[o.coordonnees.x+w][o.coordonnees.y+h] = o;
@@ -64,6 +64,9 @@ let addCase = (objects) => {
 }
 
 let fetchData = () => {
+    fetch('http://localhost:8080/api/biomes')
+   .then(resp => resp.json())
+   .then(biomes => addCase(biomes));
     fetch('http://localhost:8080/api/batiments')
    .then(resp => resp.json())
    .then(batiments => {
@@ -72,13 +75,8 @@ let fetchData = () => {
            addMapIcon(batiment);     
        }
    });
-    fetch('http://localhost:8080/api/biomes')
-   .then(resp => resp.json())
-   .then(biomes => addCase(biomes));
    };
 fetchData();
-//addCase(biomes);
-//addCase(batiments);
 
 //Display informations in sidebar on mouseover
 let eventDisplay = (event) => {
@@ -90,20 +88,19 @@ let eventDisplay = (event) => {
     let elems = "";
     elems += `<p>x: ${coord[1]}</p>`;
     elems += `<p>y: ${coord[2]}</p>`;
-    elems += `<p>nom: ${data.nom}</p>`;
+    elems += `<p>nom: ${data.type}</p>`;
     /*for (attribute in data){
         elems += (`<p>${attribute}: ${data[attribute]}</p>`);
     }*/
     sideBar.innerHTML = elems;
 }
-
 //Display for biomes
 let tbody = document.querySelector("#simulation-area tbody");
 tbody.addEventListener('mouseover', eventDisplay);
 
 //Display for buildings
-let icons = document.querySelector("#icons");
-icons.addEventListener('mouseover', eventDisplay);
+//let icons = document.querySelector("#icons");
+//icons.addEventListener('mouseover', eventDisplay);
 
 //Display informations when clicking on building
 let eventShowBuilding = (event) => {
@@ -114,15 +111,21 @@ let eventShowBuilding = (event) => {
     let data = coordonnees[parseInt(coord[1])][parseInt(coord[2])];
     let elems = "";
     for (attribute in data){
-        elems += (`<p>${attribute}: ${data[attribute]}</p>`);
+        if (attribute == "coordonnees"){
+            elems += (`<p>x: ${data[attribute].x}</p>`);
+            elems += (`<p>y: ${data[attribute].y}</p>`);
+        }
+        else {
+           elems += (`<p>${attribute}: ${data[attribute]}</p>`); 
+        }
     }
     if (tooltip.innerHTML == elems && tooltip.style.visibility == "visible") {
     	tooltip.style.visibility = "hidden";
     }
     else {
     	tooltip.innerHTML = elems;
-    tooltip.style.top = `${data.y*10 - 1000 + data.longueur*10}px`;
-    tooltip.style.left = `${data.x*10}px`;
+    tooltip.style.top = `${data.coordonnees.y*10 - 1000 + data.longueur*10}px`;
+    tooltip.style.left = `${data.coordonnees.x*10}px`;
     tooltip.style.visibility = "visible";
     }
 }
