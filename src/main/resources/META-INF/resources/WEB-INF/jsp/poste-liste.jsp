@@ -52,7 +52,7 @@
 							</c:if>
 						</c:forEach>
 					</select></td>
-					<td><select					name="workplace.id"	form="${ poste.id }"							class="form-control">
+					<td><select					name="workplace.id"	form="${ poste.id }"							class="form-select">
 						<c:forEach items="${ workplaces }" var="workplace">
 							<c:if test="${ workplace.id != poste.workplace.id }">
 								<option value="${ workplace.id }">${ workplace.nom }</option>
