@@ -27,22 +27,17 @@ public class StatsController {
 	public String findParameters(Model model) {
 		BigDecimal argenttotal = new BigDecimal(0);
 		BigDecimal argentproprietaires = new BigDecimal(0);
-		int nbhabitants = 0;
-		int nbbatiments = 0;
 		
 		List<Personne> personnes = daoPersonne.findAll();
 		List<Batiment> batiments = daoBatiment.findAll();
+		int nbhabitants = personnes.size();
+		int nbbatiments = batiments.size();
 
 		for (Personne p : personnes) {
 			argenttotal = argenttotal.add(p.getArgent());
 			if (p instanceof Proprietaire) {
 				argentproprietaires = argentproprietaires.add(p.getArgent());
 			}
-			nbhabitants++;
-		}
-		
-		for (Batiment b : batiments) {
-			nbbatiments++;
 		}
 		
 		model.addAttribute("argenttotal", argenttotal);
