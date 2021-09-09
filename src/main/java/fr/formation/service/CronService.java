@@ -1,6 +1,7 @@
 package fr.formation.service;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -14,7 +15,6 @@ import fr.formation.dao.IPersonneDao;
 import fr.formation.dao.IProprietaireDao;
 import fr.formation.dao.ISimEtatDao;
 import fr.formation.model.Citoyen;
-import fr.formation.model.Personne;
 import fr.formation.model.Proprietaire;
 import fr.formation.model.SimulationEtat;
 
@@ -39,7 +39,7 @@ public class CronService {
 	private ISimEtatDao daoSimEtat;
 
 	// Toutes les 6 secondes, pour simuler une heure
-	@Scheduled(fixedRate = 1000 * 6) // Scheduled : il faut activer cette annotation dans la configuration
+	@Scheduled(fixedDelay = 1000 * 6) // Scheduled : il faut activer cette annotation dans la configuration
 	public void heureCron() {
 
 		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
@@ -52,45 +52,31 @@ public class CronService {
 			citoyenService.faireAction(f.getId(), time);
 		}
 
+		//(date.getDayOfWeek() ==  DayOfWeek.MONDAY) &&
+		if( (time.compareTo(LocalTime.of(0, 0)) == 0) ) {
+			System.out.println("CRON semaine... Date : " + date.toString());
+
+			List<Proprietaire> proprietaires = daoProprietaire.findAll();
+			for (int i=0; i<proprietaires.size(); i++){
+				Proprietaire p = proprietaires.get(i);
+				proprietaireService.payerEmployes(p.getId());
+				proprietaireService.percevoirBenefice(p.getId());
+			}
+	
+			BigDecimal argenttotal = daoPersonne.countArgentTotal();
+			BigDecimal argentproprietaires = daoProprietaire.countArgentTotal();
+			
+			BigDecimal[] desValues = new BigDecimal[3];
+			desValues[0] = argenttotal.subtract(argentproprietaires);
+			desValues[1] = argentproprietaires;
+			desValues[2] = argenttotal;
+	
+			EditCsvService editCsv = new EditCsvService();
+			editCsv.write(date, desValues);
+		}
+
 		simulationEtat.setTime(simulationEtat.getTime().plusHours(1));
 		daoSimEtat.save(simulationEtat);
 	}
 
-	// Simule une semaine, appele des fonctions de fin de semaine comme payer loyer
-	@Scheduled(fixedRate = 1000 * 6 * 24 * 7) // Scheduled : il faut activer cette annotation dans la configuration
-	public void semaineCron() {
-		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
-		LocalDate date = simulationEtat.getTime().toLocalDate();
-
-		System.out.println("CRON semaine... Date : " + date.toString());
-
-		List<Proprietaire> proprietaires = daoProprietaire.findAll();
-		for (Proprietaire p: proprietaires){
-			proprietaireService.payerEmployes(p.getId());
-			proprietaireService.percevoirBenefice(p.getId());
-		}
-
-		// BigDecimal argenttotal = new BigDecimal(0);
-		// BigDecimal argentproprietaires = new BigDecimal(0);
-		// List<Personne> personnes = daoPersonne.findAll();
-
-		// for (Personne p : personnes) {
-		// 	argenttotal = argenttotal.add(p.getArgent());
-		// 	if (p instanceof Proprietaire) {
-		// 		argentproprietaires = argentproprietaires.add(p.getArgent());
-		// 	}
-		// }
-
-		BigDecimal argenttotal = daoPersonne.countArgentTotal();
-		BigDecimal argentproprietaires = daoProprietaire.countArgentTotal();
-		
-		BigDecimal[] desValues = new BigDecimal[3];
-		desValues[0] = argenttotal.subtract(argentproprietaires);
-		desValues[1] = argentproprietaires;
-		desValues[2] = argenttotal;
-
-		EditCsvService editCsv = new EditCsvService();
-		editCsv.write(date, desValues);
-
-	}
 }

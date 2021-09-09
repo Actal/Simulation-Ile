@@ -35,9 +35,13 @@ public class ProprietaireService extends CitoyenService {
 	@Transactional
 	public void payerEmployes(int id) {
 		Proprietaire p = daoProprietaire.findById(id).get();
-		for (Batiment b : p.getBatiments()) {
+		List<Batiment> batiments = p.getBatiments();
+		for (int i=0; i<batiments.size(); i++) {
+			Batiment b = batiments.get(i);
 			if (b instanceof Workplace) {
-				for (Poste poste : ((Workplace) b).getPostes()) {
+				List<Poste> postes = ((Workplace) b).getPostes();
+				for (int j=0; j<postes.size(); j++) {
+					Poste poste = postes.get(j);
 					if (poste.getCitoyen() != null) {
 						payer(id, poste.getSalaire());
 						Citoyen c = poste.getCitoyen();
