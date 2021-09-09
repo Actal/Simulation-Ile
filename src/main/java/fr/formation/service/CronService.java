@@ -69,17 +69,21 @@ public class CronService {
 			proprietaireService.payerEmployes(p.getId());
 			proprietaireService.percevoirBenefice(p.getId());
 		}
-		
-		BigDecimal argenttotal = new BigDecimal(0);
-		BigDecimal argentproprietaires = new BigDecimal(0);
-		List<Personne> personnes = daoPersonne.findAll();
-		for (Personne p : personnes) {
-			argenttotal = argenttotal.add(p.getArgent());
-			if (p instanceof Proprietaire) {
-				argentproprietaires = argentproprietaires.add(p.getArgent());
-			}
-		}
 
+		// BigDecimal argenttotal = new BigDecimal(0);
+		// BigDecimal argentproprietaires = new BigDecimal(0);
+		// List<Personne> personnes = daoPersonne.findAll();
+
+		// for (Personne p : personnes) {
+		// 	argenttotal = argenttotal.add(p.getArgent());
+		// 	if (p instanceof Proprietaire) {
+		// 		argentproprietaires = argentproprietaires.add(p.getArgent());
+		// 	}
+		// }
+
+		BigDecimal argenttotal = daoPersonne.countArgentTotal();
+		BigDecimal argentproprietaires = daoProprietaire.countArgentTotal();
+		
 		BigDecimal[] desValues = new BigDecimal[3];
 		desValues[0] = argenttotal.subtract(argentproprietaires);
 		desValues[1] = argentproprietaires;
