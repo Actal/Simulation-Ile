@@ -28,7 +28,6 @@ table.innerHTML = stringTab;
 //Add icon on the map with its file name
 let area = document.querySelector("#icons");
 let addMapIcon = (object) => {
-
     //Check if image exists. XMLHTTP deprecated
     var http = new XMLHttpRequest();
     http.open('HEAD', `assets/img/${object.nom}.svg`, false);
@@ -41,12 +40,12 @@ let addMapIcon = (object) => {
         img = `assets/img/BatimentPlaceholder.svg`;
     }
 
-    area.innerHTML += `<img src="${ img }" alt="${object.nom}" id="icon-${object.x}-${object.y}" class="map-icon"/>`;
-    let newIcon = document.querySelector(`#icon-${object.x}-${object.y}`);
+    area.innerHTML += `<img src="${ img }" alt="${object.nom}" id="icon-${object.coordonnees.x}-${object.coordonnees.y}" class="map-icon"/>`;
+    let newIcon = document.querySelector(`#icon-${object.coordonnees.x}-${object.coordonnees.y}`);
     newIcon.width = object.longueur*10;
     newIcon.height = object.longueur*10;
-    newIcon.style.bottom = `${1000 - object.y*10 - object.longueur*10}px`;
-    newIcon.style.left = `${object.x*10}px`;
+    newIcon.style.bottom = `${1000 - object.coordonnees.y*10 - object.longueur*10}px`;
+    newIcon.style.left = `${object.coordonnees.x*10}px`;
 }
 
 //Initialise objects (buildings, biomes) to add in coordinates and on map
@@ -57,15 +56,29 @@ let addCase = (objects) => {
                 let color = "black";
                 if (o.nom in caseColor) color = caseColor[o.nom];
                 else color = caseColor["Default"];
-                document.querySelector(`#coordonnee-${o.x+w}-${o.y+h}`).style.background = color;
-                coordonnees[o.x+w][o.y+h] = o;
+                document.querySelector(`#coordonnee-${o.coordonnees.x+w}-${o.coordonnees.y+h}`).style.background = color;
+                coordonnees[o.coordonnees.x+w][o.coordonnees.y+h] = o;
             }
         } 
-        if (objects == batiments) addMapIcon(o);
     }
 }
-addCase(biomes);
-addCase(batiments);
+
+let fetchData = () => {
+    fetch('http://localhost:8080/api/batiments')
+   .then(resp => resp.json())
+   .then(batiments => {
+       addCase(batiments);
+       for (batiment of batiments){
+           addMapIcon(batiment);     
+       }
+   });
+    fetch('http://localhost:8080/api/biomes')
+   .then(resp => resp.json())
+   .then(biomes => addCase(biomes));
+   };
+fetchData();
+//addCase(biomes);
+//addCase(batiments);
 
 //Display informations in sidebar on mouseover
 let eventDisplay = (event) => {

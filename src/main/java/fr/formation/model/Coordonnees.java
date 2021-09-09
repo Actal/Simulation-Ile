@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
+
 @Entity
 @Table (name="coordonnees")
 public class Coordonnees {
@@ -14,12 +18,15 @@ public class Coordonnees {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "COO_ID")
+	@JsonView(Views.Commons.class)
 	private int id;
 	
 	@Column(name = "COO_X")
+	@JsonView(Views.Commons.class)
 	private int x;
 	
 	@Column(name = "COO_Y")
+	@JsonView(Views.Commons.class)
 	private int y;
 	
 	public Coordonnees() {

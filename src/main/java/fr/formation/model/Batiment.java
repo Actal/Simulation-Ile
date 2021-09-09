@@ -14,6 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.formation.api.Views;
+
 @Entity
 @Table(name="batiment")
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -22,25 +26,32 @@ public abstract class Batiment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "BAT_ID")
+	@JsonView(Views.Commons.class)
 	private int id;
 	
 	@Column(name = "BAT_LONGUEUR", nullable = false)
+	@JsonView(Views.Batiments.class)
 	private int longueur;
 	
 	@Column(name = "BAT_NOM", nullable = false)
+	@JsonView(Views.Batiments.class)
 	private String nom;
 	
 	@Column(name = "BAT_PRIX")
+	@JsonView(Views.Batiments.class)
 	private BigDecimal prix;
 	
 	@Column(name = "BAT_COUT_ENTRETIEN_BASE")
+	@JsonView(Views.Batiments.class)
 	private BigDecimal coutEntretienBase;
 	
 	@Column(name = "BAT_NB_PLACES")
+	@JsonView(Views.Batiments.class)
 	private int nbPlace;
 	
 	@OneToOne
 	@JoinColumn(name = "BAT_COORDONEE_ID", nullable = false, unique = true)
+	@JsonView(Views.Batiments.class)
 	private Coordonnees coordonnees;
 	
 	@ManyToOne
