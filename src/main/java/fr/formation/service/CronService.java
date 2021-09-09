@@ -39,7 +39,7 @@ public class CronService {
 	private ISimEtatDao daoSimEtat;
 
 	// Toutes les 6 secondes, pour simuler une heure
-	@Scheduled(fixedDelay = 1000 * 6) // Scheduled : il faut activer cette annotation dans la configuration
+	@Scheduled(fixedRate = 1000 * 6) // Scheduled : il faut activer cette annotation dans la configuration
 	public void heureCron() {
 
 		SimulationEtat simulationEtat = daoSimEtat.findById(1).get();
