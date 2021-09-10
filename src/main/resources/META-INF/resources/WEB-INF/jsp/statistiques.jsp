@@ -11,8 +11,8 @@
 			<p>Nombre d'habitants : ${ nbhabitants }</p>
 			<p>Nombre de bâtiments : ${ nbbatiments }</p>
 			<p>Quantité d'argent totale : ${ argenttotal }</p>
-			<p>Quantité d'argent des propri�taires : ${ argentproprietaires }</p>
-			<p>Quantité d'argent des non propri�taires : ${ argenttotal.subtract(argentproprietaires) }</p>
+			<p>Quantité d'argent des propriétaires : ${ argentproprietaires }</p>
+			<p>Quantité d'argent des non propriétaires : ${ argenttotal.subtract(argentproprietaires) }</p>
 		</div>
 		<div>
 			<h2>Affichage des courbes</h2>

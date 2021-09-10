@@ -20,7 +20,7 @@ public class ProprietaireController {
 	@GetMapping("/liste-proprietaires")
 	public String findAll(Model model) {
 		model.addAttribute("citoyens", daoProprietaire.findAll());
-		model.addAttribute("nameEntity", "Proprietaire");
+		model.addAttribute("nameEntity", "Propri&eacute;taire");
 		return "citoyen-liste";
 	}
 	
