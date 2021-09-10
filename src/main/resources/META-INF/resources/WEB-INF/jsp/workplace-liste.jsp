@@ -47,10 +47,10 @@
 				<td><button type="submit" class="btn btn-primary" form="0"> <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
-			<form method="POST" id=0></form>
+			<form method="POST" id=0><input name="${ _csrf.parameterName }" type="hidden" value="${ _csrf.token }" /></form>
 			
 			<c:forEach items="${ workplaces }" var="workplace">
-				<form method="POST" id="${ workplace.id }"></form>
+				<form method="POST" id="${ workplace.id }"><input name="${ _csrf.parameterName }" type="hidden" value="${ _csrf.token }" /></form>
 				<tr>
 					<td>${ workplace.id }<input type="hidden" name="id" form="${ workplace.id }" value="${ workplace.id }"					class="form-control"/></td>
 					<td><input type="text"   name="nom"					form="${ workplace.id }" value="${ workplace.nom }"					class="form-control"/></td>

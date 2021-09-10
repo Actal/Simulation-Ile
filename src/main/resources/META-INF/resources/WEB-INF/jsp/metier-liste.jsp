@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 <link rel="stylesheet" href="assets/css/entityEditor.css">
 <link rel="stylesheet" href="assets/css/icon.css">
 
 <t:layout>
-	<h1>M�tier</h1>
+	<h1>Métier</h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Intitul�</th>
+				<th>Intitulé</th>
 				<th />
 				<th />
 			</tr>
@@ -25,10 +23,10 @@
 				<td><button type="submit" class="btn btn-primary"	form="0"> <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
-			<form method="POST" id=0></form>
+			<form method="POST" id=0><input name="${ _csrf.parameterName }" type="hidden" value="${ _csrf.token }" /></form>
 			
 			<c:forEach items="${ metiers }" var="metier">
-				<form method="POST" id="${ metier.id }"></form>
+				<form method="POST" id="${ metier.id }"><input name="${ _csrf.parameterName }" type="hidden" value="${ _csrf.token }" /></form>
 				<tr>
 					<td>${ metier.id }<input type="hidden" name="id" form="${ metier.id }" value="${ metier.id }" /></td>
 					<td><input  type="text"   name="intitule"         form="${ metier.id }" value="${ metier.intitule }" class="form-control"/></td>

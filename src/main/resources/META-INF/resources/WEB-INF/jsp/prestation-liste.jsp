@@ -50,10 +50,10 @@
 				<td><button type="submit" class="btn btn-primary" form="0" > <i class="icon icon-save"></i> </button></td>
 				<td></td>
 			</tr>
-			<form method="POST" id=0></form>
+			<form method="POST" id=0><input name="${ _csrf.parameterName }" type="hidden" value="${ _csrf.token }" /></form>
 			
 			<c:forEach items="${ prestations }" var="prestation">
-				<form method="POST" id="${ prestation.id }"></form>
+				<form method="POST" id="${ prestation.id }"><input name="${ _csrf.parameterName }" type="hidden" value="${ _csrf.token }" /></form>
 				<tr>
 					<td>${ prestation.id }<input type="hidden" name="id" form="${ prestation.id }" value="${ prestation.id }" /></td>
 					<td><input type="text"   name="nom"					form="${ prestation.id }" value="${ prestation.nom }"				class="form-control"/></td>
