@@ -57,9 +57,17 @@ let addCase = (objects) => {
                 if (o.type in caseColor) color = caseColor[o.type];
                 else color = caseColor["Default"];
                 document.querySelector(`#coordonnee-${o.coordonnees.x+w}-${o.coordonnees.y+h}`).style.background = color;
+                o.nbPersonnes = 0;
                 coordonnees[o.coordonnees.x+w][o.coordonnees.y+h] = o;
             }
         } 
+    }
+}
+
+// Add person to count in buildings
+let addCooPerson = (object) => {
+    if (object.coordonnes != null){
+        coordonnees[object.coordonnees.x][object.coordonnees.y].nbPersonnes += 1;
     }
 }
 
@@ -75,6 +83,14 @@ let fetchData = () => {
            addMapIcon(batiment);     
        }
    });
+   fetch('http://localhost:8080/api/personnes')
+   .then(resp => resp.json())
+   .then(personnes => {
+        for (person of personnes){
+            console.log(person);
+            addCooPerson(person);
+        }
+   })
    };
 fetchData();
 

@@ -15,7 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
+import fr.formation.api.Views;
 
 @Entity
 @Table(name = "personne")
@@ -24,12 +28,15 @@ public class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PER_ID")
+	@JsonView(Views.Commons.class)
 	private int id;
 
 	@Column(name = "PER_NOM", nullable = false)
+	@JsonView(Views.Personnes.class)
 	private String nom;
 
 	@Column(name = "PER_PRENOM", nullable = false)
+	@JsonView(Views.Personnes.class)
 	private String prenom;
 
 	@Column(name = "PER_DATE_NAISSANCE", nullable = false)
@@ -48,6 +55,7 @@ public class Personne {
 	
 	@OneToOne
 	@JoinColumn(name = "PER_COORDONNEES_ID")
+	@JsonView(Views.Personnes.class)
 	private Coordonnees coordonnees;
 
 	public Personne() {

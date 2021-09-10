@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.formation.dao.IBatimentDao;
 import fr.formation.dao.IBiomeDao;
+import fr.formation.dao.IPersonneDao;
 import fr.formation.dao.ISimEtatDao;
 import fr.formation.model.Batiment;
 import fr.formation.model.Biome;
+import fr.formation.model.Personne;
 import fr.formation.model.SimulationEtat;
 
 // @Controller
@@ -33,6 +35,8 @@ public class ApiController {
     private IBiomeDao daoBiome;
     @Autowired
     private ISimEtatDao daoSimEtat;
+    @Autowired
+    private IPersonneDao daoPersonne;
 
     @JsonView(Views.Batiments.class)
     @GetMapping("/batiments")
@@ -44,6 +48,12 @@ public class ApiController {
     @GetMapping("/biomes")
     public List<Biome> findBiomes(){
         return this.daoBiome.findAll();
+    }
+
+    @JsonView(Views.Personnes.class)
+    @GetMapping("/personnes")
+    public List<Personne> findPersonnes(){
+        return this.daoPersonne.findAll();
     }
 
     @JsonView(Views.SimulationEtat.class)
