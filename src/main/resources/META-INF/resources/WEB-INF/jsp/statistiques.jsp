@@ -5,15 +5,17 @@
 	<div id="sidebar"></div>
 	<div id="statistiques" class="row">
 		<div id="statistiques-area">
-			<h2>Statistiques de l'île</h2>
+			<h2>Statistiques de l'Ã®le</h2>
 			<p>Nombre d'habitants : ${ nbhabitants }</p>
-			<p>Nombre de bâtiments : ${ nbbatiments }</p>
-			<p>Quantité d'argent totale : ${ argenttotal }</p>
-			<p>Quantité d'argent des propriétaires : ${ argentproprietaires }</p>
-			<p>Quantité d'argent des non propriétaires : ${ argenttotal.subtract(argentproprietaires) }</p>
+			<p>Nombre de bÃ¢timents : ${ nbbatiments }</p>
+			<p>QuantitÃ© d'argent totale : ${ argenttotal }</p>
+			<p>QuantitÃ© d'argent des propriï¿½taires : ${ argentproprietaires }</p>
+			<p>QuantitÃ© d'argent des non propriï¿½taires : ${ argenttotal.subtract(argentproprietaires) }</p>
+		</div>
+		<div>
+			<h2>Affichage des courbes</h2>
 		</div>
 		<div id="statistiques-area2">
-			<h2>Affichage des courbes</h2>
 		</div>
 		<!-- <div id="statistiques-area3">
 			<h2>Affichage des histogrammes</h2>
