@@ -1,12 +1,12 @@
 
-let caseColor = {"Default":"#999999", "Prairie": "lightgreen", "Desert":"gold", "Montagne":"lightgray"}
+let caseColor = {"Default":"#999999", "Prairie": "lightgreen", "Desert":"gold", "Montagne":"lightgray", "Foret":"green", "Tundra":"#9999EE"}
 
 //Store coordinates and associated informations
 let coordonnees = [];
 for (let y=0; y<100; y++){
     let tmpTab = [];
     for (let x=0; x<100; x++){
-        tmpTab.push({nom:""});
+        tmpTab.push({type:""});
     }
     coordonnees.push(tmpTab);
 }
