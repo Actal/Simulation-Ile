@@ -86,7 +86,7 @@ let updateData = () => {
         }
     });
 }
-setInterval(1000, updateData());
+setInterval(6000, updateData());
 
 //Display informations in sidebar on mouseover
 let eventDisplay = (event) => {
