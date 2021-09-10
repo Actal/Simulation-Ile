@@ -58,7 +58,13 @@
 						</select>
 					</td>
 					<td><button type="submit" class="btn btn-primary" form="${ citoyen.id }"> <i class="icon icon-save"></i> </button></td>
-					<td><a href="supprimer-citoyen?id=${ citoyen.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
+
+					<c:if test="${ nameEntity == 'Citoyen' }">
+						<td><a href="supprimer-citoyen?id=${ citoyen.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
+					</c:if>
+					<c:if test="${ nameEntity != 'Citoyen' }">
+						<td><a href="supprimer-proprietaire?id=${ citoyen.id }" class="btn btn-danger"> <i class="icon icon-delete"></i> </a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</tbody>
