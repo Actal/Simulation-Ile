@@ -18,10 +18,10 @@
 				<th># places</th>
 				<th>Heure ouverture</th>
 				<th>Heure fermeture</th>
-				<th>Prix d'entr�e</th>
+				<th>Prix d'entrée</th>
 				<th>X</th>
 				<th>Y</th>
-				<th>Proprietaire</th>
+				<th>Propriétaire</th>
 				<th />
 				<th />
 			</tr>

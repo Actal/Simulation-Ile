@@ -20,7 +20,7 @@
 				<th>Heure fermeture</th>
 				<th>X</th>
 				<th>Y</th>
-				<th>Proprietaire</th>
+				<th>Propriétaire</th>
 				<th />
 				<th />
 			</tr>
