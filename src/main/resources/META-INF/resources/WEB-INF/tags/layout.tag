@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Simulation</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
@@ -38,7 +37,7 @@
 								<li><a class="dropdown-item" href="liste-metiers">Metier</a></li>
 								<li><a class="dropdown-item" href="liste-postes">Poste</a></li>
 								<li><a class="dropdown-item" href="liste-prestations">Prestation</a></li>
-								<li><a class="dropdown-item" href="liste-proprietaires">Propri�taire</a></li>
+								<li><a class="dropdown-item" href="liste-proprietaires">Propriétaire</a></li>
 								<li><a class="dropdown-item" href="liste-workplaces">Workplace</a></li>
 							</ul>
 						</li>

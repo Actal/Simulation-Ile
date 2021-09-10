@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 <link rel="stylesheet" href="assets/css/entityEditor.css">
@@ -18,7 +18,7 @@
 				<th># places</th>
 				<th>Heure ouverture</th>
 				<th>Heure fermeture</th>
-				<th>Prix d'entrée</th>
+				<th>Prix d'entrï¿½e</th>
 				<th>X</th>
 				<th>Y</th>
 				<th>Proprietaire</th>
