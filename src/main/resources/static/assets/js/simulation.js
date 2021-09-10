@@ -64,13 +64,6 @@ let addCase = (objects) => {
     }
 }
 
-// Add person to count in buildings
-let addCooPerson = (object) => {
-    if (object.coordonnes != null){
-        coordonnees[object.coordonnees.x][object.coordonnees.y].nbPersonnes += 1;
-    }
-}
-
 let fetchData = () => {
     fetch('http://localhost:8080/api/biomes')
    .then(resp => resp.json())
@@ -83,16 +76,23 @@ let fetchData = () => {
            addMapIcon(batiment);     
        }
    });
-   fetch('http://localhost:8080/api/personnes')
-   .then(resp => resp.json())
-   .then(personnes => {
+}
+fetchData();
+
+//Add and update people in buildings
+let updatePersonnes = () => {
+    fetch('http://localhost:8080/api/personnes')
+    .then(resp => resp.json())
+    .then(personnes => {
         for (person of personnes){
             console.log(person);
-            addCooPerson(person);
+            if (person.coordonnes != null){
+                coordonnees[person.coordonnees.x][person.coordonnees.y].nbPersonnes += 1;
+            }
         }
-   })
-   };
-fetchData();
+    })
+};
+updatePersonnes();
 
 //Display informations in sidebar on mouseover
 let eventDisplay = (event) => {
