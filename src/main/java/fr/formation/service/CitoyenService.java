@@ -97,6 +97,7 @@ public class CitoyenService extends PersonneService {
 		}
 	}
 
+	//Simule toutes les heures donc on travaille sur les heures
 	public void faireAction(int idCitoyen, LocalTime time){
 		// Definit les horraires d action
 		Citoyen citoyen = daoCitoyen.findById(idCitoyen).get();

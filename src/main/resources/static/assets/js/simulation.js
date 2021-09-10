@@ -64,7 +64,7 @@ let addCase = (objects) => {
     }
 }
 
-let fetchData = () => {
+let updateData = () => {
     fetch('http://localhost:8080/api/biomes')
    .then(resp => resp.json())
    .then(biomes => addCase(biomes));
@@ -76,12 +76,7 @@ let fetchData = () => {
            addMapIcon(batiment);     
        }
    });
-}
-fetchData();
-
-//Add and update people in buildings
-let updatePersonnes = () => {
-    fetch('http://localhost:8080/api/personnes')
+   fetch('http://localhost:8080/api/personnes')
     .then(resp => resp.json())
     .then(personnes => {
         for (person of personnes){
@@ -89,9 +84,9 @@ let updatePersonnes = () => {
                 coordonnees[person.coordonnees.x][person.coordonnees.y].nbPersonnes += 1;
             }
         }
-    })
-};
-updatePersonnes();
+    });
+}
+setInterval(1000, updateData());
 
 //Display informations in sidebar on mouseover
 let eventDisplay = (event) => {
