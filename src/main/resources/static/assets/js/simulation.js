@@ -85,8 +85,7 @@ let updatePersonnes = () => {
     .then(resp => resp.json())
     .then(personnes => {
         for (person of personnes){
-            console.log(person);
-            if (person.coordonnes != null){
+            if (person.coordonnees != null){
                 coordonnees[person.coordonnees.x][person.coordonnees.y].nbPersonnes += 1;
             }
         }
@@ -130,6 +129,9 @@ let eventShowBuilding = (event) => {
         if (attribute == "coordonnees"){
             elems += (`<p>x: ${data[attribute].x}</p>`);
             elems += (`<p>y: ${data[attribute].y}</p>`);
+        }
+        else if (attribute == "nbPersonnes" && data[attribute] == 0) {
+            //stub
         }
         else {
            elems += (`<p>${attribute}: ${data[attribute]}</p>`); 
