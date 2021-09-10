@@ -1,7 +1,5 @@
 var state = "play";
 
-console.log(state);
-
 function refreshDatTime() {
     fetch('http://localhost:8080/api/dateTimeSimu')
         .then(resp => resp.json())
@@ -15,13 +13,13 @@ function buttonPlayPress() {
     if (state == 'pause') {
         state = 'play';
         document.querySelector("#button_play").innerHTML = `<img src="assets/img/play-circle-solid.svg" />`;
-        fetch_content = true;
+        fetch_content = {pause: true};
     }
 
     else if (state == 'play') {
         state = 'pause';
         document.querySelector("#button_play").innerHTML = `<img src="assets/img/pause-circle-solid.svg" />`;
-        fetch_content = false
+        fetch_content = {pause: false};
     }
 
     fetch("http://localhost:8080/api/play-pause", {
@@ -31,7 +29,7 @@ function buttonPlayPress() {
             'Content-Type': 'application/json'
         },
 
-        body: fetch_content
+        body: JSON.stringify(fetch_content)
     })
 }
 
