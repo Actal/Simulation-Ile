@@ -125,9 +125,21 @@ public class CitoyenService extends PersonneService {
 				chercherLogement(idCitoyen);
 			}
 		}
+
 		//Si ne travaille pas et ne dort pas
-		else if (timeHour > workStop && timeHour < sleepStart){
-			chercherPrestation(idCitoyen, time);
+		else {
+			// 02h-18h
+			if (workStop > sleepStart){
+				if (timeHour > workStop || timeHour < sleepStart){
+					chercherPrestation(idCitoyen, time);
+				}
+			}
+			// 08h-02h
+			else if (workStop < sleepStart){
+				if (timeHour > workStop && timeHour < sleepStart){
+					chercherPrestation(idCitoyen, time);
+				}
+			}
 		}
 	}
 }
