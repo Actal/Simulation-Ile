@@ -13,13 +13,13 @@ function buttonPlayPress() {
     if (state == 'pause') {
         state = 'play';
         document.querySelector("#button_play").innerHTML = `<img src="assets/img/play-circle-solid.svg" />`;
-        fetch_content = {pause: true};
+        fetch_content = true
     }
 
     else if (state == 'play') {
         state = 'pause';
         document.querySelector("#button_play").innerHTML = `<img src="assets/img/pause-circle-solid.svg" />`;
-        fetch_content = {pause: false};
+        fetch_content = false
     }
 
     fetch("http://localhost:8080/api/play-pause", {
@@ -29,7 +29,7 @@ function buttonPlayPress() {
             'Content-Type': 'application/json'
         },
 
-        body: JSON.stringify(fetch_content)
+        body: fetch_content
     })
 }
 
