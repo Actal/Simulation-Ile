@@ -1,7 +1,7 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +40,7 @@ public class WorkplaceController {
 	}
 	
 	@PostMapping("/liste-workplaces" )
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(Workplace workplace, @RequestParam int x, @RequestParam int y) {
 		Coordonnees c = new Coordonnees(x,y);
 		daoCoordonnees.save(c);
@@ -55,6 +56,7 @@ public class WorkplaceController {
 	}
 	
 	@GetMapping("/supprimer-workplace")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteById(@RequestParam int id) {
 		daoWorkplace.deleteById(id);
 		return "redirect:/liste-workplaces";

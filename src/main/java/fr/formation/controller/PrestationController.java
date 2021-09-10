@@ -1,6 +1,7 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class PrestationController {
 	}
 	
 	@PostMapping("/liste-prestations")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(Prestation prestation, @RequestParam int x, @RequestParam int y) {
 		Coordonnees c = new Coordonnees(x,y);
 		daoCoordonnees.save(c);
@@ -52,6 +54,7 @@ public class PrestationController {
 	}
 	
 	@GetMapping("/supprimer-prestation")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteById(@RequestParam int id) {
 		daoPrestation.deleteById(id);
 		return "redirect:/liste-prestations";

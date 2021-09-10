@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SimulationController {
 
-	@RequestMapping("/simulation")
+	@RequestMapping({"/simulation", "/", "/home"})
 	//@GetMapping("home-get") pour requete
 	public String Simulation(){
 		return "simulation";

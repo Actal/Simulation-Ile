@@ -1,6 +1,7 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +25,14 @@ public class CitoyenController {
 	}
 	
 	@PostMapping({ "/liste-citoyens" })
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(Citoyen citoyen) {
 		daoCitoyen.save(citoyen);
 		return "redirect:/liste-citoyens";
 	}
 	
 	@GetMapping("/supprimer-citoyen")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteById(@RequestParam int id) {
 		daoCitoyen.deleteById(id);
 		return "redirect:/liste-citoyens";

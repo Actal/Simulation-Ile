@@ -1,6 +1,7 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,12 +34,14 @@ public class PosteController {
 	}
 	
 	@PostMapping({ "/liste-postes" })
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(Poste poste) {
 		daoPoste.save(poste);
 		return "redirect:/liste-postes";
 	}
 	
 	@GetMapping("/supprimer-poste")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteById(@RequestParam int id) {
 		daoPoste.deleteById(id);
 		return "redirect:/liste-postes";

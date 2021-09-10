@@ -1,6 +1,7 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ public class HabitationController {
 	}
 	
 	@PostMapping("/liste-habitations")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(Habitation habitation, @RequestParam int x, @RequestParam int y) {
 		
 		Coordonnees c = new Coordonnees(x,y);
@@ -53,6 +55,7 @@ public class HabitationController {
 	}
 	
 	@GetMapping("/supprimer-habitation")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteById(@RequestParam int id) {
 		daoHabitation.deleteById(id);
 		return "redirect:/liste-habitations";

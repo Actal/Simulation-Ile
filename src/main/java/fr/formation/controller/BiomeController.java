@@ -1,6 +1,8 @@
 package fr.formation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import fr.formation.model.Biome;
 import fr.formation.model.Coordonnees;
 
 @Controller
+
 public class BiomeController {
 
 	@Autowired
@@ -27,6 +30,7 @@ public class BiomeController {
 	}
 	
 	@PostMapping("/liste-biomes")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String save(Biome b, int x, int y) {
 		
 		Coordonnees c = new Coordonnees(x,y);
@@ -39,6 +43,7 @@ public class BiomeController {
 	}
 	
 	@GetMapping("/supprimer-biome")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteById(@RequestParam int id) {
 		daoBiome.deleteById(id);
 		return "redirect:/liste-biomes";
